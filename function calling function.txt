@@ -1,0 +1,26 @@
+# copyright (c) 1999-2018, Juniper Networks Inc.
+# All rights reserved.
+#
+
+def SQUARE(x):
+    z = x * x
+    return z;
+
+def SumOfSquare(x, y, z):
+    a = SQUARE(x)
+    b = SQUARE(y)
+    c = SQUARE(z)
+    SUM = a + b + c
+    return SUM;
+
+def main():
+    iRESULT = 0
+    sDebugFileName = "/var/tmp/DHCP_DNS_DEBUG.log"
+
+    iRESULT = SumOfSquare(1, 2, 3)
+    hDebug = open(sDebugFileName, "a")
+    hDebug.write(str(iRESULT) + " \n")
+    hDebug.close()
+
+if __name__ == '__main__':
+    main()

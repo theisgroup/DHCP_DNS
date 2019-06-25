@@ -1,0 +1,920 @@
+﻿root> show log jdhcp | no-more 
+Jun 4 18:59:41  clear-log[8376]: logfile cleared
+Jun  4 19:04:34.615329 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  4 19:04:34.615384 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  4 19:04:34.615417 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if ge-0/0/0.0 size 269
+Jun  4 19:04:34.615453 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   from == 192.168.1.10, port == 68 ]--
+Jun  4 19:04:34.615467 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   size == 269, op == 1 ]--
+Jun  4 19:04:34.615478 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:04:34.615489 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:04:34.615500 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   hops == 0, xid == 14c6f8ca ]--
+Jun  4 19:04:34.615511 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:04:34.615530 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP ciaddr == 192.168.1.10 ]--
+Jun  4 19:04:34.615542 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  4 19:04:34.615554 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:04:34.615566 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:04:34.615591 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP chaddr == 00 0c 29 fe 49 a8 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:04:34.615603 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:04:34.615615 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:04:34.615633 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  55, len   9, data 03 33 01 0f 06 42 43 78 2c ]--
+Jun  4 19:04:34.615649 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  53, len   1, data DHCP-REQUEST ]--
+Jun  4 19:04:34.615704 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  51, len   4, data 00 01 51 80 ]--
+Jun  4 19:04:34.615718 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  12, len   5, data 54 45 53 54 31 ]--
+Jun  4 19:04:34.615730 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:04:34.615765 [MSTR][DEBUG] client_key_compose: Composing key (0xa7ba2c0) for cid_l 0, cid NULL, mac 00 0c 29 fe 49 a8, htype 1, subnet 192.168.1.1, ifindx 0, opt82_l 0, opt82 NULL
+Jun  4 19:04:34.615779 [MSTR][DEBUG] client_key_compose: Successfully composed CK_TYPE_HW_ADDR_ON_SUBNET (2) client key object.
+Jun  4 19:04:34.615789 [MSTR][DEBUG] client_key_print: key_type CK_TYPE_HW_ADDR_ON_SUBNET (2): subnet 192.168.1.1, MAC htype 1, Addr 00 0c 29 fe 49 a8
+Jun  4 19:04:34.615797 [MSTR][DEBUG] client_key_print: key_type CK_TYPE_HW_ADDR_ON_SUBNET (2) other fields: subnet 192.168.1.1, ifindex 0, opt82_len 0, -
+Jun  4 19:04:34.615812 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_configuration_match: sus_ifl:0xa086100 (ge-0/0/0.0)
+Jun  4 19:04:34.615824 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_packet_handle: RECEIVE REQUEST: stats_safd 0xa22a700 ge-0/0/0.0, incoming_safd 0xa22a700 ge-0/0/0.0, demux 0x0 , safd 0xa22a700 ge-0/0/0.0
+Jun  4 19:04:34.615843 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] JDHCPD_CLIENT_EVENT: Client(0xa0a8100) got event CLIENT_EVENT_REQUEST_PDU in state LOCAL_SERVER_STATE_BOUND flags 1: 0x10410050 2: 0x80 3: 0x0 nm: 0x0
+Jun  4 19:04:34.615855 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_state_bound: Found subunit stack (0xa086100), index (75) in state LOCAL_SERVER_STATE_BOUND
+Jun  4 19:04:34.615869 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_reauthenticate_lease_renewal: reauthentication required FALSE
+Jun  4 19:04:34.615881 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.615888 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.615898 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes
+Jun  4 19:04:34.615909 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_check_lease_validation_violation: No configuration for lease time violation validation
+Jun  4 19:04:34.615919 [MSTR][DEBUG] jdhcpd_rc_lease_timer_stop: stopping lease timer
+Jun  4 19:04:34.615930 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_add_client_in_blq_tree_all_entries: BLQ-AVL - Client is already on the blq AVL tree's list ALL.
+Jun  4 19:04:34.615940 [MSTR][DEBUG] blq_entry_timestamp_q_find: BLQ-AVL: packet time(1559675074) ts_q_entry(a029f4c) ts_q_entry->start_time(1559671631), ts_q_entry->end_time(1559671631)
+Jun  4 19:04:34.615950 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_add_client_in_blq_tree_all_entries: BLQ-AVL - Client is added in general blq AVL tree's list, number of clients in this list 1
+Jun  4 19:04:34.615960 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_persistent_is_entry_in_file_allowed: client_type=1, client->state=12
+Jun  4 19:04:34.615974 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_fill_client_sdb_private_data: Mirroring disabled (ha_graceful_switchover false) c0a8:10a:ffff:ff00::c0a8:101
+Jun  4 19:04:34.615981 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.615987 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.615996 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes
+Jun  4 19:04:34.616010 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_fill_client_sdb_private_data: Allocated memory to store in SDB, total mirrored length 223, client length 223, dual stack peer client length 0, session-id 1
+Jun  4 19:04:34.616024 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: Saved NON-DEMUX interface name ge-0/0/0.0 into mirroring ha_info
+Jun  4 19:04:34.616033 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.616041 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.616051 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes
+Jun  4 19:04:34.616066 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: ++++Added TLV for WHOLESALE LR name default length 7
+Jun  4 19:04:34.616078 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: ++++Added TLV for WHOLESALE RI name default length 7
+Jun  4 19:04:34.616089 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: Added TLV for last_packet_time length 4, last_packet_time: 1559675074
+Jun  4 19:04:34.616100 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: Added TLV for active_lq_last_update_time length 4, active_lq_last_update_time: 1559675074
+Jun  4 19:04:34.616114 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_write_private_data: ++++Added TLV for Incoming dhcp options length 16
+Jun  4 19:04:34.616173 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_mirrorsdb_add_client: Successfully saved private data for 192.168.1.10 in SDB, length 223
+Jun  4 19:04:34.616190 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_client_correlation_id_update: setting the client correlation_id 4 in state 12.
+Jun  4 19:04:34.616203 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_sdb_ack_request_correlate: Setting client correlation id as 4, correlation_state as 12
+Jun  4 19:04:34.616270 [MSTR][DEBUG] jdhcpd_rc_lease_timer_start: starting lease timer for 86400 seconds
+Jun  4 19:04:34.616286 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_client_lease_timer_start: CLIENT starting lease timer for index 65537, lease_end 1559761474
+Jun  4 19:04:34.617917 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_state_bound: SDB ACK will notify us for client session Id 1
+Jun  4 19:04:34.617949 [MSTR][INFO]  jdhcpd_client_set_pkt: *********** Setting v4 packet 0xa0661f8
+Jun  4 19:04:34.645971 [MSTR][DEBUG] jdhcpd_sessiondb_mirrored_ack_cb: Successful SDB Mirrored Ack: returned code SDB_SUCCESS for session id 1 family INET, Ack WAITING
+Jun  4 19:04:34.645986 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] JDHCPD_CLIENT_EVENT: Client(0xa0a8100) got event CLIENT_EVENT_CLIENT_SDB_MIRROR_ACK in state LOCAL_SERVER_STATE_BOUND flags 1: 0x10410050 2: 0x80 3: 0x0 nm: 0x0
+Jun  4 19:04:34.646004 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_state_bound: Found subunit stack (0xa086100), index (75) in state LOCAL_SERVER_STATE_BOUND
+Jun  4 19:04:34.646012 [MSTR][INFO]  jdhcpd_client_unset_pkt: ***********  Unsetting v4 packet 0xa0661f8
+Jun  4 19:04:34.646020 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.646028 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.646038 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_pdu_send: TRYING to send packet
+Jun  4 19:04:34.646048 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_fill_in_server_identifier: Adding server identifier option
+Jun  4 19:04:34.646055 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.646062 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.646070 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a0220f8, TEST
+Jun  4 19:04:34.646081 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8b00 w/ cfg container 0xa07d000
+Jun  4 19:04:34.646090 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes
+Jun  4 19:04:34.646099 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_t1t2_settings_get: t1 is 0  and T2 is 0
+Jun  4 19:04:34.646108 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_options_encode: return from t1t2_settings_get is: t1 0 t2 0
+Jun  4 19:04:34.646116 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_options_encode: using T1 0 and T2 0.
+Jun  4 19:04:34.646126 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes
+Jun  4 19:04:34.646135 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_options_encode: requested option from pool, option code 3, len 6
+Jun  4 19:04:34.646144 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_options_encode: requested option from pool, option code 15, len 6
+Jun  4 19:04:34.646153 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_options_encode: requested option from pool, option code 6, len 6
+Jun  4 19:04:34.646163 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_pdu_send: SEND (5) ACK: stats_safd 0xa22a700 ge-0/0/0.0, incoming_safd 0xa22a700 ge-0/0/0.0, demux 0x0 , safd 0xa22a700 ge-0/0/0.0
+Jun  4 19:04:34.646174 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_local_server_pdu_send:
+Dump of PDU to be sent
+ 
+Jun  4 19:04:34.646187 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   from == 192.168.1.10, port == 68 ]--
+Jun  4 19:04:34.646195 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   size == 281, op == 2 ]--
+Jun  4 19:04:34.646203 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:04:34.646213 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:04:34.646221 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   hops == 0, xid == 14c6f8ca ]--
+Jun  4 19:04:34.646256 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:04:34.646271 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP ciaddr == 192.168.1.10 ]--
+Jun  4 19:04:34.646280 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP yiaddr == 192.168.1.10 ]--
+Jun  4 19:04:34.646288 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:04:34.646296 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:04:34.646311 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP chaddr == 00 0c 29 fe 49 a8 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:04:34.646321 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:04:34.646329 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:04:34.646337 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  53, len   1, data DHCP-ACK ]--
+Jun  4 19:04:34.646348 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  51, len   4, data 00 01 51 80 ]--
+Jun  4 19:04:34.646357 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   1, len   4, data ff ff ff 00 ]--
+Jun  4 19:04:34.646367 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  54, len   4, data c0 a8 01 01 ]--
+Jun  4 19:04:34.646376 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   3, len   4, data c0 a8 01 01 ]--
+Jun  4 19:04:34.646386 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  15, len   4, data 74 65 73 74 ]--
+Jun  4 19:04:34.646395 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   6, len   4, data c0 a8 01 01 ]--
+Jun  4 19:04:34.646404 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:04:34.646419 [MSTR][INFO]  jdhcpd_io_send_packet_legacy: Packet will be sent from routing context 0
+Jun  4 19:04:34.646428 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_io_send_packet_legacy: Set the outgoing if to 75
+Jun  4 19:04:34.646767 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=1] jdhcpd_io_send_packet_legacy: DHCP PDU from 192.168.1.1 to 192.168.1.10 port 68 out interface 75 len 281
+Jun  4 19:11:28.294454 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  4 19:11:28.297058 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  4 19:11:28.297095 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if fxp0.0 size 300
+Jun  4 19:11:28.297238 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   from == 0.0.0.0, port == 68 ]--
+Jun  4 19:11:28.297261 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   size == 300, op == 1 ]--
+Jun  4 19:11:28.297275 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:11:28.297285 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:11:28.297298 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   hops == 0, xid == e1ca6e09 ]--
+Jun  4 19:11:28.297308 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:11:28.297318 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP ciaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.297393 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.297445 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.297491 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.297574 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP chaddr == 00 50 56 c0 00 01 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:11:28.297586 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:11:28.297594 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:11:28.297602 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  53, len   1, data DHCP-DISCOVER ]--
+Jun  4 19:11:28.297613 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  61, len   7, data 01 00 50 56 c0 00 01 ]--
+Jun  4 19:11:28.297621 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  50, len   4, data c0 a8 7a 01 ]--
+Jun  4 19:11:28.297633 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  12, len  12, data 79 61 6e 67 6c 61 69 2d 58 32 36 30 ]--
+Jun  4 19:11:28.297744 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  60, len   8, data 4d 53 46 54 20 35 2e 30 ]--
+Jun  4 19:11:28.297892 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  55, len  13, data 01 03 06 0f 1f 21 2b 2c 2e 2f 79 f9 fc ]--
+Jun  4 19:11:28.297907 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:11:28.297935 [MSTR][NOTE] [default:default][RLY][INET][fxp0.0] jdhcpd_packet_handle: BOOTPREQUEST fxp0.0 arrived on unconfigured interface DISCOVER, flags 23, config 0x0
+Jun  4 19:11:28.297984 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  4 19:11:28.297996 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  4 19:11:28.298025 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if fxp0.0 size 304
+Jun  4 19:11:28.298039 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   from == 0.0.0.0, port == 68 ]--
+Jun  4 19:11:28.298047 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   size == 304, op == 1 ]--
+Jun  4 19:11:28.298055 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:11:28.298065 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:11:28.298073 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   hops == 0, xid == e1ca6e09 ]--
+Jun  4 19:11:28.298080 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:11:28.298089 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP ciaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.298097 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.298105 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.298113 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:11:28.298126 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP chaddr == 00 50 56 c0 00 01 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:11:28.298135 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:11:28.298143 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:11:28.298150 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  53, len   1, data DHCP-REQUEST ]--
+Jun  4 19:11:28.298190 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  61, len   7, data 01 00 50 56 c0 00 01 ]--
+Jun  4 19:11:28.298200 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  50, len   4, data c0 a8 7a 01 ]--
+Jun  4 19:11:28.298267 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  54, len   4, data c0 a8 7a fe ]--
+Jun  4 19:11:28.298318 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  12, len  12, data 79 61 6e 67 6c 61 69 2d 58 32 36 30 ]--
+Jun  4 19:11:28.298393 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  60, len   8, data 4d 53 46 54 20 35 2e 30 ]--
+Jun  4 19:11:28.298429 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  55, len  13, data 01 03 06 0f 1f 21 2b 2c 2e 2f 79 f9 fc ]--
+Jun  4 19:11:28.298500 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:11:28.298549 [MSTR][NOTE] [default:default][RLY][INET][fxp0.0] jdhcpd_packet_handle: BOOTPREQUEST fxp0.0 arrived on unconfigured interface REQUEST, flags 23, config 0x0
+Jun  4 19:11:33.913964 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  4 19:11:33.913999 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  4 19:11:33.914022 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if fxp0.0 size 300
+Jun  4 19:11:33.914041 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   from == 0.0.0.0, port == 68 ]--
+Jun  4 19:11:33.914053 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   size == 300, op == 1 ]--
+Jun  4 19:11:33.914065 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:11:33.914082 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:11:33.914093 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   hops == 0, xid == 24def93c ]--
+Jun  4 19:11:33.914126 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:11:33.914138 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP ciaddr == 0.0.0.0 ]--
+Jun  4 19:11:33.914151 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  4 19:11:33.914162 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:11:33.914173 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:11:33.914194 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP chaddr == 00 50 56 c0 00 01 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:11:33.914205 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:11:33.914218 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:11:33.914230 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  53, len   1, data DHCP-REQUEST ]--
+Jun  4 19:11:33.914246 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  61, len   7, data 01 00 50 56 c0 00 01 ]--
+Jun  4 19:11:33.914259 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  50, len   4, data c0 a8 7a 01 ]--
+Jun  4 19:11:33.914277 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  12, len  12, data 79 61 6e 67 6c 61 69 2d 58 32 36 30 ]--
+Jun  4 19:11:33.914292 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  60, len   8, data 4d 53 46 54 20 35 2e 30 ]--
+Jun  4 19:11:33.914310 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  55, len  13, data 01 03 06 0f 1f 21 2b 2c 2e 2f 79 f9 fc ]--
+Jun  4 19:11:33.914321 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:11:33.914349 [MSTR][NOTE] [default:default][RLY][INET][fxp0.0] jdhcpd_packet_handle: BOOTPREQUEST fxp0.0 arrived on unconfigured interface REQUEST, flags 23, config 0x0
+Jun  4 19:11:35.516351 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  4 19:11:35.516408 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  4 19:11:35.516439 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if fxp0.0 size 300
+Jun  4 19:11:35.516459 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   from == 0.0.0.0, port == 68 ]--
+Jun  4 19:11:35.516471 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   size == 300, op == 1 ]--
+Jun  4 19:11:35.516482 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  4 19:11:35.516493 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  4 19:11:35.516503 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   hops == 0, xid == 79441589 ]--
+Jun  4 19:11:35.516530 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  4 19:11:35.516543 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP ciaddr == 0.0.0.0 ]--
+Jun  4 19:11:35.516554 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  4 19:11:35.516564 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  4 19:11:35.516575 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  4 19:11:35.516593 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP chaddr == 00 50 56 c0 00 01 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  4 19:11:35.516603 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  4 19:11:35.516613 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  4 19:11:35.516628 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  53, len   1, data DHCP-REQUEST ]--
+Jun  4 19:11:35.516643 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  61, len   7, data 01 00 50 56 c0 00 01 ]--
+Jun  4 19:11:35.516655 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  50, len   4, data c0 a8 7a 01 ]--
+Jun  4 19:11:35.516670 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  12, len  12, data 79 61 6e 67 6c 61 69 2d 58 32 36 30 ]--
+Jun  4 19:11:35.516684 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  60, len   8, data 4d 53 46 54 20 35 2e 30 ]--
+Jun  4 19:11:35.516699 [MSTR][DEBUG][default:default][RLY][INET][fxp0.0] --[ OPTION code  55, len  13, data 01 03 06 0f 1f 21 2b 2c 2e 2f 79 f9 fc ]--
+Jun  4 19:11:35.516709 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] --[ OPTION code 255, len   0 ]--
+Jun  4 19:11:35.516725 [MSTR][NOTE] [default:default][RLY][INET][fxp0.0] jdhcpd_packet_handle: BOOTPREQUEST fxp0.0 arrived on unconfigured interface REQUEST, flags 23, config 0x0
+Jun  5 09:50:33.457810 [INIT][DEBUG] jdhcpd_trace_get_settings: Tracing configured from DHCP-Service
+Jun  5 09:50:33.466112 [INIT][INFO]  jdhcpd_process_global_cfg: Global config from system process dhcp-service is set
+Jun  5 09:50:33.471396 [INIT][INFO]  jdhcpd_process_global_cfg: got accept-max-tcp-connections 5
+Jun  5 09:50:33.471419 [INIT][INFO]  jdhcpd_process_global_cfg: got request-max-tcp-connections 3
+Jun  5 09:50:33.472744 [INIT][INFO]  jdhcpd_process_global_cfg: got max-leasequery-reply-packet-retries 5
+Jun  5 09:50:33.472764 [INIT][INFO]  jdhcpd_process_global_cfg: got leasequery-reply-packet-retry-timer 10
+Jun  5 09:50:33.472774 [INIT][INFO]  jdhcpd_process_global_cfg: got max-leasequery-reply-packet-process 100
+Jun  5 09:50:33.472801 [INIT][DEBUG] jdhcpd_config_read: === Configuration CHECK[5053] ===
+Jun  5 09:50:33.476796 [INIT][DEBUG] jdhcpd_cfg_do_top_cb: Process top configuration: LS:default RI:default, application SERVER, action 2
+Jun  5 09:50:33.478198 [INIT][DEBUG] jdhcpd_cfg_get_instance_type: Failed to read instance-type for (default.default)
+Jun  5 09:50:33.487208 [INIT][DEBUG] jdhcpd_cfg_do_top_cb: Processing a CHANGE for DHCPv4
+Jun  5 09:50:33.488049 [INIT][DEBUG] jdhcpd_cfg_do_top_by_af: default default app SERVER action 2
+Jun  5 09:50:33.488073 [INIT][INFO]  jdhcpd_cfg_do_top_by_af: RC_RTB (a04f000), index 65535 set APP_CFG
+Jun  5 09:50:33.489402 [INIT][DEBUG] jdhcpd_process_pool_match_order: No pool-match-order
+Jun  5 09:50:33.491946 [INIT][DEBUG] jdhcpd_process_forward_snooped_clients: forward-snooped-clients NOT SET
+Jun  5 09:50:33.494903 [INIT][INFO]  jdhcpd_process_leasequery_cfg: Processing leasequery for default/default, family INET, app SERVER
+Jun  5 09:50:33.496245 [INIT][INFO]  jdhcpd_process_leasequery_cfg: allow-leasequery NOT SET
+Jun  5 09:50:33.498978 [INIT][INFO]  jdhcpd_process_bulk_leasequery_and_active_leasequery_cf: Processing bulk leasequery for default/default, family INET, app SERVER
+Jun  5 09:50:33.499015 [INIT][INFO]  jdhcpd_process_bulk_leasequery_and_active_leasequery_cf: allow-bulk-leasequery NOT SET
+Jun  5 09:50:33.499053 [INIT][INFO]  jdhcpd_process_persistent_config: Persistent storage not set for LS:default, RI:default
+Jun  5 09:50:33.500438 [INIT][DEBUG] jdhcpd_process_server_group: No Server Groups
+Jun  5 09:50:33.500467 [INIT][INFO]  jdhcpd_process_requested_ip_network_match: requested-ip network match prefix = 8
+Jun  5 09:50:33.505370 [INIT][INFO]  jdhcpd_process_forward_only_to_rc: No config forward-only-to-rc
+Jun  5 09:50:33.506632 [INIT][INFO]  jdhcpd_process_client_response_ttl: client response ttl is 0
+Jun  5 09:50:33.506651 [INIT][INFO]  jdhcpd_process_maximum_hop_count: maximum hops is 0
+Jun  5 09:50:33.506660 [INIT][INFO]  jdhcpd_process_minimum_wait_time: minimum wait-time is 65535
+Jun  5 09:50:33.506668 [INIT][INFO]  jdhcpd_process_vpn_encryption: source ip change is cleared
+Jun  5 09:50:33.506676 [INIT][DEBUG] jdhcpd_process_relay_option82: No Option-82 overrides
+Jun  5 09:50:33.506696 [INIT][INFO]  jdhcpd_process_relay_option60: No Option-60
+Jun  5 09:50:33.506708 [INIT][DEBUG] jdhcpd_process_relay_generic_option: af_type is JDHCPD_AF_INET
+Jun  5 09:50:33.506716 [INIT][INFO]  jdhcpd_process_relay_generic_option: No relay-option
+Jun  5 09:50:33.506735 [INIT][DEBUG] jdhcpd_process_active_server_group: No active-server-group configured
+Jun  5 09:50:33.509282 [INIT][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-interface-id
+Jun  5 09:50:33.511804 [INIT][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-remote-id
+Jun  5 09:50:33.511827 [INIT][INFO]  jdhcpd_process_v6_relay_cid_rid_options: NO V6 vendor-specific options.
+Jun  5 09:50:33.511837 [INIT][DEBUG] jdhcpd_process_dynamic_profile: No dynamic-profile configured
+Jun  5 09:50:33.511853 [INIT][DEBUG] jdhcpd_process_service_profile: No service-profile configured
+Jun  5 09:50:33.511861 [INIT][INFO]  jdhcpd_process_access_profile: No access-profile configured
+Jun  5 09:50:33.513227 [INIT][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:50:33.514465 [INIT][DEBUG] jdhcpd_process_auth: No authentication
+Jun  5 09:50:33.515995 [INIT][DEBUG] jdhcpd_process_reconfigure: No Config reconfigure, clearing reconfigure
+Jun  5 09:50:33.517552 [INIT][DEBUG] jdhcpd_process_liveness_detection: No liveness-detection configured
+Jun  5 09:50:33.518887 [INIT][DEBUG] jdhcpd_process_remote_id_match: No remote-id-mismatch configured
+Jun  5 09:50:33.518907 [INIT][DEBUG] jdhcpd_process_route_suppression: No ROUTE-SUPPRESSION configured
+Jun  5 09:50:33.520150 [INIT][DEBUG] jdhcpd_process_lease_time_validation: Dont Have lease-time-validation
+Jun  5 09:50:33.520167 [INIT][DEBUG] jdhcpd_process_reauthenticate: No reauthenticate configured
+Jun  5 09:50:33.520177 [INIT][INFO]  jdhcpd_process_server_match: No server-match
+Jun  5 09:50:33.520198 [INIT][INFO]  jdhcpd_process_generic_option_ver2: No relay-option
+Jun  5 09:50:33.522877 [INIT][DEBUG] jdhcpd_process_dual_stack_group: No dual stack groups found
+Jun  5 09:50:33.525548 [INIT][DEBUG] jdhcpd_process_group: Have Config Groups
+Jun  5 09:50:33.525567 [INIT][DEBUG] jdhcpd_process_group: top_walk->af_type is JDHCPD_AF_INET
+Jun  5 09:50:33.525601 [INIT][INFO]  jdhcpd_walk_group_cb: **** START group TEST op 2 ****
+Jun  5 09:50:33.525613 [INIT][INFO]  jdhcpd_walk_group_cb: Add group TEST for dhcp type 1
+Jun  5 09:50:33.526962 [INIT][INFO]  jdhcpd_walk_group_cb: Neighbor-discovery-router-advertisement not configed
+Jun  5 09:50:33.526997 [INIT][INFO]  jdhcpd_process_forward_only_to_rc: No config forward-only-to-rc
+Jun  5 09:50:33.527009 [INIT][INFO]  jdhcpd_process_client_response_ttl: client response ttl is 0
+Jun  5 09:50:33.527020 [INIT][INFO]  jdhcpd_process_maximum_hop_count: maximum hops is 0
+Jun  5 09:50:33.527030 [INIT][INFO]  jdhcpd_process_minimum_wait_time: minimum wait-time is 65535
+Jun  5 09:50:33.527040 [INIT][INFO]  jdhcpd_process_vpn_encryption: source ip change is cleared
+Jun  5 09:50:33.527050 [INIT][DEBUG] jdhcpd_process_relay_option82: No Option-82 overrides
+Jun  5 09:50:33.527073 [INIT][INFO]  jdhcpd_process_relay_option60: No Option-60
+Jun  5 09:50:33.527085 [INIT][DEBUG] jdhcpd_process_relay_generic_option: af_type is JDHCPD_AF_INET
+Jun  5 09:50:33.527096 [INIT][INFO]  jdhcpd_process_relay_generic_option: No relay-option
+Jun  5 09:50:33.527107 [INIT][DEBUG] jdhcpd_process_active_server_group: No active-server-group configured
+Jun  5 09:50:33.527119 [INIT][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-interface-id
+Jun  5 09:50:33.527129 [INIT][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-remote-id
+Jun  5 09:50:33.527140 [INIT][INFO]  jdhcpd_process_v6_relay_cid_rid_options: NO V6 vendor-specific options.
+Jun  5 09:50:33.527150 [INIT][DEBUG] jdhcpd_process_dynamic_profile: No dynamic-profile configured
+Jun  5 09:50:33.527160 [INIT][DEBUG] jdhcpd_process_service_profile: No service-profile configured
+Jun  5 09:50:33.527171 [INIT][INFO]  jdhcpd_process_access_profile: No access-profile configured
+Jun  5 09:50:33.527183 [INIT][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:50:33.527193 [INIT][DEBUG] jdhcpd_process_auth: No authentication
+Jun  5 09:50:33.527203 [INIT][DEBUG] jdhcpd_process_reconfigure: No Config reconfigure, clearing reconfigure
+Jun  5 09:50:33.527213 [INIT][DEBUG] jdhcpd_process_liveness_detection: No liveness-detection configured
+Jun  5 09:50:33.527224 [INIT][DEBUG] jdhcpd_process_remote_id_match: No remote-id-mismatch configured
+Jun  5 09:50:33.527235 [INIT][DEBUG] jdhcpd_process_route_suppression: No ROUTE-SUPPRESSION configured
+Jun  5 09:50:33.527245 [INIT][DEBUG] jdhcpd_process_lease_time_validation: Dont Have lease-time-validation
+Jun  5 09:50:33.527273 [INIT][DEBUG] jdhcpd_process_reauthenticate: No reauthenticate configured
+Jun  5 09:50:33.527292 [INIT][INFO]  jdhcpd_process_server_match: No server-match
+Jun  5 09:50:33.527354 [INIT][INFO]  jdhcpd_process_generic_option_ver2: No relay-option
+Jun  5 09:50:33.527606 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base overrides: 0
+Jun  5 09:50:33.527620 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base active-server-group
+Jun  5 09:50:33.527631 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base DHCPv6 active-server-group
+Jun  5 09:50:33.527641 [INIT][DEBUG] jdhcpd_walk_group_cb: Group TEST using base liveness-detection
+Jun  5 09:50:33.527651 [INIT][DEBUG] jdhcpd_walk_group_cb: Group TEST 0xa051000 using vpn vpn_encrypt
+Jun  5 09:50:33.528623 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base dynamic-profile:
+Jun  5 09:50:33.528642 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base service-profile:
+Jun  5 09:50:33.528651 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base access-profile:
+Jun  5 09:50:33.528661 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base short-cycle-protect
+Jun  5 09:50:33.528669 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base route_suppression 0
+Jun  5 09:50:33.529914 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base remote-id-mismatch 0
+Jun  5 09:50:33.529940 [INIT][INFO]  jdhcpd_walk_group_cb: Group TEST using base reauthenticate 0
+Jun  5 09:50:33.531192 [INIT][DEBUG] jdhcpd_walk_interface_cb: Got interface ge-0/0/0.0 with action 2
+Jun  5 09:50:33.531212 [INIT][DEBUG] jdhcpd_walk_interface_cb: NO interface exclude
+Jun  5 09:50:33.531221 [INIT][DEBUG] jdhcpd_walk_interface_cb: NO interface trace
+Jun  5 09:50:33.531296 [INIT][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:50:33.531308 [INIT][INFO]  jdhcpd_walk_group_cb: **** STOP group TEST ****
+Jun  5 09:50:33.531317 [INIT][DEBUG] jdhcpd_cfg_do_top_by_af: set rc cfg_grp flag
+Jun  5 09:50:33.532621 [INIT][DEBUG] rcdb_activate: Activate LR default RI default flags 200800, ADDR_FAM 0, rtt_af 1
+Jun  5 09:50:33.538998 [INIT][DEBUG] jdhcpd_cfg_do_attrs_common: Doing Attributes LR:default RI:default Pool:TEST  - action 2, INET
+Jun  5 09:50:33.541704 [INIT][DEBUG] jdhcpd_pool_find: cfg a050000, pool_name ffffd37f, TEST
+Jun  5 09:50:33.541727 [INIT][DEBUG] jdhcpd_pool_find: Pool TEST NOT found 0x0 w/ cfg container 0xa050000
+Jun  5 09:50:33.546968 [INIT][DEBUG] jdhcpd_server_attributes_process: got domain-name test
+Jun  5 09:50:33.549360 [INIT][DEBUG] jdhcpd_server_attributes_process: got name-server 192.168.1.1
+Jun  5 09:50:33.552072 [INIT][DEBUG] jdhcpd_server_attributes_process: got router 192.168.1.1
+Jun  5 09:50:33.558160 [INIT][DEBUG] jdhcpd_cfg_get_pool_subnet_mask: Got subnet mask, Mask:255.255.255.0, LR:default RI:default Pool:TEST
+Jun  5 09:50:33.558189 [INIT][DEBUG] jdhcpd_cfg_do_attrs_common: Adding NEW POOL in LR:default RI:default, type SERVER, POOL TEST to INET, cfg_ptr 0xa050000
+Jun  5 09:50:33.560248 jdhcpd_propagate_setting_to_pool_if_needed: Pool TEST does not have propagate setting configuration
+Jun  5 09:50:33.567673 [INIT][DEBUG] jdhcpd_process_performance_boost: no-performance-boost NOT SET
+Jun  5 09:50:33.572354 [INIT][DEBUG] jdhcpd_process_graceful_restart: Graceful Switchover not configured
+Jun  5 09:50:33.572384 [INIT][DEBUG] jdhcpd_process_maintain_subscriber_cfg: Maintain-subscriber interface-delete not configured
+Jun  5 09:50:33.573201 [INIT][DEBUG] jdhcpd_leasequery_log_cfg_debug: PRINTING config for cross checking/debugging
+Jun  5 09:50:33.573219 [INIT][DEBUG] jdhcpd_leasequery_log_cfg_debug: Global accept-max-tcp-connections 5
+Jun  5 09:50:33.573228 [INIT][DEBUG] jdhcpd_leasequery_log_cfg_debug: Global request-max-tcp-connections 3
+Jun  5 09:50:33.573238 [INIT][INFO]  jdhcpd_leasequery_log_cfg_debug: For default/default, family INET, app SERVER
+Jun  5 09:50:33.573247 [INIT][INFO]  jdhcpd_leasequery_log_cfg_debug: Leasequery - NOT Configured, UN-restricted
+Jun  5 09:50:33.573273 [INIT][INFO]  jdhcpd_leasequery_log_cfg_debug: Bulk Leasequery - NOT Configured, UN-restricted, max_connections 0, timeout 0, max_empty_replies 0
+Jun  5 09:50:33.573509 [INIT][DEBUG] jdhcpd_config_read: Config read ended in status 1
+Jun  5 09:50:33.573519 [INIT][DEBUG] jdhcpd_config_read: === Configuration CHECK DONE[5053] ===
+Jun  5 09:50:33.583859 [INIT][NOTE]  jdhcpd_exit: Expected daemon exit triggered from main: line 722 with code 0
+Jun  5 09:51:03.150766 [MSTR][DEBUG] jdhcpd_trace_get_settings: Tracing configured from DHCP-Service
+Jun  5 09:51:03.150971 [MSTR][INFO]  jdhcpd_process_global_cfg: Global config from system process dhcp-service is set
+Jun  5 09:51:03.151000 [MSTR][DEBUG] jdhcpd_process_global_cfg: Persistent-storage not set
+Jun  5 09:51:03.950945 [MSTR][INFO]  jdhcpd_persistent_db_set_filename: New file name = jdhcp_client_data, Old file name =
+Jun  5 09:51:03.950974 [MSTR][INFO]  jdhcpd_persistent_db_set_filename: New file(/var/preserve/jdhcp_client_data) and old file() are different
+Jun  5 09:51:03.952293 [MSTR][INFO]  jdhcpd_persistent_db_set_filename: fopen of file (/var/preserve/jdhcp_client_data) successful(duplicate)
+Jun  5 09:51:04.045708 [MSTR][INFO]  jdhcpd_persistent_db_set_backup_time_interval: New backup time received:24, backup_interval:24 backup_time_expired:0
+Jun  5 09:51:04.045762 [MSTR][INFO]  jdhcpd_process_global_cfg: got accept-max-tcp-connections 5
+Jun  5 09:51:04.045787 [MSTR][INFO]  jdhcpd_process_global_cfg: got request-max-tcp-connections 3
+Jun  5 09:51:04.045800 [MSTR][INFO]  jdhcpd_process_global_cfg: got max-leasequery-reply-packet-retries 5
+Jun  5 09:51:04.045813 [MSTR][INFO]  jdhcpd_process_global_cfg: got leasequery-reply-packet-retry-timer 10
+Jun  5 09:51:04.045824 [MSTR][INFO]  jdhcpd_process_global_cfg: got max-leasequery-reply-packet-process 100
+Jun  5 09:51:04.087230 [MSTR][DEBUG] jdhcpd_cfg_top_present_cb: Top present check action 2 app 1 RC default/default
+Jun  5 09:51:04.087258 [MSTR][DEBUG] jdhcpd_cfg_top_present_cb: Top cfg present check, skipping INET RC default/default, NOT found
+Jun  5 09:51:04.087269 [MSTR][DEBUG] jdhcpd_cfg_top_present_cb: Top cfg present check, skipping INET6 RC default/default, NOT found
+Jun  5 09:51:04.105188 [MSTR][DEBUG] jdhcpd_cfg_group_present_cb: Group present check action 2 RC default/default group TEST
+Jun  5 09:51:04.105210 [MSTR][DEBUG] jdhcpd_cfg_group_present_cb: Group present check, skipping RC default/default NOT found/cfg, group TEST
+Jun  5 09:51:04.105317 [MSTR][DEBUG] jdhcpd_cfg_pool_present_cb: Pool present check action 2 RC default/default pool TEST
+Jun  5 09:51:04.105328 [MSTR][DEBUG] jdhcpd_cfg_pool_present_cb: Pool present check, skipping RC default/default NOT found/cfg, pool TEST
+Jun  5 09:51:04.105563 [MSTR][DEBUG] jdhcpd_cfg_top_client_interface_present: Top client interface present app 4
+Jun  5 09:51:04.105578 [MSTR][DEBUG] jdhcpd_cfg_top_client_interface_present: Checking for group in LR:RI /default/default/
+Jun  5 09:51:04.176471 [MSTR][DEBUG] dhcpv6_create_new_rc_with_container: Configured app CLIENT in routing context LR:RI /default/default/
+Jun  5 09:51:04.198833 [MSTR][DEBUG] dhcpv6_cfg_top_client_interface_present: Top V6 client interface present app 4
+Jun  5 09:51:04.198853 [MSTR][DEBUG] dhcpv6_cfg_top_client_interface_present: Checking for group in LR:RI /default/default/
+Jun  5 09:51:04.246305 [MSTR][DEBUG] jdhcpd_look_for_the_missing: DHCP app CLIENT in INET RC default/default, deleting
+Jun  5 09:51:04.246345 [MSTR][DEBUG] jdhcpd_rc_app_deconfigure_start: Route ctx: (default/default; addr_fam INET) application: CLIENT deconfigure start
+Jun  5 09:51:04.614950 [MSTR][INFO]  jdhcpd_rc_app_deconfigure_start: Route ctx 0xa060000 app CLIENT deconfigure start deleting context
+Jun  5 09:51:04.614978 [MSTR][INFO]  rcdb_entry_delete: Delete LR default RI default flags 0, AF 1
+Jun  5 09:51:05.123438 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123483 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123496 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123503 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123509 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123516 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123547 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.123559 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.149461 [MSTR][DEBUG] rcdb_v4_packet_retry_queue_cleanup: Start: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.149533 [MSTR][DEBUG] rcdb_v4_packet_retry_queue_cleanup: End: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.149895 [MSTR][DEBUG] rcdb_v6_packet_retry_queue_cleanup: Start: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.149922 [MSTR][DEBUG] rcdb_v6_packet_retry_queue_cleanup: End: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.149931 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_cleanup: Start: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.172193 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_get_next: Packet_retry_queue(a060dec) pkt(0)
+Jun  5 09:51:05.172284 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_cleanup: End: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.172298 [MSTR][DEBUG] rcdb_v4_alq_autodisc_packet_retry_queue_cleanup: Start: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.172306 [MSTR][DEBUG] rcdb_v4_alq_autodisc_packet_retry_queue_cleanup: End: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.172327 [MSTR][DEBUG] rcdb_deactivate: Deactivate LR default RI default flags 0 ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:05.334788 [MSTR][DEBUG] jdhcpd_dfw_deactivate: routing table default/default; flags 0
+Jun  5 09:51:05.478103 [MSTR][INFO]  jdhcpd_rpd_deactivate: Cannot deactivate - no LR
+Jun  5 09:51:05.478141 [MSTR][DEBUG] jdhcpd_look_for_the_missing: DHCP app CLIENT in INET6 RC default/default, deleting
+Jun  5 09:51:05.478154 [MSTR][DEBUG] jdhcpd_rc_app_deconfigure_start: Route ctx: (default/default; addr_fam INET6) application: CLIENT deconfigure start
+Jun  5 09:51:05.478175 [MSTR][INFO]  jdhcpd_rc_app_deconfigure_start: Route ctx 0xa07e000 app CLIENT deconfigure start deleting context
+Jun  5 09:51:05.478185 [MSTR][INFO]  rcdb_entry_delete: Delete LR default RI default flags 0, AF 4
+Jun  5 09:51:05.478196 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478205 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478214 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478223 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478231 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478240 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478249 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478259 [MSTR][INFO]  blq_tree_flush: BLQ-AVL - Flushed blq_tree, total nodes 0, total clients 0
+Jun  5 09:51:05.478271 [MSTR][DEBUG] rcdb_v4_packet_retry_queue_cleanup: Start: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.478280 [MSTR][DEBUG] rcdb_v4_packet_retry_queue_cleanup: End: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.478289 [MSTR][DEBUG] rcdb_v6_packet_retry_queue_cleanup: Start: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.478298 [MSTR][DEBUG] rcdb_v6_packet_retry_queue_cleanup: End: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.478307 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_cleanup: Start: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.478316 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_get_next: Packet_retry_queue(a07edec) pkt(0)
+Jun  5 09:51:05.478324 [MSTR][DEBUG] rcdb_v6_alq_autodisc_packet_retry_queue_cleanup: End: Cleaning up the v6 packet_retry_queue of depth 0
+Jun  5 09:51:05.478335 [MSTR][DEBUG] rcdb_v4_alq_autodisc_packet_retry_queue_cleanup: Start: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.478343 [MSTR][DEBUG] rcdb_v4_alq_autodisc_packet_retry_queue_cleanup: End: Cleaning up the v4 packet_retry_queue of depth 0
+Jun  5 09:51:05.478353 [MSTR][DEBUG] rcdb_deactivate: Deactivate LR default RI default flags 0 ADDR_FAM 2, rtt_af 4
+Jun  5 09:51:05.478362 [MSTR][DEBUG] jdhcpd_dfw_deactivate: routing table default/default; flags 0
+Jun  5 09:51:05.478372 [MSTR][INFO]  jdhcpd_rpd_deactivate: Cannot deactivate - no LR
+Jun  5 09:51:05.478413 [MSTR][DEBUG] jdhcpd_cfg_do_top_cb: Process top configuration: LS:default RI:default, application SERVER, action 2
+Jun  5 09:51:05.478454 [MSTR][DEBUG] jdhcpd_cfg_get_instance_type: Failed to read instance-type for (default.default)
+Jun  5 09:51:05.478471 [MSTR][DEBUG] jdhcpd_cfg_do_top_cb: Processing a CHANGE for DHCPv4
+Jun  5 09:51:05.478481 [MSTR][DEBUG] jdhcpd_cfg_do_top_by_af: default default app SERVER action 2
+Jun  5 09:51:05.478493 [MSTR][INFO]  jdhcpd_cfg_do_top_by_af: RC_RTB (a060000), index 65535 set APP_CFG
+Jun  5 09:51:05.478505 [MSTR][DEBUG] jdhcpd_process_pool_match_order: No pool-match-order
+Jun  5 09:51:05.478516 [MSTR][INFO]  jdhcpd_process_duplicate_clients_on_intf_in_subnet: duplicate-clients-on-interface NOT SET
+Jun  5 09:51:05.478525 [MSTR][INFO]  jdhcpd_process_duplicate_clients_on_intf_in_subnet: duplicate-clients-in-subnet NOT SET
+Jun  5 09:51:05.478537 [MSTR][DEBUG] jdhcpd_process_forward_snooped_clients: forward-snooped-clients NOT SET
+Jun  5 09:51:05.478546 [MSTR][INFO]  jdhcpd_process_leasequery_cfg: Processing leasequery for default/default, family INET, app SERVER
+Jun  5 09:51:05.478559 [MSTR][INFO]  jdhcpd_process_leasequery_cfg: allow-leasequery NOT SET
+Jun  5 09:51:05.478569 [MSTR][INFO]  jdhcpd_process_bulk_leasequery_and_active_leasequery_cf: Processing bulk leasequery for default/default, family INET, app SERVER
+Jun  5 09:51:05.478580 [MSTR][INFO]  jdhcpd_process_bulk_leasequery_and_active_leasequery_cf: allow-bulk-leasequery NOT SET
+Jun  5 09:51:05.478635 [MSTR][INFO]  jdhcpd_process_persistent_config: Persistent storage not set for LS:default, RI:default
+Jun  5 09:51:05.478651 [MSTR][DEBUG] jdhcpd_process_server_group: No Server Groups
+Jun  5 09:51:05.478668 [MSTR][INFO]  jdhcpd_process_requested_ip_network_match: requested-ip network match prefix = 8
+Jun  5 09:51:05.478681 [MSTR][DEBUG] jdhcpd_process_overrides: No Config overrides, clearing overrides
+Jun  5 09:51:05.642989 [MSTR][INFO]  jdhcpd_process_forward_only_to_rc: No config forward-only-to-rc
+Jun  5 09:51:05.643028 [MSTR][INFO]  jdhcpd_process_client_response_ttl: client response ttl is 0
+Jun  5 09:51:05.643037 [MSTR][INFO]  jdhcpd_process_maximum_hop_count: maximum hops is 0
+Jun  5 09:51:05.643044 [MSTR][INFO]  jdhcpd_process_minimum_wait_time: minimum wait-time is 65535
+Jun  5 09:51:05.643051 [MSTR][INFO]  jdhcpd_process_vpn_encryption: source ip change is cleared
+Jun  5 09:51:05.643058 [MSTR][DEBUG] jdhcpd_process_relay_option82: No Option-82 overrides
+Jun  5 09:51:05.643073 [MSTR][INFO]  jdhcpd_process_relay_option60: No Option-60
+Jun  5 09:51:05.643079 [MSTR][DEBUG] jdhcpd_process_relay_generic_option: af_type is JDHCPD_AF_INET
+Jun  5 09:51:05.643087 [MSTR][INFO]  jdhcpd_process_relay_generic_option: No relay-option
+Jun  5 09:51:05.643097 [MSTR][DEBUG] jdhcpd_process_active_server_group: No active-server-group configured
+Jun  5 09:51:05.643108 [MSTR][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-interface-id
+Jun  5 09:51:05.643119 [MSTR][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-remote-id
+Jun  5 09:51:05.643128 [MSTR][INFO]  jdhcpd_process_v6_relay_cid_rid_options: NO V6 vendor-specific options.
+Jun  5 09:51:05.643136 [MSTR][DEBUG] jdhcpd_process_dynamic_profile: No dynamic-profile configured
+Jun  5 09:51:05.643162 [MSTR][DEBUG] jdhcpd_process_service_profile: No service-profile configured
+Jun  5 09:51:05.643175 [MSTR][INFO]  jdhcpd_process_access_profile: No access-profile configured
+Jun  5 09:51:05.643188 [MSTR][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:51:05.643197 [MSTR][DEBUG] jdhcpd_process_auth: No authentication
+Jun  5 09:51:05.643235 [MSTR][DEBUG] jdhcpd_process_reconfigure: No Config reconfigure, clearing reconfigure
+Jun  5 09:51:05.643265 [MSTR][DEBUG] jdhcpd_process_liveness_detection: No liveness-detection configured
+Jun  5 09:51:05.643295 [MSTR][DEBUG] jdhcpd_process_remote_id_match: No remote-id-mismatch configured
+Jun  5 09:51:05.643309 [MSTR][DEBUG] jdhcpd_process_route_suppression: No ROUTE-SUPPRESSION configured
+Jun  5 09:51:05.643318 [MSTR][DEBUG] jdhcpd_process_lease_time_validation: Dont Have lease-time-validation
+Jun  5 09:51:05.643328 [MSTR][DEBUG] jdhcpd_process_reauthenticate: No reauthenticate configured
+Jun  5 09:51:05.643337 [MSTR][INFO]  jdhcpd_process_server_match: No server-match
+Jun  5 09:51:05.643348 [MSTR][INFO]  jdhcpd_process_generic_option_ver2: No relay-option
+Jun  5 09:51:05.643375 [MSTR][INFO]  jdhcpd_process_hidden: RC (0xA060000)(default:default af INET) app SERVER no-snoop NOT SET
+Jun  5 09:51:05.643385 [MSTR][DEBUG] jdhcpd_process_hidden: persistent-stale-timer default 1800
+Jun  5 09:51:05.643399 [MSTR][INFO]  jdhcpd_process_hidden: RC (0xA060000)(default:default af INET) app SERVER stale-timer 120
+Jun  5 09:51:05.643408 [MSTR][INFO]  jdhcpd_process_hidden: RC (0xA060000)(default:default af INET) app SERVER no-stale-timer-refresh NOT SET
+Jun  5 09:51:05.643415 [MSTR][DEBUG] jdhcpd_process_hidden: server-response-time default 0
+Jun  5 09:51:05.643422 [MSTR][DEBUG] jdhcpd_process_hidden: no-graceful-restart NOT SET
+Jun  5 09:51:05.643458 [MSTR][DEBUG] jdhcpd_process_dual_stack_group: No dual stack groups found
+Jun  5 09:51:05.643484 [MSTR][DEBUG] jdhcpd_process_group: Have Config Groups
+Jun  5 09:51:05.643491 [MSTR][DEBUG] jdhcpd_process_group: top_walk->af_type is JDHCPD_AF_INET
+Jun  5 09:51:05.643512 [MSTR][INFO]  jdhcpd_walk_group_cb: **** START group TEST op 2 ****
+Jun  5 09:51:05.643537 [MSTR][INFO]  jdhcpd_walk_group_cb: Add group TEST for dhcp type 1
+Jun  5 09:51:05.643555 [MSTR][INFO]  jdhcpd_walk_group_cb: Neighbor-discovery-router-advertisement not configed
+Jun  5 09:51:05.643564 [MSTR][DEBUG] jdhcpd_process_overrides: No Config overrides, clearing overrides
+Jun  5 09:51:05.643572 [MSTR][INFO]  jdhcpd_process_forward_only_to_rc: No config forward-only-to-rc
+Jun  5 09:51:05.643579 [MSTR][INFO]  jdhcpd_process_client_response_ttl: client response ttl is 0
+Jun  5 09:51:05.643586 [MSTR][INFO]  jdhcpd_process_maximum_hop_count: maximum hops is 0
+Jun  5 09:51:05.643593 [MSTR][INFO]  jdhcpd_process_minimum_wait_time: minimum wait-time is 65535
+Jun  5 09:51:05.643600 [MSTR][INFO]  jdhcpd_process_vpn_encryption: source ip change is cleared
+Jun  5 09:51:05.643607 [MSTR][DEBUG] jdhcpd_process_relay_option82: No Option-82 overrides
+Jun  5 09:51:05.643614 [MSTR][INFO]  jdhcpd_process_relay_option60: No Option-60
+Jun  5 09:51:05.643620 [MSTR][DEBUG] jdhcpd_process_relay_generic_option: af_type is JDHCPD_AF_INET
+Jun  5 09:51:05.643629 [MSTR][INFO]  jdhcpd_process_relay_generic_option: No relay-option
+Jun  5 09:51:05.643636 [MSTR][DEBUG] jdhcpd_process_active_server_group: No active-server-group configured
+Jun  5 09:51:05.643643 [MSTR][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-interface-id
+Jun  5 09:51:05.643651 [MSTR][DEBUG] jdhcpd_process_relay_cid_rid_common: No DHCPv6: relay-agent-remote-id
+Jun  5 09:51:05.643659 [MSTR][INFO]  jdhcpd_process_v6_relay_cid_rid_options: NO V6 vendor-specific options.
+Jun  5 09:51:05.643666 [MSTR][DEBUG] jdhcpd_process_dynamic_profile: No dynamic-profile configured
+Jun  5 09:51:05.643673 [MSTR][DEBUG] jdhcpd_process_service_profile: No service-profile configured
+Jun  5 09:51:05.643680 [MSTR][INFO]  jdhcpd_process_access_profile: No access-profile configured
+Jun  5 09:51:05.643688 [MSTR][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:51:05.643695 [MSTR][DEBUG] jdhcpd_process_auth: No authentication
+Jun  5 09:51:05.643703 [MSTR][DEBUG] jdhcpd_process_reconfigure: No Config reconfigure, clearing reconfigure
+Jun  5 09:51:05.643711 [MSTR][DEBUG] jdhcpd_process_liveness_detection: No liveness-detection configured
+Jun  5 09:51:05.643718 [MSTR][DEBUG] jdhcpd_process_remote_id_match: No remote-id-mismatch configured
+Jun  5 09:51:05.643725 [MSTR][DEBUG] jdhcpd_process_route_suppression: No ROUTE-SUPPRESSION configured
+Jun  5 09:51:05.643732 [MSTR][DEBUG] jdhcpd_process_lease_time_validation: Dont Have lease-time-validation
+Jun  5 09:51:05.643739 [MSTR][DEBUG] jdhcpd_process_reauthenticate: No reauthenticate configured
+Jun  5 09:51:05.643747 [MSTR][INFO]  jdhcpd_process_server_match: No server-match
+Jun  5 09:51:05.643754 [MSTR][INFO]  jdhcpd_process_generic_option_ver2: No relay-option
+Jun  5 09:51:05.643762 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base overrides: 0
+Jun  5 09:51:05.643769 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base active-server-group
+Jun  5 09:51:05.643776 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base DHCPv6 active-server-group
+Jun  5 09:51:05.643784 [MSTR][DEBUG] jdhcpd_walk_group_cb: Group TEST using base liveness-detection
+Jun  5 09:51:05.643791 [MSTR][DEBUG] jdhcpd_walk_group_cb: Group TEST 0xa07e000 using vpn vpn_encrypt
+Jun  5 09:51:05.643799 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base dynamic-profile:
+Jun  5 09:51:05.643806 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base service-profile:
+Jun  5 09:51:05.643813 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base access-profile:
+Jun  5 09:51:05.643820 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base short-cycle-protect
+Jun  5 09:51:05.643827 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base route_suppression 0
+Jun  5 09:51:05.643835 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base remote-id-mismatch 0
+Jun  5 09:51:05.643842 [MSTR][INFO]  jdhcpd_walk_group_cb: Group TEST using base reauthenticate 0
+Jun  5 09:51:05.643860 [MSTR][DEBUG] jdhcpd_walk_interface_cb: Got interface ge-0/0/0.0 with action 2
+Jun  5 09:51:05.643889 [MSTR][DEBUG] jdhcpd_walk_interface_cb: NO interface exclude
+Jun  5 09:51:05.643899 [MSTR][DEBUG] jdhcpd_walk_interface_cb: NO interface trace
+Jun  5 09:51:05.643941 [MSTR][DEBUG] jdhcpd_walk_interface_cb: Add interface config ge-0/0/0.0 flags 2
+Jun  5 09:51:05.720018 [MSTR][DEBUG] jdhcpd_process_overrides: No Config overrides, clearing overrides
+Jun  5 09:51:05.720037 [MSTR][DEBUG] jdhcpd_process_dynamic_profile: No dynamic-profile configured
+Jun  5 09:51:05.720048 [MSTR][DEBUG] jdhcpd_process_service_profile: No service-profile configured
+Jun  5 09:51:05.720058 [MSTR][INFO]  jdhcpd_process_access_profile: No access-profile configured
+Jun  5 09:51:05.720068 [MSTR][INFO]  jdhcpd_process_short_cycle_protection: No short-cycle-protection
+Jun  5 09:51:05.720097 [MSTR][INFO]  jdhcpd_walk_group_cb: **** STOP group TEST ****
+Jun  5 09:51:05.720112 [MSTR][DEBUG] jdhcpd_cfg_do_top_by_af: set rc cfg_grp flag
+Jun  5 09:51:05.720122 [MSTR][DEBUG] rcdb_activate: Activate LR default RI default flags a00800, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:05.720146 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 1 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.720172 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 1 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.720186 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 1 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.720199 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 1 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.720214 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 1 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.720260 [MSTR][DEBUG] jdhcpd_cfg_do_attrs_common: Doing Attributes LR:default RI:default Pool:TEST  - action 2, INET
+Jun  5 09:51:05.720272 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name ffffd46f, TEST
+Jun  5 09:51:05.720282 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST NOT found 0x0 w/ cfg container 0xa07d000
+Jun  5 09:51:05.720365 [MSTR][DEBUG] jdhcpd_server_attributes_process: got domain-name test
+Jun  5 09:51:05.720853 [MSTR][DEBUG] jdhcpd_server_attributes_process: got name-server 192.168.1.1
+Jun  5 09:51:05.720888 [MSTR][DEBUG] jdhcpd_server_attributes_process: got router 192.168.1.1
+Jun  5 09:51:05.720991 [MSTR][DEBUG] jdhcpd_cfg_get_pool_subnet_mask: Got subnet mask, Mask:255.255.255.0, LR:default RI:default Pool:TEST
+Jun  5 09:51:05.721006 [MSTR][DEBUG] jdhcpd_cfg_do_attrs_common: Adding NEW POOL in LR:default RI:default, type SERVER, POOL TEST to INET, cfg_ptr 0xa07d000
+Jun  5 09:51:05.721016 jdhcpd_propagate_setting_to_pool_if_needed: Pool TEST does not have propagate setting configuration
+Jun  5 09:51:05.721560 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 0 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.721583 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 0 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.721598 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 0 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.721611 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 0 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.721626 [MSTR][NOTE]  jdhcpd_cfg_do_top_cb: LR RI app 0 action DAX ITEM DELETE ALL
+Jun  5 09:51:05.759083 [MSTR][DEBUG] jdhcpd_aiu_terminate_image_load: AIU term signal handler
+Jun  5 09:51:05.759194 [MSTR][DEBUG] jdhcpd_aiu_is_phone_home_configured: phone-home: Not Configured
+Jun  5 09:51:05.759211 [MSTR][DEBUG] jdhcpd_client_cfg_chassis_aiu_handler: AIU: settings aiu:  0 phcd_configured: 0
+Jun  5 09:51:05.759221 [MSTR][DEBUG] jdhcpd_client_cfg_chassis_aiu_handler: AIU Global timer status : Not Running
+Jun  5 09:51:05.759249 [MSTR][DEBUG] jdhcpd_process_performance_boost: no-performance-boost NOT SET
+Jun  5 09:51:05.759260 [MSTR][INFO]  jdhcpd_configured: ls default, ri default, family 0, rc_flags a00800, app Relay, cfg_ptr 0x0, cfg_flags 0
+Jun  5 09:51:05.780663 [MSTR][DEBUG] jdhcpd_config_read: family:inet, group configured:yes, snooping enabled:no client configuredno
+Jun  5 09:51:05.805654 [MSTR][DEBUG] jdhcpd_config_read: io not initialized - starting io
+Jun  5 09:51:05.861115 [MSTR][INFO]  jdhcpd_v4_io_startup: Initialize v4 bootpc socket
+Jun  5 09:51:05.881171 [MSTR][INFO]  jdhcpd_v4_io_startup: Initialize v4 bootps socket
+Jun  5 09:51:05.937743 [MSTR][INFO]  jdhcpd_io_init_bootps_socket: Set xmit buff size 192000
+Jun  5 09:51:05.937779 [MSTR][INFO]  jdhcpd_io_init_bootps_socket: Set xmit traffic to high priority
+Jun  5 09:51:05.937793 [MSTR][INFO]  jdhcpd_io_init_bootps_socket: Set receive buff size 192000
+Jun  5 09:51:05.962893 [MSTR][NOTE]  jdhcpd_io_init_bootps_socket: listening on 0.0.0.0 port 67
+Jun  5 09:51:06.088309 [MSTR][DEBUG] jdhcpd_config_read: family:inet6, group configured:no, snooping enabled:no
+Jun  5 09:51:06.088465 [MSTR][INFO]  jdhcpd_process_group_if_cfgs: clearing rc default:default family INET action FWD_ONLY_OR_DROP
+Jun  5 09:51:06.738335 [MSTR][DEBUG] jdhcpd_if_add: Adding interface config ge-0/0/0.0 to group TEST
+Jun  5 09:51:06.778574 [MSTR][DEBUG] sus_name_get: Extracted ifd_name = ge-0/0/0
+Jun  5 09:51:06.778673 [MSTR][DEBUG] jdhcpd_process_graceful_restart: Graceful Switchover not configured
+Jun  5 09:51:06.778704 [MSTR][DEBUG] jdhcpd_process_maintain_subscriber_cfg: Maintain-subscriber interface-delete not configured
+Jun  5 09:51:06.778715 [MSTR][DEBUG] jdhcpd_leasequery_log_cfg_debug: PRINTING config for cross checking/debugging
+Jun  5 09:51:06.778724 [MSTR][DEBUG] jdhcpd_leasequery_log_cfg_debug: Global accept-max-tcp-connections 5
+Jun  5 09:51:06.778732 [MSTR][DEBUG] jdhcpd_leasequery_log_cfg_debug: Global request-max-tcp-connections 3
+Jun  5 09:51:06.778743 [MSTR][INFO]  jdhcpd_leasequery_log_cfg_debug: For default/default, family INET, app SERVER
+Jun  5 09:51:06.778753 [MSTR][INFO]  jdhcpd_leasequery_log_cfg_debug: Leasequery - NOT Configured, UN-restricted
+Jun  5 09:51:06.778762 [MSTR][INFO]  jdhcpd_leasequery_log_cfg_debug: Bulk Leasequery - NOT Configured, UN-restricted, max_connections 0, timeout 0, max_empty_replies 0
+Jun  5 09:51:06.812512 [MSTR][DEBUG] jdhcpd_config_read: Success stopping the short lease handler
+Jun  5 09:51:06.812772 [MSTR][DEBUG] jdhcpd_config_read: Config read ended in status 1
+Jun  5 09:51:06.812910 [MSTR][INFO]  main: About to start AUTHD INIT, PID (5775)
+Jun  5 09:51:06.871827 [MSTR][NOTE]  jdhcpd_authd_connect: Error connecting to authd, will retry: 12 - Failure
+Jun  5 09:51:06.915296 [MSTR][DEBUG] jdhcpd_authd_retry: authd connect retry scheduled
+Jun  5 09:51:06.999062 [MSTR][INFO]  main: About to start SDB INIT, PID (5775)
+Jun  5 09:51:07.182603 ISSU: IDLE
+Jun  5 09:51:07.196762 ISSU: successfully registered for IDLEs
+Jun  5 09:51:07.196789 ISSU: successfully registered for PREPARE
+Jun  5 09:51:09.008084 [MSTR][DEBUG] jdhcpd_session_db_smid_connect: smid_register - success (0); [startup=1; jdhcpd_smid_registered=0; jdhcpd_sdb_mirror_ack_registered=0; smid_handle=0xa74f140]
+Jun  5 09:51:09.043200 [MSTR][DEBUG] jdhcpd_session_db_smid_connect: sdb_ack_register - success (0); [startup=1; jdhcpd_smid_registered=1; jdhcpd_sdb_mirror_ack_registered=0; smid_handle=0xa74f140]
+Jun  5 09:51:09.078010 [MSTR][INFO]  main: About to start STALE TIMER INIT, PID (5775)
+Jun  5 09:51:09.078033 Init Stale TIMER
+Jun  5 09:51:09.086975 [MSTR][INFO]  main: About to start jdhcpd_client_startup, PID (5775)
+Jun  5 09:51:09.086992 [MSTR][DEBUG] jdhcpd_platform_client_app_start_handler: About to start jdhcpd_client_startup, PID (5775)
+Jun  5 09:51:09.156185 [MSTR][DEBUG] jdhcpd_dns_write_resolv: open fp file name /etc/resolv.conf, fp_tmp file name /var/tmp/resolv_tmp.conf
+Jun  5 09:51:09.487709 [MSTR][INFO]  jdhcpd_rpd_init: RPD Init
+Jun  5 09:51:09.487737 [MSTR][DEBUG] jdhcpd_rpd_init: Init TIMER for RPD
+Jun  5 09:51:09.630613 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 1 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:09.630645 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 2 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:09.630655 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 3 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:09.630665 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 4 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:09.630689 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 5 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:09.630702 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 1 with delay 2 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630711 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 2 with delay 4 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630719 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 3 with delay 8 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630727 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 4 with delay 16 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630736 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 5 with delay 32 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630745 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 6 with delay 64 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630759 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 7 with delay 128 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630768 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 8 with delay 256 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.630777 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 9 with delay 512 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.634371 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 10 with delay 1024 to client retry queue ROUTE_ADD
+Jun  5 09:51:09.720102 [MSTR][INFO]  jdhcpd_libstats_init: Libstats: Init
+Jun  5 09:51:09.720134 [MSTR][INFO]  jdhcpd_libstats_init: Libstats session create
+ 
+Jun  5 09:51:09.901047 [MSTR][INFO]  jdhcpd_libstats_init: libstats session create: passed
+ 
+Jun  5 09:51:10.155834 [MSTR][INFO]  jdhcpd_libstats_init: libstats connect
+ 
+Jun  5 09:51:10.319584 [MSTR][INFO]  jdhcpd_libstats_init: libstats connect: passed
+ 
+Jun  5 09:51:10.375076 [MSTR][NOTE]  jdhcpd_smd_init_listener: enhanced-broadband-edge is not enabled - do not initialize bbesmgd-listener
+Jun  5 09:51:10.442822 [MSTR][DEBUG] jdhcpd_mirror_init: ++++++++++++++++++++ Mirror Timer Init ++++++++++++++++++++
+Jun  5 09:51:10.442875 [MSTR][DEBUG] jdhcpd_mirror_timer_init: Initializing HA purge timer
+Jun  5 09:51:10.442890 [MSTR][DEBUG] jdhcpd_mirror_timer_start: Creating HA purge timer
+Jun  5 09:51:10.461225 [MSTR][DEBUG] jdhcpd_mirror_timer_start: Starting HA purge timer.  Timer set to expire in 1800 seconds
+Jun  5 09:51:10.481777 [MSTR][INFO]  main: About to start LIVENESS-DETECTION INIT, PID (5775)
+Jun  5 09:51:10.481806 [MSTR][INFO]  jdhcpd_liveness_detection_init: Initializing liveness detection facilities
+Jun  5 09:51:10.517176 [MSTR][DEBUG] jdhcpd_bfd_init: Initiating connection with BFDd daemon to support liveness detection.
+Jun  5 09:51:10.517214 [MSTR][DEBUG] jdhcpd_bfd_clnt_try_connect: Attempting to connect with BFDd daemon.
+Jun  5 09:51:10.517356 [MSTR][INFO]  main: About to start Persistent DB INIT, PID (5775)
+Jun  5 09:51:10.530550 [MSTR][INFO]  jdhcpd_persistent_db_init: file name already set to (/var/preserve/jdhcp_client_data) not resetting it default
+Jun  5 09:51:10.530577 [MSTR][INFO]  jdhcpd_persistent_db_init: File name (/var/preserve/jdhcp_client_data), bkp file(/var/preserve/jdhcp_client_data_bkp), tmp file(/var/preserve/jdhcp_client_data_tmp) backup time(24)
+Jun  5 09:51:10.530661 [MSTR][INFO]  jdhcpd_persistent_db_init: File already exist opening in append mode
+ 
+Jun  5 09:51:10.530677 [MSTR][INFO]  jdhcpd_persistent_db_init: fopen successful = /var/preserve/jdhcp_client_data
+Jun  5 09:51:10.530687 [MSTR][INFO]  main: About to start RESTART INIT, PID (5775)
+Jun  5 09:51:10.564889 [MSTR][INFO]  jdhcpd_restart: ===== RESTART CALLED =====
+Jun  5 09:51:10.616309 [MSTR][DEBUG] jdhcpd_set_serverid: DHCPv6 server Id: DUID filled w/ serial number 34 63 3a 39 36 3a 31 34 3a 66 66 3a 39 35 3a 38 30 00 00 00
+Jun  5 09:51:10.640635 [MSTR][DEBUG] jdhcpd_set_serverid: DHCPv6 Server DUID-LL filled w/ MAC Address 34:63:3a:39:36:3a
+Jun  5 09:51:10.640668 [MSTR][INFO]  jdhcpd_rpd_init: RPD Init
+Jun  5 09:51:10.640685 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 1 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:10.640695 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 2 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:10.640704 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 3 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:10.640713 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 4 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:10.640721 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 5 with delay 15 to client retry queue RA_ADD
+Jun  5 09:51:10.640730 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 1 with delay 2 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640745 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 2 with delay 4 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640754 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 3 with delay 8 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640764 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 4 with delay 16 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640773 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 5 with delay 32 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640784 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 6 with delay 64 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640793 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 7 with delay 128 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640804 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 8 with delay 256 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640814 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 9 with delay 512 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.640823 [MSTR][DEBUG] jdhcpd_client_retry_queue_configure_back_off: Adding attempt q 10 with delay 1024 to client retry queue ROUTE_ADD
+Jun  5 09:51:10.672444 [MSTR][INFO]  jdhcpd_session_db_recover_sessions:
+----- Client Session Recovery Following Daemon Startup Into Run Mode MSTR [Enhanced_BBE=0; Recovering Sessions: Legacy, Flow-Based] STARTED -----
+Jun  5 09:51:10.952913 [MSTR][INFO]  jdhcpd_session_db_recover_next_sessions:
+----- Client Session Recovery Following Daemon Startup Into Run Mode MSTR [Enhanced_BBE=0; Recovering Sessions: Legacy, Flow-Based] COMPLETED -----
+Jun  5 09:51:10.952926 [MSTR][INFO]  jdhcpd_session_db_recover_next_sessions:
+      Session recoveries attempted         = 0
+      Active sessions recovered            = 0
+      Inactive sessions cleaned up         = 0
+Jun  5 09:51:10.969559 [MSTR][DEBUG] jdhcpd_persistent_restore: jdhcpd_persistent_restore started
+Jun  5 09:51:10.969614 [MSTR][INFO]  jdhcpd_persistent_restore: fopen of file (/var/preserve/jdhcp_client_data) successful
+Jun  5 09:51:11.009831 [MSTR][INFO]  jdhcpd_session_db_recover_next_sessions:
+----- Successfully Sent Recovery Complete to SMID -----
+Jun  5 09:51:11.050014 jdhcpd_snmp_server_health_trap_handle calling snmp trap jnxJdhcpLocalServerHealth router_name default/default  severity 2 event string JDHCPD is being restarted - either daemon restart or GRES restart !
+Jun  5 09:51:11.225133 [MSTR][INFO]  jdhcpd_set_relayid: DHCPv6 relayid: DUID filled w/ lacp_mac_addr 34 63 3a 39 36 3a 31 34 3a 66 66 3a 39 35 3a 38 30 00 00 00 00 00 00 00, size 18
+Jun  5 09:51:11.324807 [MSTR][INFO]  jdhcpd_set_relayid: DHCPv6 relayid: DUID filled with DHCP_RELAYID_TYPE_LACP_MAC_ADDR
+Jun  5 09:51:11.535837 [MSTR][INFO]  jdhcpd_v4_set_relayid: DHCP relayid: DUID filled w/ lacp_mac_addr 34 63 3a 39 36 3a 31 34 3a 66 66 3a 39 35 3a 38 30 00 00 00 00 00 00 00, size 18
+Jun  5 09:51:11.536005 [MSTR][INFO]  jdhcpd_v4_set_relayid: DHCP relayid: DUID filled with DHCP_RELAYID_TYPE_LACP_MAC_ADDR
+Jun  5 09:51:19.395048 [MSTR][INFO]  main: About to start SUBAGENT INIT, PID (5775)
+Jun  5 09:51:27.960753 [MSTR][INFO]  jdhcpd_print_session_id_map: old sid   |   new sid
+Jun  5 09:51:27.972885 [MSTR][INFO]  jdhcpd_persistent_delete_session_id_map: jdhcpd_persistent_delete_session_id_map start
+Jun  5 09:51:27.972915 [MSTR][INFO]  jdhcpd_persistent_delete_session_id_map: jdhcpd_persistent_delete_session_id_map stop
+Jun  5 09:51:27.972963 [MSTR][INFO]  jdhcpd_persistent_is_retry_queue_empty: jdhcpd_persistent_is_retry_queue_empty TRUE
+Jun  5 09:51:27.972975 [MSTR][DEBUG] jdhcpd_persistent_delete_retry_queue: jdhcpd_persistent_delete_retry_queue called
+Jun  5 09:51:27.972985 [MSTR][DEBUG] jdhcpd_persistent_print_private_data_tree: |session id|    ptr   |
+Jun  5 09:51:27.972994 [MSTR][INFO]  jdhcpd_persistent_start_backup_operation: Backup operations started
+Jun  5 09:51:28.012629 [MSTR][NOTE]  jdhcpd_authd_connect: Error connecting to authd, will retry: 12 - Failure
+Jun  5 09:51:28.012662 [MSTR][DEBUG] jdhcpd_authd_retry: authd connect retry scheduled
+Jun  5 09:51:28.012811 [MSTR][DEBUG] jdhcpd_persistent_recreate_entry_in_file: Writing clients of RC(a060000) LS:default, RI:default
+Jun  5 09:51:28.039546 [MSTR][INFO]  jdhcpd_persistent_backup_operation_done: Rename of current file successful
+Jun  5 09:51:28.054916 [MSTR][INFO]  jdhcpd_persistent_backup_operation_done: fopen of file (/var/preserve/jdhcp_client_data) successful
+Jun  5 09:51:28.055629 [MSTR][DEBUG] jdhcpd_bfd_clnt_conn_init: Initializing successful connection with BFDd daemon.
+Jun  5 09:51:28.071101 [MSTR][DEBUG] jdhcpd_bfd_clnt_send_open: Attempt to send connection open
+Jun  5 09:51:28.077552 [MSTR][DEBUG] jdhcpd_bfd_rpc_trace_pkt: BFD Sent     Open (1) len 19:
+Jun  5 09:51:28.086940 [MSTR][DEBUG] jdhcpd_bfd_rpc_trace_pkt:    Version (0) len 1: 1
+Jun  5 09:51:28.091536 [MSTR][DEBUG] jdhcpd_bfd_rpc_trace_pkt:    LogicalRouterID (1) len 2: 0
+Jun  5 09:51:28.163523 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event .local.; oper add; state up; dev_index 0; ifm_type 0x1; ifm_link 0xff; event-ignored=FALSE ifdm_flags 0x10
+Jun  5 09:51:28.188441 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event lsi; oper add; state up; dev_index 4; ifm_type 0x2; ifm_link 0x14; event-ignored=FALSE ifdm_flags 0x0
+Jun  5 09:51:28.188492 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.default, oper add, table-id 0, af 28(INET6)
+Jun  5 09:51:28.188517 [MSTR][DEBUG] rcdb_activate: Activate LR default RI default flags 1, ADDR_FAM 2, rtt_af 4
+Jun  5 09:51:28.188528 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/default, rt_index: 0, flags 0x1
+Jun  5 09:51:28.188558 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private1__, oper add, table-id 1, af 28(INET6)
+Jun  5 09:51:28.188582 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private1__ flags 1, ADDR_FAM 2, rtt_af 4
+Jun  5 09:51:28.188597 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private1__, rt_index: 1, flags 0x1
+Jun  5 09:51:28.188675 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.default, oper add, table-id 0, af 2(INET)
+Jun  5 09:51:28.188688 [MSTR][DEBUG] rcdb_activate: Activate LR default RI default flags a00801, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:28.188698 [MSTR][DEBUG] jdhcpd_dfw_activate: routing table default/default; flags 0xa00801
+Jun  5 09:51:28.188708 [MSTR][WARN]  jdhcpd_dfw_filter_attach: [default/default-INET] L3 dfw ATTACH transaction deferred because filter v4_snooping_filter is not created
+Jun  5 09:51:28.188719 [MSTR][DEBUG] jdhcpd_rpd_lr_create: Created LR default
+Jun  5 09:51:28.257467 [MSTR][DEBUG] jdhcpd_rpd_init_lr: LR default (LR id 1) connected with RPD
+Jun  5 09:51:28.257615 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private1__, oper add, table-id 1, af 2(INET)
+Jun  5 09:51:28.257674 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private1__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:28.257762 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private1__, rt_index: 1, flags 0x1
+Jun  5 09:51:28.257846 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private2__, oper add, table-id 2, af 2(INET)
+Jun  5 09:51:28.257897 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private2__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:28.257912 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private2__, rt_index: 2, flags 0x1
+Jun  5 09:51:28.257975 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private3__, oper add, table-id 36735, af 2(INET)
+Jun  5 09:51:28.258011 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private3__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:28.258023 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private3__, rt_index: 36735, flags 0x1
+Jun  5 09:51:28.258094 [MSTR][DEBUG] jdhcpd_bfd_rpc_trace_pkt: BFD Received     OpenComplete (5) len 8:
+Jun  5 09:51:28.258126 [MSTR][INFO]  jdhcpd_bfd_handle_event: Handle BFD Connection-Up Event
+Jun  5 09:51:28.320773 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private4__, oper add, table-id 36736, af 2(INET)
+Jun  5 09:51:28.320815 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private4__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:28.320828 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private4__, rt_index: 36736, flags 0x1
+Jun  5 09:51:28.336126 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__juniper_private1__, oper add, table-id 1, af 63(VPLS)
+Jun  5 09:51:28.336168 [MSTR][WARN]  jdhcpd_server_resp_rc_op: Status jdhcpd_server_resp_result_invalid_arg at 1103 data invalid family
+Jun  5 09:51:28.336181 [MSTR][WARN]  jdhcpd_server_resp_rc_op: Status jdhcpd_server_resp_result_invalid_arg at 1103 data invalid family
+Jun  5 09:51:28.336191 [MSTR][WARN]  jdhcpd_server_resp_rc_op: Status jdhcpd_server_resp_result_invalid_arg at 1103 data invalid family
+Jun  5 09:51:28.336207 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __juniper_private1__ flags 1, ADDR_FAM 2, rtt_af 2
+Jun  5 09:51:28.336219 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__juniper_private1__, rt_index: 1, flags 0x1
+Jun  5 09:51:28.349087 Created New BD : for LR default RI __juniper_private1__ BD default
+Jun  5 09:51:28.349125 [MSTR][DEBUG] jdhcpd_rtbm_add_implicit_bd: Add BD lr.ri.bd =(default.__juniper_private1__.default)
+Jun  5 09:51:28.349139 [MSTR][DEBUG] jdhcpd_rtbm_add_implicit_bd: Add Implicit BD (index 1) to RC_RTB (index 1) vtag fff0fff
+Jun  5 09:51:28.373826 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event fxp0; oper add; state up; dev_index 65; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:28.937261 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event fxp0.0; oper add; state up; ifl_index 3; dev_index 65; under_ifl_ifindx 0; link_type 3; link_encaps 14
+Jun  5 09:51:29.289651 [MSTR][DEBUG] jdhcpd_map_code: Code 0 ii_name so ii_long sonet ii_picslots 6 ii_portslots 64 ii_max_mtu 9192 ii_flags 0x80a ii_devtype 6 maxchanllvl 4
+Jun  5 09:51:29.289686 [MSTR][DEBUG] jdhcpd_map_code: Code 1 ii_name at ii_long atm ii_picslots 6 ii_portslots 58 ii_max_mtu 9192 ii_flags 0x80a ii_devtype 4 maxchanllvl 5
+Jun  5 09:51:29.289700 [MSTR][DEBUG] jdhcpd_map_code: Code 3 ii_name ge ii_long gigether ii_picslots 6 ii_portslots 64 ii_max_mtu 9192 ii_flags 0x808 ii_devtype 2 maxchanllvl 0
+Jun  5 09:51:29.289712 [MSTR][DEBUG] jdhcpd_map_code: Code 4 ii_name lo ii_long loopback ii_picslots 1 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 13 maxchanllvl 0
+Jun  5 09:51:29.289724 [MSTR][DEBUG] jdhcpd_map_code: Code 5 ii_name fxp ii_long fxp mgmt ii_picslots 8 ii_portslots 0 ii_max_mtu 1514 ii_flags 0x801 ii_devtype 1 maxchanllvl 0
+Jun  5 09:51:29.289737 [MSTR][DEBUG] jdhcpd_map_code: Code 22 ii_name fe ii_long fastether ii_picslots 6 ii_portslots 48 ii_max_mtu 4500 ii_flags 0x808 ii_devtype 19 maxchanllvl 0
+Jun  5 09:51:29.289749 [MSTR][DEBUG] jdhcpd_map_code: Code 27 ii_name lsi ii_long (null) ii_picslots 0 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x5 ii_devtype 24 maxchanllvl 0
+Jun  5 09:51:29.289774 [MSTR][DEBUG] jdhcpd_map_code: Code 28 ii_name ae ii_long aggregated ethernet ii_picslots 128 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 25 maxchanllvl 0
+Jun  5 09:51:29.289789 [MSTR][DEBUG] jdhcpd_map_code: Code 30 ii_name as ii_long aggregated sonet ii_picslots 64 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 27 maxchanllvl 0
+Jun  5 09:51:29.289802 [MSTR][DEBUG] jdhcpd_map_code: Code 56 ii_name lt ii_long (null) ii_picslots 6 ii_portslots 48 ii_max_mtu 9192 ii_flags 0x408 ii_devtype 51 maxchanllvl 0
+Jun  5 09:51:29.289811 [MSTR][DEBUG] jdhcpd_map_code: Code 59 ii_name em ii_long (null) ii_picslots 8 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 1 maxchanllvl 0
+Jun  5 09:51:29.289821 [MSTR][DEBUG] jdhcpd_map_code: Code 66 ii_name pp ii_long pppoe ii_picslots 1 ii_portslots 0 ii_max_mtu 1532 ii_flags 0x1 ii_devtype 60 maxchanllvl 0
+Jun  5 09:51:29.289834 [MSTR][DEBUG] jdhcpd_map_code: Code 73 ii_name irb ii_long integrated routing & bridging ii_picslots 65535 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x5 ii_devtype 66 maxchanllvl 0
+Jun  5 09:51:29.289843 [MSTR][DEBUG] jdhcpd_map_code: Code 74 ii_name xe ii_long X-gigether ii_picslots 6 ii_portslots 64 ii_max_mtu 9192 ii_flags 0x80a ii_devtype 37 maxchanllvl 4
+Jun  5 09:51:29.289852 [MSTR][DEBUG] jdhcpd_map_code: Code 75 ii_name lc ii_long learning-chip ii_picslots 6 ii_portslots 1 ii_max_mtu 9192 ii_flags 0x408 ii_devtype 67 maxchanllvl 0
+Jun  5 09:51:29.289861 [MSTR][DEBUG] jdhcpd_map_code: Code 80 ii_name reth ii_long Redundant ethernet ii_picslots 128 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 72 maxchanllvl 0
+Jun  5 09:51:29.289870 [MSTR][DEBUG] jdhcpd_map_code: Code 85 ii_name demux ii_long demux ii_picslots 262143 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 74 maxchanllvl 0
+Jun  5 09:51:29.289879 [MSTR][DEBUG] jdhcpd_map_code: Code 89 ii_name vlan ii_long Vlan Pseudo Interface ii_picslots 262143 ii_portslots 0 ii_max_mtu 1496 ii_flags 0x5 ii_devtype 81 maxchanllvl 0
+Jun  5 09:51:29.289890 [MSTR][DEBUG] jdhcpd_map_code: Code 102 ii_name et ii_long C-gigether ii_picslots 6 ii_portslots 64 ii_max_mtu 9192 ii_flags 0x80a ii_devtype 88 maxchanllvl 10
+Jun  5 09:51:29.289900 [MSTR][DEBUG] jdhcpd_map_code: Code 106 ii_name pfh ii_long FPC Internal interface ii_picslots 128 ii_portslots 4 ii_max_mtu 9192 ii_flags 0x8 ii_devtype 92 maxchanllvl 0
+Jun  5 09:51:29.289911 [MSTR][DEBUG] jdhcpd_map_code: Code 107 ii_name pfe ii_long PFE Internal interface ii_picslots 128 ii_portslots 4 ii_max_mtu 9192 ii_flags 0x8 ii_devtype 93 maxchanllvl 0
+Jun  5 09:51:29.289923 [MSTR][DEBUG] jdhcpd_map_code: Code 129 ii_name xle ii_long XL-gigether ii_picslots 6 ii_portslots 16 ii_max_mtu 9192 ii_flags 0x808 ii_devtype 37 maxchanllvl 0
+Jun  5 09:51:29.289934 [MSTR][DEBUG] jdhcpd_map_code: Code 131 ii_name virb ii_long integrated routing & bridging ii_picslots 65535 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x5 ii_devtype 66 maxchanllvl 0
+Jun  5 09:51:29.289947 [MSTR][DEBUG] jdhcpd_map_code: Code 139 ii_name et ii_long ET-gigether ii_picslots 6 ii_portslots 64 ii_max_mtu 9192 ii_flags 0x80a ii_devtype 88 maxchanllvl 10
+Jun  5 09:51:29.289959 [MSTR][DEBUG] jdhcpd_map_code: Code 157 ii_name af ii_long abstract fabric interface ii_picslots 65535 ii_portslots 0 ii_max_mtu 9192 ii_flags 0x1 ii_devtype 123 maxchanllvl 0
+Jun  5 09:51:29.289970 [MSTR][INFO]  jdhcpd_map_code: Done with prefix mapping
+Jun  5 09:51:29.290036 [MSTR][DEBUG] jdhcpd_name_2_const: ifl fxp0.0 fpc 0 pic 4294967295 port 4294967295 chnl 4294967295 chnl_max 4294967295 unit 0
+Jun  5 09:51:29.290073 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa083100) for ifd (0xa082f80) fxp0 subunit 0 ifi 0
+Jun  5 09:51:30.793361 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event fxp0.0, oper add, state up, ifl_index 3, dev_index 65, af 2(INET)
+Jun  5 09:51:31.106988 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 65 - IFF name fxp0.0, sub 0, ifindx 3
+Jun  5 09:51:31.945382 [MSTR][INFO] [fxp0.0] safd_new: Created safd: sus = 0xa083100 ifl-name:fxp0.0 rc = 0xa060000 (default/default)iff = INET(0) iff(rc) = INET rt_gbl_index(3)
+Jun  5 09:51:32.178058 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:default, AF:INET; is configured
+Jun  5 09:51:32.374097 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: if_name fxp0.0, rc default:default (0xa060000), flags 0xa00801
+Jun  5 09:51:32.374131 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: grp_name TEST
+Jun  5 09:51:32.920632 [MSTR][DEBUG] jdhcpd_interface_find_best_match: Interface 'fxp0.0' not found
+Jun  5 09:51:32.920663 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface fxp0.0
+Jun  5 09:51:33.078796 [MSTR][NOTE] [default:default][RLY][INET][fxp0.0] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface fxp0.0
+Jun  5 09:51:33.254124 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event fxp0.0, oper add, state up, ifl_indx 3, dev_index 65, family INET, flags 0xe0
+Jun  5 09:51:33.254179 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 65 - IFF name fxp0.0, sub 0, ifindx 3
+Jun  5 09:51:33.372791 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] change_sus_if_addr: Changing if_addr to 192.168.122.2: intf fxp0.0 (stack 0xa083100); INET safd(0xa209300); dhcp_type 0; LSRI default:default
+Jun  5 09:51:33.372827 [MSTR][WARN] [default:default][RLY][INET][fxp0.0] change_sus_if_addr: Cannot change subunit safd's AVL: fxp0.0 INET safd not in configured list for LSRI default:default; dhcp_type 0; if_addr 0.0.0.0 (new ip_addr 192.168.122.2)
+Jun  5 09:51:33.408237 [MSTR][INFO] [default:default][RLY][INET][fxp0.0] jdhcpd_ifam_handler: Unable to add new IFA: ifa name fxp0, family INET, sub 0, addr 192.168.122.2
+Jun  5 09:51:33.409213 [MSTR][NOTE]  jdhcpd_authd_connect: Error connecting to authd, will retry: 12 - Failure
+Jun  5 09:51:33.409245 [MSTR][DEBUG] jdhcpd_authd_retry: authd connect retry scheduled
+Jun  5 09:51:33.487852 [MSTR][DEBUG] jdhcpd_rpd_cb_session_connect: RPD session to LR default (LR id 1) active
+Jun  5 09:51:33.488784 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event lo0; oper add; state up; dev_index 6; ifm_type 0x1; ifm_link 0; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.488853 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event lo0.16385; oper add; state up; ifl_index 65; dev_index 6; under_ifl_ifindx 0; link_type 0; link_encaps 0
+Jun  5 09:51:33.488879 [MSTR][DEBUG] jdhcpd_name_2_const: ifl lo0.16385 fpc 0 pic 4294967295 port 4294967295 chnl 4294967295 chnl_max 4294967295 unit 16385
+Jun  5 09:51:33.488892 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa083400) for ifd (0xa083280) lo0 subunit 16385 ifi 0
+Jun  5 09:51:33.488924 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event lo0.16385, oper add, state up, ifl_index 65, dev_index 6, af 2(INET)
+Jun  5 09:51:33.488944 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.488958 [MSTR][INFO] [lo0.16385] safd_new: Created safd: sus = 0xa083400 ifl-name:lo0.16385 rc = 0xa325000 (default/__juniper_private1__)iff = INET(0) iff(rc) = INET rt_gbl_index(6)
+Jun  5 09:51:33.488971 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:__juniper_private1__, AF:INET; is not configured
+Jun  5 09:51:33.488983 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: routing context default:__juniper_private1__ loopback ifl set to lo0.16385 - idx 65, (was 0)
+Jun  5 09:51:33.488994 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface lo0.16385
+Jun  5 09:51:33.489024 [MSTR][NOTE] [default:__juniper_private1__][RLY][INET][lo0.16385] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface lo0.16385
+Jun  5 09:51:33.489078 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16385, oper add, state up, ifl_indx 65, dev_index 6, family INET, flags 0xa0
+Jun  5 09:51:33.489094 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.489110 [MSTR][INFO] [default:__juniper_private1__][RLY][INET][lo0.16385] change_sus_if_addr: Changing if_addr to 10.0.0.1: intf lo0.16385 (stack 0xa083400); INET safd(0xa209580); dhcp_type 0; LSRI default:__juniper_private1__
+Jun  5 09:51:33.489126 [MSTR][WARN] [default:__juniper_private1__][RLY][INET][lo0.16385] change_sus_if_addr: Cannot change subunit safd's AVL: lo0.16385 INET safd not in configured list for LSRI default:__juniper_private1__; dhcp_type 0; if_addr 0.0.0.0 (new ip_addr 10.0.0.1)
+Jun  5 09:51:33.489142 [MSTR][INFO] [default:__juniper_private1__][RLY][INET][lo0.16385] jdhcpd_ifam_handler: Unable to add new IFA: ifa name lo0, family INET, sub 16385, addr 10.0.0.1
+Jun  5 09:51:33.489170 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16385, oper add, state up, ifl_indx 65, dev_index 6, family INET, flags 0
+Jun  5 09:51:33.489180 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.489199 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16385, oper add, state up, ifl_indx 65, dev_index 6, family INET, flags 0
+Jun  5 09:51:33.489210 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.489229 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16385, oper add, state up, ifl_indx 65, dev_index 6, family INET, flags 0
+Jun  5 09:51:33.489240 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.489261 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16385, oper add, state up, ifl_indx 65, dev_index 6, family INET, flags 0
+Jun  5 09:51:33.489273 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16385, sub 16385, ifindx 65
+Jun  5 09:51:33.489301 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event lo0.16384; oper add; state up; ifl_index 66; dev_index 6; under_ifl_ifindx 0; link_type 0; link_encaps 0
+Jun  5 09:51:33.489319 [MSTR][DEBUG] jdhcpd_name_2_const: ifl lo0.16384 fpc 0 pic 4294967295 port 4294967295 chnl 4294967295 chnl_max 4294967295 unit 16384
+Jun  5 09:51:33.489330 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa083580) for ifd (0xa083280) lo0 subunit 16384 ifi 0
+Jun  5 09:51:33.489356 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event lo0.16384, oper add, state up, ifl_index 66, dev_index 6, af 2(INET)
+Jun  5 09:51:33.489370 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 6 - IFF name lo0.16384, sub 16384, ifindx 66
+Jun  5 09:51:33.489383 [MSTR][INFO] [lo0.16384] safd_new: Created safd: sus = 0xa083580 ifl-name:lo0.16384 rc = 0xa326000 (default/__juniper_private2__)iff = INET(0) iff(rc) = INET rt_gbl_index(7)
+Jun  5 09:51:33.489395 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:__juniper_private2__, AF:INET; is not configured
+Jun  5 09:51:33.489407 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: routing context default:__juniper_private2__ loopback ifl set to lo0.16384 - idx 66, (was 0)
+Jun  5 09:51:33.489417 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface lo0.16384
+Jun  5 09:51:33.489430 [MSTR][NOTE] [default:__juniper_private2__][RLY][INET][lo0.16384] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface lo0.16384
+Jun  5 09:51:33.489491 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event lo0.16384, oper add, state up, ifl_indx 66, dev_index 6, family INET, flags 0
+Jun  5 09:51:33.489506 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 6 - IFF name lo0.16384, sub 16384, ifindx 66
+Jun  5 09:51:33.489564 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__master.anon__, oper add, table-id 3, af 2(INET)
+Jun  5 09:51:33.489589 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __master.anon__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:33.489601 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__master.anon__, rt_index: 3, flags 0x1
+Jun  5 09:51:33.489665 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__master.anon__, oper add, table-id 3, af 28(INET6)
+Jun  5 09:51:33.489685 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __master.anon__ flags 1, ADDR_FAM 2, rtt_af 4
+Jun  5 09:51:33.489698 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__master.anon__, rt_index: 3, flags 0x1
+Jun  5 09:51:33.489886 [MSTR][DEBUG] jdhcpd_rtb_handler: rc-event default.__pfe_private__, oper add, table-id 5, af 2(INET)
+Jun  5 09:51:33.490057 [MSTR][DEBUG] rcdb_activate: Activate LR default RI __pfe_private__ flags 1, ADDR_FAM 0, rtt_af 1
+Jun  5 09:51:33.490073 [MSTR][NOTE]  jdhcpd_rpd_activate: RPD not activating default/__pfe_private__, rt_index: 5, flags 0x1
+Jun  5 09:51:33.490113 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event dsc; oper add; state up; dev_index 5; ifm_type 0x2; ifm_link 0; event-ignored=FALSE ifdm_flags 0x8010
+Jun  5 09:51:33.520201 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event gre; oper add; state up; dev_index 10; ifm_type 0xc; ifm_link 0xc; event-ignored=FALSE ifdm_flags 0x8010
+Jun  5 09:51:33.520268 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ipip; oper add; state up; dev_index 11; ifm_type 0xb; ifm_link 0xb; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.520315 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event lo0.32768; oper add; state up; ifl_index 64; dev_index 6; under_ifl_ifindx 0; link_type 0; link_encaps 0
+Jun  5 09:51:33.520336 [MSTR][DEBUG] jdhcpd_name_2_const: ifl lo0.32768 fpc 0 pic 4294967295 port 4294967295 chnl 4294967295 chnl_max 4294967295 unit 32768
+Jun  5 09:51:33.520348 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa083b80) for ifd (0xa083280) lo0 subunit 32768 ifi 0
+Jun  5 09:51:33.576097 [MSTR][DEBUG] jdhcpd_rpd_cb_protocol_register: LR default, Registered w/RPD for proto Access gw 3f
+Jun  5 09:51:33.576169 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event mtun; oper add; state up; dev_index 64; ifm_type 0x12; ifm_link 0xc; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.576200 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event pimd; oper add; state up; dev_index 26; ifm_type 0xe; ifm_link 0xe; event-ignored=FALSE ifdm_flags 0x0
+Jun  5 09:51:33.576221 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event pime; oper add; state up; dev_index 25; ifm_type 0xd; ifm_link 0xd; event-ignored=FALSE ifdm_flags 0x0
+Jun  5 09:51:33.576279 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event tap; oper add; state up; dev_index 12; ifm_type 0x2; ifm_link 0xff; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.576302 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event pp0; oper add; state up; dev_index 128; ifm_type 0x1a; ifm_link 0x38; event-ignored=FALSE ifdm_flags 0x8010
+Jun  5 09:51:33.650717 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event irb; oper add; state up; dev_index 129; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.650793 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event st0; oper add; state up; dev_index 130; ifm_type 0x1f; ifm_link 0x3f; event-ignored=FALSE ifdm_flags 0x10
+Jun  5 09:51:33.650820 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ppd0; oper add; state up; dev_index 131; ifm_type 0xe; ifm_link 0xe; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.650843 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ppe0; oper add; state up; dev_index 132; ifm_type 0xd; ifm_link 0xd; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:33.757901 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event fti0; oper add; state up; dev_index 133; ifm_type 0x31; ifm_link 0x61; event-ignored=FALSE ifdm_flags 0x0
+Jun  5 09:51:33.757971 [MSTR][DEBUG] jdhcpd_rpd_cb_protocol_register: LR default, Registered w/RPD for proto Access-internal gw 40
+Jun  5 09:51:33.757986 [MSTR][DEBUG] jdhcpd_rpd_locate_all_instances: LR default RPD marking up
+Jun  5 09:51:33.758002 [MSTR][DEBUG] jdhcpd_rpd_locate_rtt_id: Locate rtt_id for default/default with table_name inet.0
+Jun  5 09:51:33.807055 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event vlan; oper add; state down; dev_index 134; ifm_type 0x21; ifm_link 0x47; event-ignored=FALSE ifdm_flags 0x1
+Jun  5 09:51:33.850259 [MSTR][INFO]  jdhcpd_ifstate_eof_handler: ------ JDHCPD END OF CHAIN HANDLER -------
+Jun  5 09:51:33.889305 [MSTR][DEBUG] jdhcpd_rpd_cb_table_locate: Have rtt_id 0x1000000 for default/default, addr_fam 1
+Jun  5 09:51:38.409954 [MSTR][INFO]  jdhcpd_authd_connect: authd connection requested
+Jun  5 09:51:38.409984 [MSTR][DEBUG] jdhcpd_auth_config_activate: Activating auth config after auth connected for addr fam INET
+Jun  5 09:51:38.410002 [MSTR][DEBUG] jdhcpd_auth_config_activate: Activating auth config after auth connected for addr fam INET6
+Jun  5 09:51:38.410016 [MSTR][INFO]  jdhcpd_reauthenticate_clients_authd_restart: Ready to reauthenticate  clients due to authd restart
+Jun  5 09:51:38.419954 Ready to teardown 0 clients due to authd restart
+Jun  5 09:51:49.527751 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/0; oper add; state down; dev_index 135; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0x4003
+Jun  5 09:51:49.527852 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/0; oper change; state down; dev_index 135; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc001
+Jun  5 09:51:49.718509 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:49.718617 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/0; oper change; state down; dev_index 135; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc001
+Jun  5 09:51:49.718635 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:49.746393 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event ge-0/0/0.0; oper add; state up; ifl_index 70; dev_index 135; under_ifl_ifindx 0; link_type 3; link_encaps 14
+Jun  5 09:51:49.746578 [MSTR][DEBUG] jdhcpd_name_2_const: ifl ge-0/0/0.0 fpc 0 pic 0 port 0 chnl 4294967295 chnl_max 4294967295 unit 0
+Jun  5 09:51:49.746598 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa084f00) for ifd (0xa084d80) ge-0/0/0 subunit 0 ifi 0
+Jun  5 09:51:49.746653 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event ge-0/0/0.0, oper add, state up, ifl_index 70, dev_index 135, af 2(INET)
+Jun  5 09:51:49.746670 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 135 - IFF name ge-0/0/0.0, sub 0, ifindx 70
+Jun  5 09:51:49.746688 [MSTR][INFO] [ge-0/0/0.0] safd_new: Created safd: sus = 0xa084f00 ifl-name:ge-0/0/0.0 rc = 0xa060000 (default/default)iff = INET(0) iff(rc) = INET rt_gbl_index(3)
+Jun  5 09:51:49.746728 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:default, AF:INET; is configured
+Jun  5 09:51:49.746743 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: if_name ge-0/0/0.0, rc default:default (0xa060000), flags 0x8a00809
+Jun  5 09:51:49.746755 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: grp_name TEST
+Jun  5 09:51:49.746767 [MSTR][DEBUG] jdhcpd_interface_find_best_match: Interface 'ge-0/0/0.0' found
+Jun  5 09:51:49.746777 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: FOUND config for ge-0/0/0.0, app 1, rc default:default
+Jun  5 09:51:49.746790 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] rc_entry_sus_add: Adding IFL ge-0/0/0.0 INET safd to LSRI default:default: RC 0xa060000; dhcp_type 1; su_ifl 0xa084f00; subunit flags 0x23
+Jun  5 09:51:49.746805 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] safd_rc_owner_list_insert: Added safd to routing context's configured safd list.
+Jun  5 09:51:49.746821 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] rc_entry_sus_add: Adding IFL ge-0/0/0.0 INET safd to LSRI default:default RC 0xa060000: safd 0xa209a80 has if_addr 0.0.0.0
+Jun  5 09:51:49.746839 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] sus_by_ip_addr_add: [INET] - Added 'subunit by ip-addr' entry 0xa7cdf88, safd 0xa209a80 for ip ADDR 0.0.0.0 type 1 in routing context LR default/RI default (ref_count 1)
+Jun  5 09:51:49.746853 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: interface ge-0/0/0.0 found cfg, app_type 1 - SET CFG
+Jun  5 09:51:49.746867 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface ge-0/0/0.0
+Jun  5 09:51:49.746901 [MSTR][DEBUG] jdhcpd_ifam_handler: ifa-event ge-0/0/0.0, oper add, state down, ifl_indx 70, dev_index 135, family INET, flags 0xc4
+Jun  5 09:51:49.746916 [MSTR][DEBUG] jdhcpd_ifam_handler_event_queuing: Checking for postpone as delete event can be processed in parallel when queue is empty ifa-event: ifdindx 135 - IFF name ge-0/0/0.0, sub 0, ifindx 70
+Jun  5 09:51:49.746931 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] change_sus_if_addr: Changing if_addr to 192.168.1.1: intf ge-0/0/0.0 (stack 0xa084f00); INET safd(0xa209a80); dhcp_type 1; LSRI default:default
+Jun  5 09:51:49.746948 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] sus_by_ip_addr_remove: Successfully removed existent 'subunit by ip-addr' from ge-0/0/0.0 INET safd(0xa209a80): LSRI default:default; dhcp_type 1; IP ADDR 0.0.0.0, ref_cnt 0. This is the last sub-unit safd associated with this address.
+Jun  5 09:51:49.746964 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] change_sus_if_addr: Changed intf ge-0/0/0.0 INET safd if_addr from 0.0.0.0 to 192.168.1.1
+Jun  5 09:51:49.746978 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] sus_by_ip_addr_add: [INET] - Added 'subunit by ip-addr' entry 0xa7cdf88, safd 0xa209a80 for ip ADDR 192.168.1.1 type 1 in routing context LR default/RI default (ref_count 1)
+Jun  5 09:51:49.746994 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] jdhcpd_ifam_handler: Added new IFA: ifa name ge-0/0/0, family INET, sub 0, addr 192.168.1.1/24
+Jun  5 09:51:49.747007 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] jdhcpd_ifam_handler: About to call mirror_restore_if(full_ifname ge-0/0/0.0) for su_stack sessionid 0, interface IFl index 70, unit stack 0xa084f00, family INET
+Jun  5 09:51:49.795856 [MSTR][DEBUG] jdhcpd_mirror_restore_if: Client restoration STARTING on IF ge-0/0/0.0
+Jun  5 09:51:49.795888 [MSTR][DEBUG] jdhcpd_mirror_restore_if: NOT found ha_avl_entry_ptr on IF ge-0/0/0.0
+Jun  5 09:51:49.833949 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event sp-0/0/0; oper add; state down; dev_index 137; ifm_type 0x15; ifm_link 0x2d; event-ignored=FALSE ifdm_flags 0x2c011
+Jun  5 09:51:49.834078 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event sp-0/0/0.0; oper add; state down; ifl_index 71; dev_index 137; under_ifl_ifindx 0; link_type 36; link_encaps 52
+Jun  5 09:51:49.834117 [MSTR][DEBUG] jdhcpd_name_2_const: ifl sp-0/0/0.0 fpc 0 pic 0 port 0 chnl 4294967295 chnl_max 4294967295 unit 0
+Jun  5 09:51:49.834132 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa085200) for ifd (0xa085080) sp-0/0/0 subunit 0 ifi 0
+Jun  5 09:51:49.834174 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event sp-0/0/0.0, oper add, state up, ifl_index 71, dev_index 137, af 2(INET)
+Jun  5 09:51:49.834189 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 137 - IFF name sp-0/0/0.0, sub 0, ifindx 71
+Jun  5 09:51:49.834205 [MSTR][INFO] [sp-0/0/0.0] safd_new: Created safd: sus = 0xa085200 ifl-name:sp-0/0/0.0 rc = 0xa060000 (default/default)iff = INET(0) iff(rc) = INET rt_gbl_index(3)
+Jun  5 09:51:49.834219 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:default, AF:INET; is configured
+Jun  5 09:51:49.834277 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: if_name sp-0/0/0.0, rc default:default (0xa060000), flags 0x8a00809
+Jun  5 09:51:49.834294 [MSTR][DEBUG] jdhcpd_interface_config_find_in_rc: grp_name TEST
+Jun  5 09:51:49.834309 [MSTR][DEBUG] jdhcpd_interface_find_best_match: Interface 'sp-0/0/0.0' not found
+Jun  5 09:51:49.834322 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface sp-0/0/0.0
+Jun  5 09:51:49.834334 [MSTR][NOTE] [default:default][RLY][INET][sp-0/0/0.0] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface sp-0/0/0.0
+Jun  5 09:51:49.834450 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event sp-0/0/0.0, oper add, state up, ifl_index 71, dev_index 137, af 28(INET6)
+Jun  5 09:51:49.834468 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 137 - IFF name sp-0/0/0.0, sub 0, ifindx 71
+Jun  5 09:51:49.834483 [MSTR][INFO] [sp-0/0/0.0] safd_new: Created safd: sus = 0xa085200 ifl-name:sp-0/0/0.0 rc = 0xa27b000 (default/default)iff = INET6(2) iff(rc) = INET6 rt_gbl_index(4)
+Jun  5 09:51:49.834497 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:default, AF:INET6; is not configured
+Jun  5 09:51:49.834509 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface sp-0/0/0.0
+Jun  5 09:51:49.834528 [MSTR][NOTE] [default:default][RLY][INET6][sp-0/0/0.0] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface sp-0/0/0.0
+Jun  5 09:51:49.834561 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event sp-0/0/0.16383; oper add; state up; ifl_index 72; dev_index 137; under_ifl_ifindx 0; link_type 36; link_encaps 52
+Jun  5 09:51:49.834587 [MSTR][DEBUG] jdhcpd_name_2_const: ifl sp-0/0/0.16383 fpc 0 pic 0 port 0 chnl 4294967295 chnl_max 4294967295 unit 16383
+Jun  5 09:51:49.834599 [MSTR][DEBUG] sus_entry_new: New SU_STACK :(0xa085380) for ifd (0xa085080) sp-0/0/0 subunit 16383 ifi 0
+Jun  5 09:51:49.834627 [MSTR][DEBUG] jdhcpd_iffm_handler_idl: iff-event sp-0/0/0.16383, oper add, state up, ifl_index 72, dev_index 137, af 2(INET)
+Jun  5 09:51:49.834642 [MSTR][DEBUG] jdhcpd_iffm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty ifdindx 137 - IFF name sp-0/0/0.16383, sub 16383, ifindx 72
+Jun  5 09:51:49.834660 [MSTR][INFO] [sp-0/0/0.16383] safd_new: Created safd: sus = 0xa085380 ifl-name:sp-0/0/0.16383 rc = 0xa325000 (default/__juniper_private1__)iff = INET(0) iff(rc) = INET rt_gbl_index(6)
+Jun  5 09:51:49.834689 [MSTR][INFO]  jdhcpd_iffm_handler_idl: RtrCtx: LS:default, RI:__juniper_private1__, AF:INET; is not configured
+Jun  5 09:51:49.834706 [MSTR][INFO]  jdhcpd_iffm_handler_idl: No config for inteface sp-0/0/0.16383
+Jun  5 09:51:49.834720 [MSTR][NOTE] [default:__juniper_private1__][RLY][INET][sp-0/0/0.16383] jdhcpd_platform_iff_ppp_state_change_handler: Unable to process iffm ppp rtsock add message from interface sp-0/0/0.16383
+Jun  5 09:51:49.834808 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/1; oper add; state down; dev_index 136; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc001
+Jun  5 09:51:49.834840 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event gr-0/0/0; oper add; state up; dev_index 138; ifm_type 0xc; ifm_link 0xc; event-ignored=FALSE ifdm_flags 0x10
+Jun  5 09:51:49.834865 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ip-0/0/0; oper add; state up; dev_index 139; ifm_type 0xb; ifm_link 0xb; event-ignored=FALSE ifdm_flags 0x0
+Jun  5 09:51:49.834890 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event mt-0/0/0; oper add; state down; dev_index 141; ifm_type 0x12; ifm_link 0xc; event-ignored=FALSE ifdm_flags 0x8001
+Jun  5 09:51:49.840394 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event lt-0/0/0; oper add; state up; dev_index 142; ifm_type 0x18; ifm_link 0x2c; event-ignored=FALSE ifdm_flags 0xc010
+Jun  5 09:51:49.840472 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event lsq-0/0/0; oper add; state down; dev_index 140; ifm_type 0x14; ifm_link 0x28; event-ignored=FALSE ifdm_flags 0xc011
+Jun  5 09:51:49.873973 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event sp-0/0/0; oper change; state down; dev_index 137; ifm_type 0x15; ifm_link 0x2d; event-ignored=FALSE ifdm_flags 0xc011
+Jun  5 09:51:49.874011 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (0) app on AF_INET
+Jun  5 09:51:49.874025 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (0) app on AF_INET
+Jun  5 09:51:49.874037 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:49.874052 [MSTR][DEBUG][default:default][RLY][INET6][sp-0/0/0.0] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:49.874064 [MSTR][DEBUG] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:49.874103 [MSTR][DEBUG] jdhcpd_iflm_handler: ifl-event sp-0/0/0.0; oper change; state up; ifl_index 71; dev_index 137; under_ifl_ifindx 0; link_type 36; link_encaps 52
+Jun  5 09:51:49.874120 [MSTR][DEBUG] jdhcpd_iflm_handler_event_queuing: Checking for postpone flag as delete event can be processed in parallel when queue is empty iflm-event ifdindx 137 - IFF name sp-0/0/0, sub 0, ifindx 71
+Jun  5 09:51:49.874133 [MSTR][NOTE]  dhcpv6_client_ifl_state_change_handler: Got IFL-STATE CHANGE 2 message for client application
+Jun  5 09:51:49.874146 [MSTR][DEBUG][default:default][RLY][INET6][sp-0/0/0.0] dhcpv6_client_process_if_state_change: Passing event 34 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:50.205472 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event vlan; oper change; state down; dev_index 134; ifm_type 0x21; ifm_link 0x47; event-ignored=FALSE ifdm_flags 0x1
+Jun  5 09:51:50.205515 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:50.205565 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/0; oper change; state down; dev_index 135; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc001
+Jun  5 09:51:50.205583 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (1) app on AF_INET
+Jun  5 09:51:50.205596 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:50.205606 [MSTR][DEBUG] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:50.205641 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/1; oper change; state down; dev_index 136; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc001
+Jun  5 09:51:50.205655 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:50.205675 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event sp-0/0/0; oper change; state up; dev_index 137; ifm_type 0x15; ifm_link 0x2d; event-ignored=FALSE ifdm_flags 0xc010
+Jun  5 09:51:50.205689 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (0) app on AF_INET
+Jun  5 09:51:50.205699 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (0) app on AF_INET
+Jun  5 09:51:50.205709 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:50.205723 [MSTR][DEBUG][default:default][RLY][INET6][sp-0/0/0.0] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:50.205734 [MSTR][DEBUG] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:50.205792 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event lsq-0/0/0; oper change; state up; dev_index 140; ifm_type 0x14; ifm_link 0x28; event-ignored=FALSE ifdm_flags 0xc010
+Jun  5 09:51:50.205811 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:50.205843 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event mt-0/0/0; oper change; state up; dev_index 141; ifm_type 0x12; ifm_link 0xc; event-ignored=FALSE ifdm_flags 0x8000
+Jun  5 09:51:50.205856 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:51.186505 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/0; oper change; state up; dev_index 135; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc000
+Jun  5 09:51:51.186544 [MSTR][DEBUG] jdhcpd_client_process_if_state_change: Pass event 35 if it is  client (1) app on AF_INET
+Jun  5 09:51:51.186558 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+Jun  5 09:51:51.186569 [MSTR][DEBUG] dhcpv6_client_process_if_state_change: Passing event 35 only if it is a client (0) application on AF_INET6
+Jun  5 09:51:51.186602 [MSTR][INFO]  jdhcpd_ifdm_handler: ifd-event ge-0/0/1; oper change; state up; dev_index 136; ifm_type 0x3; ifm_link 0x1; event-ignored=FALSE ifdm_flags 0xc000
+Jun  5 09:51:51.186616 [MSTR][NOTE]  dhcpv6_client_ifd_state_change_handler: Got IFD-STATE CHANGE 2 message for client application
+

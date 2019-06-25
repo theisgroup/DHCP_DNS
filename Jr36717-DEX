@@ -1,0 +1,4599 @@
+﻿root@Jr36717-DEX> show configuration | no-more 
+## Last commit: 2019-05-03 22:34:02 EDT by root
+version 12.1X47-D20.7;
+system {
+    host-name Jr36717-DEX;
+    domain-name stores.net.7-11.com;
+    domain-search [ stores.net.7-11.com storesp.7-11.com net.7-11.com 7-11.com 7-Eleven.com ];
+    time-zone America/New_York;
+    authentication-order [ radius password ];
+    location building SRX210-J12-7NET-022515-R2;
+    ports {
+        console {
+            inactive: log-out-on-disconnect;
+        }
+    }
+    root-authentication {
+        encrypted-password "$1$gZIu92a9$P0HMvwRZGwc14nWh5iOmz/"; ## SECRET-DATA
+    }
+    name-server {
+        10.132.34.20;
+        172.22.34.140;
+    }
+    radius-server {
+        10.132.38.43 {
+            secret "$9$v9lW7-UDHf5Fikfz36u0NdbwYg"; ## SECRET-DATA
+            source-address 10.0.106.193;
+        }
+        172.22.34.21 {
+            secret "$9$FmSEnApeKWN-wM8Nbs2GUtuOBIE"; ## SECRET-DATA
+            source-address 10.0.106.193;
+        }
+    }
+    inactive: scripts {
+        commit {
+            allow-transients;
+        }
+        op {
+            file Extranet-DHCP-Relay.slax;
+            file Live_Action.slax;
+            file Live_ActionV4.slax;
+            file check_wireless.slax;
+            file cleanup_srx_cluster2.slax;
+            file gas_worksheet.slax;
+            file post_12_1x_update.slax;
+            file set_fcio_opt43.slax;
+            file set_opt_43.slax;
+            file skybox_srx.slax;
+            file snapshot.slax;
+            file snmp_srx.slax;
+            file srx-service-now-v1.slax;
+            file srx_install_dmb.slax;
+            file srx_new_ntp.slax;
+            file srx_pci_intermediate.slax;
+            file srx_pci_step_1.slax;
+            file srx_pci_syn-off.slax;
+            file storage_cleanup.slax;
+            file update_alt_partition_and_recovery_cfg.slax;
+            file wla_cluster1a.slax;
+            file wla_cluster3b.slax;
+        }
+    }
+    login {
+        message "\n\nAccess to this equipment and associated network, resources or data \nis restricted to those authorized by 7-Eleven, Inc. This equipment \nand related networks, resources or data may only be used for the \nbusiness purpose of 7-Eleven, Inc.  Use by unauthorized individuals \nor for an unauthorized purpose is a violation of Federal and/or \nState law. Violators will be prosecuted.\n\n";
+        class operator-local {
+            idle-timeout 15;
+            permissions [ clear network reset trace view ];
+        }
+        class skybox {
+            permissions view-configuration;
+            allow-commands "(show)|(set)";
+            deny-commands "(clear)|(file)|(file show)|(help)|(load)|(monitor)|(op)|(request)|(save)|(start)|(test)";
+        }
+        class super-user-local {
+            idle-timeout 15;
+            permissions all;
+        }
+        user Skybox {
+            uid 2005;
+            class skybox;
+        }
+        user admin {
+            uid 2000;
+            class super-user-local;
+        }
+        user compucomnoc {
+            uid 2002;
+            class super-user-local;
+            authentication {
+                encrypted-password "$1$bfPuzOty$d1c40ubBMwHvdWHiyze0./"; ## SECRET-DATA
+            }
+        }
+        user level1 {
+            uid 2001;
+            class operator-local;
+            authentication {
+                encrypted-password "$1$tEusmVAB$mTqm/fbyGKtBy3yzrmlUe."; ## SECRET-DATA
+            }
+        }
+        user remote-admin {
+            uid 2003;
+            class super-user-local;
+        }
+        user remote-operator {
+            uid 2004;
+            class super-user-local;
+        }
+        user sa-netdevadmin {
+            uid 2010;
+            class super-user;
+            authentication {
+                ssh-rsa "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCXaERqLuPT0GOX+lFOIcpyeq1Ei0aeqxgQsWD9e89dzlvkfSFm3+xyFVIE1sGsRmBaW4kBpTru7DdEMbrGo4ex3e4woVh9CcL1P34Wgn0h9/iiLTHjHYjimNzBYAr5hvgJ+kuu/7amNw8Iq6vGSBmgtf8nBD3A/KqpjlQTzrYWFigye4HZa83d24yBQXeWBx66Ghsf7l6NrZfNfMCW2UlHKvOxVBsHQBxl1Dzbj+d+avmJNByjbhpy22oGdFhALHn0vvJaI3MFUP/Xkyo7gEpEVtZ5Mkymwc2l2GMH1qKVu20yec+p9uVllTPKd44yeVBj3lEMNW6j2KaSvuUeXDxF root@space-005056ba3b31"; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        ssh {
+            root-login allow;
+            protocol-version v2;
+            max-sessions-per-connection 32;
+        }
+        netconf {
+            ssh;
+        }
+        outbound-ssh {
+            client cluster_228.20.26.247 {
+                device-id 370FE9;
+                secret "$9$iqm5369CuO5TEclK8LjHkPFn"; ## SECRET-DATA
+                services netconf;
+                172.20.26.244 port 7804;
+                172.20.26.245 port 7804;
+                172.20.26.246 port 7804;
+                172.20.26.243 port 7804;
+            }
+        }
+        inactive: dhcp-local-server {
+            overrides {
+                process-inform;
+            }
+            group OPS-Pool {
+                interface vlan.10;
+            }
+            group RISMBL-Clients {
+                interface vlan.16;
+            }
+            group DMB {
+                interface vlan.13;
+            }
+            group EX-MGT {
+                interface fe-0/0/2.0;
+            }
+            group DEX {
+                interface vlan.70;
+            }
+            group DISPENSER {
+                interface vlan.80;
+            }
+        }
+    }
+    syslog {
+        archive size 1000k files 5;
+        user * {
+            any emergency;
+        }
+        inactive: host 10.132.250.4 {
+            any any;
+        }
+        host 172.20.96.10 {
+            any any;
+            match "commit complete|ifAdminStatus|link UP|RT_FLOW_SESSION_CREATE|UI_CMDLINE_READ_LINE|UI_LOG|AUTH_RESTRICTED_ADDRESS";
+            source-address 10.0.106.193;
+        }
+        file messages {
+            any any;
+            authorization info;
+            daemon any;
+            kernel any;
+            interactive-commands any;
+            archive;
+            structured-data;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+        file default-log-messages {
+            any info;
+            match "(requested 'commit' operation)|(requested 'commit synchronize' operation)|(copying configuration to juniper.save)|(commit complete)|ifAdminStatus|(FRU power)|(FRU removal)|(FRU insertion)|(link UP)|transitioned|Transferred|transfer-file|(license add)|(license delete)|(package -X update)|(package -X delete)|(FRU Online)|(FRU Offline)|(plugged in)|(unplugged)|GRES";
+            structured-data;
+        }
+        file allowed-traffic {
+            any any;
+            match RT_FLOW_SESSION_CREATE;
+        }
+        file denied-traffic {
+            any any;
+            match DENY;
+        }
+        time-format year millisecond;
+    }
+    max-configurations-on-flash 15;
+    ##
+    ## Warning: statement ignored: unsupported platform (firefly-perimeter)
+    ##
+    max-configuration-rollbacks 15;
+    license {
+        autoupdate {
+            url https://ae1.juniper.net/junos/key_retrieval;
+        }
+    }
+    processes {
+        dhcp-service {
+            traceoptions {
+                file dhcp size 2m files 2 world-readable;
+                flag all;
+            }
+        }
+    }
+    ntp {
+        server 172.20.0.254;
+        server 172.20.0.255 prefer;
+        source-address 10.0.106.193;
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 192.168.122.156/24;
+            }
+        }
+    }
+    ge-0/0/2 {
+        unit 0 {
+            description "EX Mgt Interface";
+            family inet {
+                address 10.0.106.197/30;
+            }
+        }
+    }
+    ge-0/0/3 {
+        description "VLAN Trunk to DEX Store Meraki Switch";
+        unit 0 {
+            ##
+            ## Warning: configuration block ignored: unsupported platform (firefly-perimeter)
+            ##
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ OPS LEGACY DEX DISPENSER ];
+                }
+                native-vlan-id OPS;
+            }
+        }
+    }
+    ge-0/0/4 {
+        description "Allstream Interface";
+        unit 0 {
+            description "VG3410/Allstream RIP";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.130/29;
+            }
+        }
+    }
+    ge-0/0/5 {
+        unit 0 {
+            family inet {
+                address 192.168.1.2/24;
+            }
+        }
+    }
+    ge-0/0/6 {
+        description "EDH Interface";
+        unit 0 {
+            family inet {
+                address 10.0.106.137/30;
+            }
+        }
+    }
+    ge-0/0/7 {
+        description "VLAN Trunk to Store Switch";
+        unit 0 {
+            ##
+            ## Warning: configuration block ignored: unsupported platform (firefly-perimeter)
+            ##
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ CXDATA LEGACY WIFI-RIS WIFI-GUEST WIFI-CORP OPS DMB PASSPORT EXTRA-1 RIS-INFRA ];
+                }
+            }
+        }
+    }
+    t1-1/0/0 {
+        description "AT&T AVPN WAN";
+        per-unit-scheduler;
+        hold-time up 0 down 2000;
+        clocking external;
+        encapsulation ppp;
+        t1-options {
+            timeslots 1-24;
+            buildout 133-265;
+            remote-loopback-respond;
+        }
+        unit 0 {
+            ppp-options {
+                lcp-max-conf-req 0;
+            }
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+            }
+        }
+    }
+    lo0 {
+        description Loopback;
+        unit 0 {
+            family inet {
+                address 10.0.106.193/32;
+            }
+        }
+    }
+    st0 {
+        unit 0 {
+            multipoint;
+            family inet {
+                address 1.1.1.2/24;
+            }
+        }
+        unit 1 {
+            description "IPSec VPN Connection (DHCP/Wireless)";
+            multipoint;
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.241.32.177/24;
+            }
+        }
+    }
+    vlan {
+        unit 10 {
+            description "LAN MGT";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.153/29;
+            }
+        }
+        unit 12 {
+            description "LEGACY Store Network /25";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.1/25;
+            }
+        }
+        unit 13 {
+            description "Digital Menu Boards - DMB";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.145/29;
+            }
+        }
+        unit 16 {
+            description "SSID: RISMBL/RISMBL1 VLAN";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.161/28;
+            }
+        }
+        unit 17 {
+            description "SSID: CORP WIFI VLAN";
+        }
+        unit 18 {
+            description "SSID: GUEST WIFI VLAN";
+        }
+        unit 30 {
+            description "Passport Interface";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.5.60.15/26;
+            }
+        }
+        unit 40 {
+            description "Extranet Devices";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.225/27;
+            }
+        }
+        unit 60 {
+            description "RIS Infrastructure";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.177/28;
+            }
+        }
+        unit 70 {
+            description "DEX Servers";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 10.0.106.201/29;
+            }
+        }
+        unit 80 {
+            description "Fuels Dispensers";
+            family inet {
+                sampling {
+                    input;
+                    output;
+                }
+                address 192.168.100.254/24;
+            }
+        }
+        unit 100 {
+            description "Cradlepoint Interface";
+            family inet {
+                dhcp-client;
+            }
+        }
+    }
+}
+forwarding-options {
+    sampling {
+        input {
+            rate 10;
+            run-length 0;
+        }
+        family inet {
+            output {
+                flow-server 172.29.150.129 {
+                    port 2055;
+                    version9 {
+                        template {
+                            ipv4-LA;
+                        }
+                    }
+                }
+                inline-jflow {
+                    source-address 10.0.106.193;
+                }
+            }
+        }
+    }
+    helpers {
+        port 137;
+        port 138;
+        port 139;
+    }
+    dhcp-relay {
+        server-group {
+            ISP {
+                10.0.106.10;
+            }
+        }
+        active-server-group ISP;
+        group RIS-INFRA {
+            interface vlan.60;
+        }
+        group EXTRANET {
+            interface vlan.40;
+        }
+    }
+}
+snmp {
+    description Jr36717-DEX;
+    location "Dallas, TX";
+    community wowichv8 {
+        authorization read-write;
+        clients {
+            192.94.141.0/24;
+        }
+    }
+    community 711ro {
+        authorization read-only;
+        clients {
+            172.20.26.0/24;
+            172.29.150.128/28;
+            10.132.25.40/32;
+            10.132.25.240/32;
+            10.132.25.241/32;
+        }
+    }
+    trap-options {
+        source-address 10.0.106.193;
+    }
+    trap-group wowichv8 {
+        version v1;
+        categories {
+            authentication;
+            chassis;
+            link;
+            remote-operations;
+            routing;
+            startup;
+            configuration;
+            services;
+        }
+        targets {
+            192.94.141.96;
+        }
+    }
+    trap-group 711ro {
+        version v2;
+        categories {
+            authentication;
+            chassis;
+            link;
+            remote-operations;
+            routing;
+            startup;
+            configuration;
+            services;
+        }
+        targets {
+            172.20.26.40;
+        }
+    }
+}
+routing-options {
+    static {
+        route 10.5.48.0/26 {
+            next-hop 10.5.60.1;
+            preference 200;
+        }
+    }
+    aggregate {
+        route 10.0.106.0/24 discard;
+    }
+}
+protocols {
+    bgp {
+        preference 9;
+        group att_avpn {
+            neighbor 10.242.10.97 {
+                import ROUTES-RECVD;
+                export ROUTES-SENT;
+                peer-as 13979;
+                local-as 40664;
+            }
+        }
+    }
+    pim {
+        interface vlan.40 {
+            mode dense;
+        }
+        interface vlan.16 {
+            mode dense;
+        }
+    }
+    rip {
+        inactive: traceoptions {
+            file rip size 2m files 2 world-readable;
+            flag packets;
+            flag route;
+        }
+        group 1 {
+            preference 15;
+            export ROUTES-SENT;
+            import ROUTES-RECVD;
+            neighbor st0.0 {
+                interface-type p2mp;
+                dynamic-peers;
+                peer 10.240.32.1;
+                demand-circuit;
+            }
+        }
+        group 2 {
+            preference 20;
+            export ROUTES-SENT;
+            import ROUTES-RECVD;
+            neighbor st0.1 {
+                interface-type p2mp;
+                dynamic-peers;
+                peer 10.241.0.1;
+                demand-circuit;
+            }
+        }
+        group 3 {
+            preference 10;
+            export ROUTES-SENT;
+            import ROUTES-RECVD;
+            neighbor fe-0/0/4.0;
+        }
+    }
+    lldp {
+        interface all;
+    }
+    lldp-med {
+        interface all;
+    }
+}
+policy-options {
+    prefix-list HEARTLAND {
+        205.144.48.0/24;
+        205.144.58.0/24;
+    }
+    prefix-list CERTEGY {
+        216.189.224.0/24;
+        216.189.226.0/24;
+        216.189.239.0/24;
+    }
+    prefix-list INCOMM {
+        10.5.1.0/24;
+        10.6.3.0/24;
+    }
+    prefix-list PAYNEARME {
+        172.16.0.0/24;
+    }
+    prefix-list 7TRANSFER {
+        172.27.36.30/32;
+    }
+    prefix-list COMPUCOM {
+        192.94.141.0/24;
+    }
+    prefix-list DGE {
+        172.27.36.53/32;
+    }
+    prefix-list CARDTRONICS {
+        10.252.127.20/32;
+        10.252.127.48/32;
+        10.252.127.50/32;
+        10.252.127.60/32;
+        10.252.127.62/32;
+    }
+    prefix-list MNGT-SRC-PREFIX {
+        10.132.25.0/24;
+        10.132.38.0/24;
+        10.132.38.17/32;
+        10.132.38.19/32;
+        10.132.250.4/32;
+        10.132.252.21/32;
+        192.94.141.0/24;
+        199.196.10.10/32;
+    }
+    policy-statement ROUTES-RECVD {
+        term 1 {
+            from {
+                route-filter 0.0.0.0/0 exact;
+            }
+            then accept;
+        }
+        term default-term {
+            then reject;
+        }
+    }
+    policy-statement ROUTES-SENT {
+        term 1 {
+            from protocol aggregate;
+            then accept;
+        }
+        term default-term {
+            then reject;
+        }
+    }
+}
+class-of-service {
+    classifiers {
+        dscp dscp-classifer {
+            forwarding-class AF3 {
+                loss-priority low code-points af31;
+            }
+            forwarding-class NC {
+                loss-priority low code-points [ nc1 nc2 ];
+            }
+            forwarding-class BE {
+                loss-priority high code-points be;
+            }
+            forwarding-class AF2 {
+                loss-priority medium-high code-points af21;
+            }
+        }
+    }
+    drop-profiles {
+        DP1 {
+            fill-level 80 drop-probability 80;
+            fill-level 90 drop-probability 90;
+        }
+    }
+    forwarding-classes {
+        queue 7 NC;
+        queue 5 EF;
+        queue 4 AF4;
+        queue 3 AF3;
+        queue 2 AF2;
+        queue 1 AF1;
+        queue 0 BE;
+    }
+    interfaces {
+        t1-1/0/0 {
+            unit 0 {
+                scheduler-map NET-COS-MAP;
+                shaping-rate 1536000;
+                rewrite-rules {
+                    dscp ATT-COS-CODES;
+                }
+            }
+        }
+    }
+    rewrite-rules {
+        dscp ATT-COS-CODES {
+            forwarding-class NC {
+                loss-priority low code-point 110000;
+            }
+            forwarding-class AF3 {
+                loss-priority low code-point af31;
+            }
+            forwarding-class AF2 {
+                loss-priority low code-point af21;
+            }
+            forwarding-class BE {
+                loss-priority high code-point be;
+            }
+        }
+    }
+    scheduler-maps {
+        NET-COS-MAP {
+            forwarding-class AF3 scheduler AF3-SCHEDULER;
+            forwarding-class AF2 scheduler AF2-SCHEDULER;
+            forwarding-class BE scheduler BE-SCHEDULER;
+            forwarding-class NC scheduler NC-SCHEDULER;
+        }
+    }
+    schedulers {
+        NC-SCHEDULER {
+            transmit-rate percent 5;
+            buffer-size percent 5;
+            priority high;
+        }
+        AF3-SCHEDULER {
+            transmit-rate percent 57;
+            buffer-size percent 30;
+            priority medium-high;
+        }
+        AF2-SCHEDULER {
+            transmit-rate percent 29;
+            buffer-size percent 15;
+            priority medium-low;
+        }
+        BE-SCHEDULER {
+            transmit-rate {
+                remainder;
+            }
+            buffer-size {
+                remainder;
+            }
+            priority low;
+        }
+    }
+}
+security {
+    ike {
+        traceoptions {
+            flag all;
+        }
+        policy IKE-STD-AGG-PSK {
+            mode aggressive;
+            proposal-set standard;
+            pre-shared-key ascii-text "$9$sNYaUPfQ/9tJG6Ap0REs24oJGDi.Q36"; ## SECRET-DATA
+        }
+        gateway ALLTX-INET {
+            ike-policy IKE-STD-AGG-PSK;
+            address 192.168.1.1;
+            local-identity hostname Jr36717-DEX-I.7-11.com;
+            external-interface ge-0/0/5.0;
+        }
+    }
+    ipsec {
+        traceoptions {
+            flag all;
+        }
+        vpn-monitor-options {
+            interval 60;
+            threshold 3;
+        }
+        policy VPN-STD-POLICY {
+            description VPN-STD-POLICY;
+            proposal-set standard;
+        }
+        vpn ALLTX-INET {
+            bind-interface st0.0;
+            vpn-monitor {
+                optimized;
+                source-interface st0.0;
+                destination-ip 1.1.1.1;
+            }
+            ike {
+                gateway ALLTX-INET;
+                ipsec-policy VPN-STD-POLICY;
+            }
+            establish-tunnels immediately;
+        }
+    }
+    address-book {
+        global {
+            address MGT-NET-2 10.132.250.0/24;
+            address MGT-NET-4 10.132.38.0/24;
+            address MGT-NET-5 172.20.26.0/24;
+            address MGT-NET-6 199.196.10.10/32;
+            address MGT-NET-CC1 192.94.141.0/24;
+            address 10.10.30.20_Titan 10.10.30.20/32;
+            address 10.128.1.26_FOHPTERM 10.128.1.26/32;
+            address 10.128.1.27_FOHPPILOT 10.128.1.27/32;
+            address 10.128.1.28_FOHP 10.128.1.28/32;
+            address 10.131.0.2_USTXDLURP2 10.131.0.2/32;
+            address 10.131.10.194_USTXDLURP1 10.131.10.194/32;
+            address 10.131.16.20_USTXDSDSDC1 10.131.16.20/32;
+            address 10.131.246.0/24_UNI 10.131.246.0/24;
+            address 10.131.251.10 10.131.251.10/32;
+            address 10.131.253.34_DLUTXRTR017 10.131.253.34/32;
+            address 10.132.10.150_USTXALAAP1 10.132.10.150/32;
+            address 10.132.10.16_USTXALDDC3 10.132.10.16/32;
+            address 10.132.10.193_USTXALARP1 10.132.10.193/32;
+            address 10.132.10.194_USTXALARP2 10.132.10.194/32;
+            address 10.132.10.20_USTXALDDC1 10.132.10.20/32;
+            address 10.132.10.21_USTXALDDC2 10.132.10.21/32;
+            address 10.132.10.50_USTXALAAP02 10.132.10.50/32;
+            address 10.132.11.102_USTXALDRDC02 10.132.11.102/32;
+            address 10.132.11.120_USTXALDRDC01 10.132.11.120/32;
+            address 10.132.11.233_USTXALAEMS1 10.132.11.233/32;
+            address 10.132.16.20_USTXALDSDC3 10.132.16.20/32;
+            address 10.132.16.21_USTXALDSDC4 10.132.16.21/32;
+            address 10.132.18.43_USTXALAEMS1 10.132.18.43/32;
+            address 10.132.18.81_USTXALXEMS01 10.132.18.81/32;
+            address 10.132.18.82_USTXALXEMS02 10.132.18.82/32;
+            address 10.132.22.0/24_NETIQ 10.132.22.0/24;
+            address 10.132.22.165_USTXALAPTY3 10.132.22.165/32;
+            address 10.132.22.22_USTXALAMAC2 10.132.22.22/32;
+            address 10.132.23.22_USTXALARPM2 10.132.23.22/32;
+            address 10.132.24.11_USTXALAPTY2 10.132.24.11/32;
+            address 10.132.246.0/24_ALLEN 10.132.246.0/24;
+            address 10.132.25.0/24_CITRIX 10.132.25.0/24;
+            address 10.132.25.40_USTXALACTX13 10.132.25.40/32;
+            address 10.132.25.41_USTXALACTX8 10.132.25.41/32;
+            address 10.132.25.42_USTXALACTX9 10.132.25.42/32;
+            address 10.132.25.43_USTXALACTX10 10.132.25.43/32;
+            address 10.132.25.47_USTXALACTX11 10.132.25.47/32;
+            address 10.132.25.48_USTXALACTX12 10.132.25.48/32;
+            address 10.132.25.64/27_Citrix 10.132.25.64/27;
+            address 10.132.251.10 10.132.152.10/32;
+            address 10.132.253.34_ALLTXRTR017 10.132.253.34/32;
+            address 10.132.26.20_USTXALASPFM1 10.132.26.20/32;
+            address 10.132.26.249_USTXALAEFTP 10.132.26.249/32;
+            address 10.132.34.20_USTXALDDC01 10.132.34.20/32;
+            address 10.132.34.21_USTXALDDC02 10.132.34.21/32;
+            address 10.132.38.43_USTXALANPAS02 10.132.38.43/32;
+            address 10.252.126.74_Radia-T2 10.252.127.74/32;
+            address 10.252.127.104_CT 10.252.127.104/32;
+            address 10.252.127.111 10.252.127.111/32;
+            address 10.252.127.112 10.252.127.112/32;
+            address 10.252.127.113 10.252.127.113/32;
+            address 10.252.127.193_EPO 10.252.127.193/32;
+            address 10.252.127.20_CT-POST 10.252.127.20/32;
+            address 10.252.127.21_CT-Radia-Prx 10.252.127.21/32;
+            address 10.252.127.22_CT-Radia-Prx 10.252.127.22/32;
+            address 10.252.127.27_Consolidation 10.252.127.27/32;
+            address 10.252.127.40_IKE-1 10.252.127.40/32;
+            address 10.252.127.41_IKE-2 10.252.127.41/32;
+            address 10.252.127.42_CT-TS 10.252.127.42/32;
+            address 10.252.127.48_CT-POST 10.252.127.48/32;
+            address 10.252.127.50_CT-POST 10.252.127.50/32;
+            address 10.252.127.56_CT-DC1 10.252.127.56/32;
+            address 10.252.127.58_CT-DC2 10.252.127.58/32;
+            address 10.252.127.60_CT-MQ 10.252.127.60/32;
+            address 10.252.127.62_CT-MQ 10.252.127.62/32;
+            address 10.252.127.66_CT-Radia-T1 10.252.127.66/32;
+            address 10.252.127.70_CT-TS 10.252.127.70/32;
+            address 10.252.127.78_CT-RSA 10.252.127.78/32;
+            address 10.252.127.79_CT-RSA 10.252.127.79/32;
+            address 10.252.127.80_CT-RSA 10.252.127.80/32;
+            address 10.252.127.86_Design 10.252.127.86/32;
+            address 10.252.127.88 10.252.127.88/32;
+            address 10.252.127.89 10.252.127.89/32;
+            address 10.252.127.90_CT-HPCA-CORE 10.252.127.90/32;
+            address 10.252.127.91_CT-HPCA-Sat 10.252.127.91/32;
+            address 10.252.127.92_CT-HPCA-Sat 10.252.127.92/32;
+            address 10.5.1.0/24_IMCOMM 10.5.1.0/24;
+            address 10.52.0.30_GDG-Scanner 10.52.0.30/32;
+            address 10.6.3.0/24_INCOMM 10.6.3.0/24;
+            address 10.90.3.0/24_FUELQST 10.90.3.0/24;
+            address 10.X.Y.10_ISP {
+                wildcard-address 10.0.0.10/255.0.0.255;
+            }
+            address 10.X.Y.12_MOM1 {
+                wildcard-address 10.0.0.12/255.0.0.255;
+            }
+            address 10.X.Y.138_EDH {
+                wildcard-address 10.1.1.138/255.0.0.255;
+            }
+            address 10.X.Y.13_ATM1 {
+                wildcard-address 10.0.0.13/255.0.0.255;
+            }
+            address 10.X.Y.14_ATM2 {
+                wildcard-address 10.0.0.14/255.0.0.255;
+            }
+            address 10.X.Y.15_VCOM {
+                wildcard-address 10.0.0.15/255.0.0.255;
+            }
+            address 10.X.Y.50_PRINTER {
+                wildcard-address 10.0.0.50/255.0.0.255;
+            }
+            address 10.X.Y.61_EMS {
+                wildcard-address 10.1.1.61/255.0.0.255;
+            }
+            address 10.X.Y.67_DVR {
+                wildcard-address 10.0.0.67/255.0.0.255;
+            }
+            address 10.X.Y.7_ATG {
+                wildcard-address 10.0.0.7/255.0.0.255;
+            }
+            address 12.202.103.72_MAGENSA4 12.202.103.72/32;
+            address 12.202.103.86_MAGENSA5 12.202.103.86/32;
+            address 172.16.0.0/24_PNM 172.16.0.0/24;
+            address 172.16.15.0_DVR-SRC 172.16.15.0/24;
+            address 172.20.96.12_FOHPTERM_VIP 172.20.96.12/32;
+            address 172.22.34.140_USTXDLDDC1 172.22.34.140/32;
+            address 172.22.34.141_USTXDLDDC2 172.22.34.141/32;
+            address 172.22.34.21_USTXDLANPAS02 172.22.34.21/32;
+            address 172.24.1.70/31_SENTINEL-CLUSTER-NET 172.24.1.70/31;
+            address 172.24.1.72/29_SENTINEL-CLUSTER-NET 172.24.1.72/29;
+            address 172.27.13.11_OD-EV-W-DC-3 172.27.13.11/32;
+            address 172.27.13.15_OD-EV-W-DC-1 172.27.13.15/32;
+            address 172.27.13.16_OD-EV-W-DC-2 172.27.13.16/32;
+            address 172.27.2.11_OD-EV-W-AG-65 172.27.2.11/32;
+            address 172.27.2.12_OD-EV-W-AG-23 172.27.2.12/32;
+            address 172.27.2.13_OD-EV-W-AG-24 172.27.2.13/32;
+            address 172.27.2.14_OD-EV-W-AG-25 172.27.2.14/32;
+            address 172.27.2.15_OD-EV-W-AG-26 172.27.2.15/32;
+            address 172.27.2.17_OD-EV-W-AG-721 172.27.2.17/32;
+            address 172.27.2.18_OD-EV-W-AG-752 172.27.2.18/32;
+            address 172.27.2.19_OD-EV-W-AG-753 172.27.2.19/32;
+            address 172.27.2.20_OD-EV-W-AG-754 172.27.2.20/32;
+            address 172.27.2.21_OD-EV-W-AG-751 172.27.2.21/32;
+            address 172.27.2.22_OD-EV-W-AG-750 172.27.2.22/32;
+            address 172.27.2.23_OD-EV-W-AG-707 172.27.2.23/32;
+            address 172.27.25.11_OD-EV-U-HP-11 172.27.25.11/32;
+            address 172.27.25.12_OD-EV-W-AD-3 172.27.25.12/32;
+            address 172.27.36.13_7T-VIP2 172.27.36.13/32;
+            address 172.27.36.16 172.27.36.16/32;
+            address 172.27.36.30_7T-VIP 172.27.36.30/32;
+            address 172.27.36.53_OAGPROD 172.27.36.53/32;
+            address 172.27.36.54_OAGFSPROD 172.27.36.54/32;
+            address 172.27.36.57_LMS-PROD 172.27.36.57/32;
+            address 192.127.224.0_NCR 192.127.224.0/24;
+            address 205.144.48.0/24_HPS-DAL 205.144.48.0/24;
+            address 205.144.58.0/24_HPS-SVL 205.144.58.0/24;
+            address 206.201.231.200_WU-Charlotte-1 206.201.231.200/32;
+            address 206.201.235.20_WU-Plano-1 206.201.235.20/32;
+            address 206.201.236.65_WU-Plano-2 206.201.236.65/32;
+            address 206.201.236.66_WU-Charlotte-2 206.201.236.66/32;
+            address 216.189.224.0/24_FIS-STP 216.189.224.0/24;
+            address 216.189.226.0/24_FIS-STP 216.189.226.0/24;
+            address 216.189.239.0/24_FIS-ORD 216.189.239.0/24;
+            address 63.81.180.42_MAGENSA2 63.81.180.42/32;
+            address 63.81.180.44_MAGENSA3 63.81.180.44/32;
+            address 64.90.123.251_GVR 64.90.123.251/32;
+            address 64.90.126.38_GVR 64.90.126.38/32;
+            address 65.216.115.14_MAGENSA1 65.216.115.14/32;
+            address MGT-NET-1 10.242.254.0/24;
+            address 10.X.Y.2_SWITCH {
+                wildcard-address 10.0.0.2/255.0.0.255;
+            }
+            address 172.24.2.100_USTXALASSWD01 172.24.2.100/32;
+            address 172.24.2.101_USTXALASSWD02 172.24.2.101/32;
+            address 172.24.2.104_USTXALASSWR01 172.24.2.104/32;
+            address 172.24.2.105_USTXALASSWR02 172.24.2.105/32;
+            address 172.24.2.106_USTXALASSWR03 172.24.2.106/32;
+            address 172.24.2.107_USTXALASSWR04 172.24.2.107/32;
+            address 172.24.2.108_USTXALASSWR05 172.24.2.108/32;
+            address 172.24.2.99_USTXALISSWD01 172.24.2.99/32;
+            address 10.129.20.0/24_WLC 10.129.20.0/24;
+            address 209.90.158.128_ATTCMS 209.90.158.128/27;
+            address 207.112.46.160_ATTCMS 207.112.46.160/27;
+            address 72.142.129.96_ATTCMS 72.142.129.96/27;
+            address 72.142.128.184_ATTCMS 72.142.128.184/29;
+            address 10.132.38.130_USTXALXEMS03 10.132.38.130/32;
+            address 10.132.38.131_USTXALXEMS04 10.132.38.131/32;
+            address 10.132.38.132_USTXALXEMS05 10.132.38.132/32;
+            address 10.132.38.128_USTXALXEMS01 {
+                description "EMS App Server";
+                10.132.38.128/32;
+            }
+            address 10.132.38.129_USTXALXEMS02 {
+                description "EMS App Server";
+                10.132.38.129/32;
+            }
+            address 172.21.2.195_TELEX_F5 172.21.2.195/32;
+            address 172.29.57.230_ProxyF5 172.29.57.230/32;
+            address 65.17.235.71_Titan {
+                description "Titan VPN Tunnel IP";
+                65.17.235.71/32;
+            }
+            address MGT-NET-7 {
+                description Skybox;
+                172.22.36.10/32;
+            }
+            address 10.5.48.2_PASSPORT 10.5.48.2/32;
+            address 66.218.162.20_WU-MO1 66.218.162.20/32;
+            address 66.218.172.20_WU-MO2 66.218.172.20/32;
+            address MERAKI_CLOUD_HOST_1 54.193.207.248/32;
+            address MERAKI_CLOUD_HOST_2 64.62.142.2/32;
+            address MERAKI_CLOUD_HOST_3 64.62.142.12/32;
+            address MERAKI_CLOUD_NET_108 108.161.147.0/24;
+            address MERAKI_CLOUD_NET_199 199.231.78.0/24;
+            address 10.X.Y.198_SWITCH {
+                wildcard-address 10.0.0.198/10.0.0.255;
+            }
+            address 10.132.254.60_VPN 10.132.254.60/32;
+            address 10.X.Y.178_SAFE {
+                wildcard-address 10.0.0.178/10.0.0.255;
+            }
+            address 10.X.Y.179_PRINTER {
+                wildcard-address 10.0.0.179/10.0.0.255;
+            }
+            address 10.X.Y.180_IP-MOM {
+                wildcard-address 10.0.0.180/10.0.0.255;
+            }
+            address 10.X.Y.184_GOT {
+                wildcard-address 10.0.0.184/10.0.0.255;
+            }
+            address 10.X.Y.185_HHT {
+                wildcard-address 10.0.0.185/10.0.0.255;
+            }
+            address 10.X.Y.186_GOT {
+                wildcard-address 10.0.0.186/10.0.0.255;
+            }
+            address 10.X.Y.187_GOT {
+                wildcard-address 10.0.0.187/10.0.0.255;
+            }
+            address 10.X.Y.20_POS-1 {
+                wildcard-address 10.0.0.20/10.0.0.255;
+            }
+            address 10.X.Y.21_POS-2 {
+                wildcard-address 10.0.0.21/10.0.0.255;
+            }
+            address 10.X.Y.224/27_EXT {
+                wildcard-address 10.0.0.224/255.0.0.224;
+            }
+            address 10.X.Y.22_POS-3 {
+                wildcard-address 10.0.0.22/10.0.0.255;
+            }
+            address 10.X.Y.23_POS-4 {
+                wildcard-address 10.0.0.23/10.0.0.255;
+            }
+            address 10.X.Y.24_POS-5 {
+                wildcard-address 10.0.0.24/10.0.0.255;
+            }
+            address 10.132.24.10_USTXALASPFM01 10.132.24.10/32;
+            address 172.20.0.254_NTP 172.20.0.254/32;
+            address 172.20.0.255_NTP 172.20.0.255/32;
+            address 172.20.130.19_CYLANCE-VIP 172.20.130.19/32;
+            address 172.29.150.12_USTXIRDDC02 172.29.150.12/32;
+            address 172.16.32.0/24_AP 172.16.32.0/24;
+            address 172.16.64.0/24_AP 172.16.64.0/24;
+            address 172.20.1.85_USTXALANPAS03 172.20.1.85/32;
+            address 17.0.0.0/8_APPLE 17.0.0.0/8;
+            address 224.0.0.0_MCAST 224.0.0.0/4;
+            address 10.X.Y.193_LOOPBACK {
+                wildcard-address 10.0.0.193/255.0.0.255;
+            }
+            address 172.20.33.25_QVSA-SCANNER 172.20.33.25/32;
+            address 192.168.232.0_24_Titan-AWS {
+                description "Titan Network in AWS";
+                192.168.232.0/24;
+            }
+            address 172.22.138.0-24_AzureProd 172.22.138.0/24;
+            address 12.43.217.161_GVR 12.43.217.161/32;
+            address 64.90.123.2_GVR 64.90.123.2/32;
+            address 172.22.138.244_SplunkWin_1 172.22.138.244/32;
+            address 172.22.138.245_SplunkWin_2 172.22.138.245/32;
+            address 172.22.138.246_SplunkWin_3 172.22.138.246/32;
+            address 172.22.138.251_SplunkWin_VIP 172.22.138.251/32;
+            address 172.20.130.68_VPN_1 172.20.130.68/32;
+            address 172.21.130.68_VPN_2 172.21.130.68/32;
+            address LIVEACTION-NODE-010 172.29.150.140/32;
+            address LIVEACTION-NODE-1 172.29.150.130/32;
+            address LIVEACTION-NODE-2 172.29.150.131/32;
+            address LIVEACTION-NODE-3 172.29.150.133/32;
+            address LIVEACTION-NODE-4 172.29.150.134/32;
+            address LIVEACTION-NODE-5 172.29.150.135/32;
+            address LIVEACTION-NODE-6 172.29.150.136/32;
+            address LIVEACTION-NODE-7 172.29.150.137/32;
+            address LIVEACTION-NODE-8 172.29.150.138/32;
+            address LIVEACTION-NODE-9 172.29.150.139/32;
+            address LIVEACTION_SAMPLICATOR 172.29.150.129/32;
+            address LIVEACTION-NODE-011 172.29.150.132/32;
+            address 10.132.25.240_USTXALASNSCAN01 10.132.25.240/32;
+            address 10.132.25.241_USTXALASNSCAN02 10.132.25.241/32;
+            address 10.132.25.40_USTXALASN01 {
+                description "ServiceNow Mid Servers";
+                10.132.25.40/32;
+            }
+            address 209.206.48.0/20_MERAKI-NET {
+                description 209.206.48.0/20_MERAKI-NET;
+                209.206.48.0/20;
+            }
+            address 172.22.142.116_MSPW-CLKT-W01 172.22.142.116/32;
+            address 172.22.174.180_MSTW-CLKT-W01 172.22.174.180/32;
+            address 66.218.161.16_WU_Denver 66.218.161.16/32;
+            address 66.218.171.16_Denver 66.218.171.16/32;
+            address STORE-NET-1 10.16.0.0/12;
+            address STORE-NET-2 10.32.0.0/13;
+            address STORE-NET-3 10.40.0.0/16;
+            address STORE-NET-4 10.160.0.0/11;
+            address STORE-NET-5 10.64.0.0/13;
+            address-set MGT-NETS {
+                address MGT-NET-2;
+                address MGT-NET-4;
+                address MGT-NET-5;
+                address MGT-NET-6;
+                address MGT-NET-CC1;
+                address MGT-NET-1;
+                address MGT-NET-7;
+            }
+            address-set 7-Transfer-Servers {
+                address 172.27.2.22_OD-EV-W-AG-750;
+                address 172.27.2.21_OD-EV-W-AG-751;
+                address 172.27.2.20_OD-EV-W-AG-754;
+                address 172.27.2.19_OD-EV-W-AG-753;
+                address 172.27.2.18_OD-EV-W-AG-752;
+                address 172.27.2.11_OD-EV-W-AG-65;
+                address 172.27.2.12_OD-EV-W-AG-23;
+                address 172.27.2.13_OD-EV-W-AG-24;
+                address 172.27.2.14_OD-EV-W-AG-25;
+                address 172.27.2.15_OD-EV-W-AG-26;
+                address 172.27.2.23_OD-EV-W-AG-707;
+            }
+            address-set CITRIX-SERVERS {
+                address 10.132.25.40_USTXALACTX13;
+                address 10.132.25.41_USTXALACTX8;
+                address 10.132.25.42_USTXALACTX9;
+                address 10.132.25.43_USTXALACTX10;
+                address 10.132.25.47_USTXALACTX11;
+                address 10.132.25.48_USTXALACTX12;
+                address 10.132.25.64/27_Citrix;
+            }
+            address-set EMS-App-Servers {
+                address 10.132.18.43_USTXALAEMS1;
+                address 10.132.18.81_USTXALXEMS01;
+                address 10.132.18.82_USTXALXEMS02;
+                address 10.132.38.130_USTXALXEMS03;
+                address 10.132.38.131_USTXALXEMS04;
+                address 10.132.38.132_USTXALXEMS05;
+                address 10.132.38.128_USTXALXEMS01;
+                address 10.132.38.129_USTXALXEMS02;
+            }
+            address-set FOHP-TS {
+                address 10.128.1.26_FOHPTERM;
+                address 10.128.1.27_FOHPPILOT;
+                address 10.128.1.28_FOHP;
+                address 172.20.96.12_FOHPTERM_VIP;
+            }
+            address-set MAGTEK {
+                address 65.216.115.14_MAGENSA1;
+                address 63.81.180.42_MAGENSA2;
+                address 63.81.180.44_MAGENSA3;
+                address 12.202.103.72_MAGENSA4;
+                address 12.202.103.86_MAGENSA5;
+            }
+            address-set NTP-SERVERS {
+                address 10.131.253.34_DLUTXRTR017;
+                address 10.132.253.34_ALLTXRTR017;
+                address 172.20.0.254_NTP;
+                address 172.20.0.255_NTP;
+            }
+            address-set RADIUS-AUTH-SERVERS {
+                address 10.132.38.43_USTXALANPAS02;
+                address 172.22.34.21_USTXDLANPAS02;
+                address 172.20.1.85_USTXALANPAS03;
+            }
+            address-set SEI-RADIA-PRX {
+                address 10.132.10.193_USTXALARP1;
+                address 10.132.10.194_USTXALARP2;
+                address 10.131.10.194_USTXDLURP1;
+                address 10.131.0.2_USTXDLURP2;
+            }
+            address-set SENTINEL-CLUSTER {
+                address 172.24.1.70/31_SENTINEL-CLUSTER-NET;
+                address 172.24.1.72/29_SENTINEL-CLUSTER-NET;
+            }
+            address-set STORES-DC {
+                address 10.131.16.20_USTXDSDSDC1;
+                address 10.132.10.20_USTXALDDC1;
+                address 10.132.10.16_USTXALDDC3;
+                address 10.132.10.21_USTXALDDC2;
+                address 10.132.11.102_USTXALDRDC02;
+                address 10.132.11.120_USTXALDRDC01;
+                address 10.132.16.20_USTXALDSDC3;
+                address 10.132.16.21_USTXALDSDC4;
+                address 10.132.34.20_USTXALDDC01;
+                address 10.132.34.21_USTXALDDC02;
+                address 172.22.34.140_USTXDLDDC1;
+                address 172.22.34.141_USTXDLDDC2;
+                address 172.27.13.15_OD-EV-W-DC-1;
+                address 172.27.13.16_OD-EV-W-DC-2;
+                address 172.27.13.11_OD-EV-W-DC-3;
+            }
+            address-set WLC-CLUSTERS {
+                address 10.132.246.0/24_ALLEN;
+                address 10.131.246.0/24_UNI;
+                address 10.129.20.0/24_WLC;
+            }
+            address-set WU-MOM-Servers {
+                address 206.201.231.200_WU-Charlotte-1;
+                address 206.201.235.20_WU-Plano-1;
+                address 206.201.236.65_WU-Plano-2;
+                address 206.201.236.66_WU-Charlotte-2;
+                address 66.218.162.20_WU-MO1;
+                address 66.218.172.20_WU-MO2;
+                address 66.218.161.16_WU_Denver;
+                address 66.218.171.16_Denver;
+            }
+            address-set BCM-MASTERS {
+                address 172.24.2.100_USTXALASSWD01;
+                address 172.24.2.99_USTXALISSWD01;
+                address 172.24.2.101_USTXALASSWD02;
+            }
+            address-set BCM-RELAYS {
+                address 172.24.2.104_USTXALASSWR01;
+                address 172.24.2.105_USTXALASSWR02;
+                address 172.24.2.106_USTXALASSWR03;
+                address 172.24.2.107_USTXALASSWR04;
+                address 172.24.2.108_USTXALASSWR05;
+            }
+            address-set MERAKI-CLOUD {
+                address MERAKI_CLOUD_NET_108;
+                address MERAKI_CLOUD_NET_199;
+                address MERAKI_CLOUD_HOST_3;
+                address MERAKI_CLOUD_HOST_1;
+                address MERAKI_CLOUD_HOST_2;
+                address 209.206.48.0/20_MERAKI-NET;
+            }
+            address-set POS-TERMS {
+                address 10.X.Y.20_POS-1;
+                address 10.X.Y.21_POS-2;
+                address 10.X.Y.22_POS-3;
+                address 10.X.Y.23_POS-4;
+                address 10.X.Y.24_POS-5;
+            }
+            address-set LIVEACTION-SERVER-GROUP {
+                address LIVEACTION-NODE-1;
+                address LIVEACTION-NODE-2;
+                address LIVEACTION-NODE-3;
+                address LIVEACTION-NODE-4;
+                address LIVEACTION-NODE-5;
+                address LIVEACTION-NODE-6;
+                address LIVEACTION-NODE-7;
+                address LIVEACTION-NODE-8;
+                address LIVEACTION-NODE-9;
+                address LIVEACTION-NODE-010;
+                address LIVEACTION_SAMPLICATOR;
+                address LIVEACTION-NODE-011;
+            }
+            address-set STORE-NETS {
+                address STORE-NET-1;
+                address STORE-NET-2;
+                address STORE-NET-3;
+                address STORE-NET-4;
+                address STORE-NET-5;
+            }
+        }
+    }
+    flow {
+        inactive: traceoptions {
+            file flow size 2m files 3 world-readable;
+            flag packet-drops;
+            flag all;
+            packet-filter my-filter {
+                interface vlan.10;
+            }
+        }
+        tcp-mss {
+            ipsec-vpn {
+                mss 1350;
+            }
+        }
+        tcp-session {
+            no-syn-check;
+        }
+    }
+    screen {
+        ids-option untrust-screen {
+            icmp {
+                ping-death;
+            }
+            ip {
+                source-route-option;
+                tear-drop;
+            }
+            tcp {
+                syn-flood {
+                    alarm-threshold 1024;
+                    attack-threshold 200;
+                    source-threshold 1024;
+                    destination-threshold 2048;
+                    queue-size 2000; ## Warning: 'queue-size' is deprecated
+                    timeout 20;
+                }
+                land;
+            }
+        }
+    }
+    nat {
+        source {
+            rule-set PASSPORT {
+                from zone LEGACY;
+                to zone PASSPORT;
+                rule TO-PASSPORT {
+                    match {
+                        source-address 0.0.0.0/0;
+                        destination-address 10.5.48.2/32;
+                    }
+                    then {
+                        source-nat {
+                            interface;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    policies {
+        from-zone LEGACY to-zone HQ {
+            policy LEG-HQ-7T-A {
+                description "[BO: Kevin Thompson]   Normal 7-T file transfers]";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 172.27.36.30_7T-VIP 172.27.36.13_7T-VIP2 ];
+                    application TCP-11711;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-7T-B {
+                description "[BO:Kevin Thompson]  Order file transfer 7-T and management traffic";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 172.27.36.30_7T-VIP 172.27.36.13_7T-VIP2 ];
+                    application [ TCP-11713 TCP-11712 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-DVR {
+                description "[BO:Mark Stinde]  DVR connectivity to host platform";
+                match {
+                    source-address 10.X.Y.67_DVR;
+                    destination-address 10.132.10.150_USTXALAAP1;
+                    application [ junos-http TCP-8000 TCP-8001 TCP-3000 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-BCM-MASTER {
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address BCM-MASTERS;
+                    application [ junos-cifs junos-smb ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-BCM-RELAY {
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address BCM-RELAYS;
+                    application [ junos-cifs junos-smb TCP-1609 TCP-1610 TCP-1611 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CAD-ATM {
+                description "[BO: Peter Jessiman]  Canadian IPsec Tunnels";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 ];
+                    destination-address [ 10.252.127.40_IKE-1 10.252.127.41_IKE-2 10.131.251.10 10.132.251.10 ];
+                    application [ junos-ike junos-ike-nat ESP_711 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-MQ {
+                description "[BO: Peter Jessiman]  VCOM MQ Series connectivity";
+                match {
+                    source-address 10.X.Y.15_VCOM;
+                    destination-address [ 10.252.127.60_CT-MQ 10.252.127.62_CT-MQ ];
+                    application TCP-1414;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-POST {
+                description "[BO: Peter Jessiman]  VCOM Postillion Transactions 24hr service timeout";
+                match {
+                    source-address 10.X.Y.15_VCOM;
+                    destination-address [ 10.252.127.50_CT-POST 10.252.127.48_CT-POST 10.252.127.20_CT-POST ];
+                    application [ TCP-55123 TCP-55020 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ATM-SVC {
+                description "[BO: Peter Jessiman] VCOM Postillion Transactions 24hr service timeout";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 ];
+                    destination-address 10.252.127.50_CT-POST;
+                    application [ junos-ping TCP-9050 TCP-60030 TCP-60050 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ATM-MGT {
+                description "[BO: Peter Jessiman] CT ATM Mgt";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address 10.252.127.104_CT;
+                    application TCP-59700;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-AD-DC {
+                description "[BO: Peter Jessiman] MS AD traffic";
+                match {
+                    source-address 10.X.Y.15_VCOM;
+                    destination-address [ 10.252.127.58_CT-DC2 10.252.127.56_CT-DC1 ];
+                    application [ MS-DC-Traffic TCP-1025-1030 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ATM-CONS {
+                description "[BO: Peter Jessiman] ATM to NCR Consolidation Server VIP";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address 10.252.127.27_Consolidation;
+                    application TCP-8443;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-AIM {
+                description "[BO: Peter Jessiman] VCOM moniting service at NCR";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address [ 192.127.224.0_NCR 10.252.127.88 10.252.127.89 ];
+                    application [ junos-ping SNMP-POLL SNMP-TRAP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CT-RSA {
+                description "[BO: Peter Jessiman] RSA access for image encryption";
+                match {
+                    source-address 10.X.Y.15_VCOM;
+                    destination-address 10.252.127.79_CT-RSA;
+                    application TCP-7443;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CT-RADIA {
+                description "[BO: Peter Jessiman] Radia access for software distribution to the ATMs";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address [ 10.252.127.21_CT-Radia-Prx 10.252.127.22_CT-Radia-Prx 10.252.126.74_Radia-T2 10.252.127.91_CT-HPCA-Sat 10.252.127.92_CT-HPCA-Sat ];
+                    application [ TCP3444 TCP3446 junos-ping TCP-3448 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CT-EPO {
+                description "[BO: Peter Jessiman]  ATM access to the CT EPO";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address 10.252.127.193_EPO;
+                    application [ junos-http junos-https TCP-8082 TCP-8444 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CT-ADV-SRVR {
+                description "[BO: Peter Jessiman] TV - 20141117 - Advertising Campaign SWD access Request from Steve Asiatico 20141031";
+                match {
+                    source-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    destination-address [ 10.252.127.111 10.252.127.112 10.252.127.113 ];
+                    application junos-https;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ISP-OAGFSPROD {
+                description "[BO: Greg Haertling]  ISP Access to DGE OAG host";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 172.27.36.54_OAGFSPROD;
+                    application OAG-FS-PROD;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ISP-DGE {
+                description "[BO: Greg Haertling]  ISP Access to DGE OAG host";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 172.27.36.53_OAGPROD;
+                    application [ TCP-8080 junos-ping ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-7REWARDS {
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 172.21.2.195_TELEX_F5 172.29.57.230_ProxyF5 172.20.130.19_CYLANCE-VIP ];
+                    application [ TCP-3128 TCP-1080 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-EMS {
+                description "[BO: Mark Morgan]  Permit EMS equipment to access central server";
+                match {
+                    source-address 10.X.Y.61_EMS;
+                    destination-address [ 10.132.11.233_USTXALAEMS1 EMS-App-Servers ];
+                    application UDP-47808;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-FQUEST {
+                description "[BO: Ron Fulenchek]  Allow ATGs to send alarms to FuelQuest";
+                match {
+                    source-address 10.X.Y.7_ATG;
+                    destination-address [ 10.90.3.0/24_FUELQST 64.90.123.2_GVR ];
+                    application [ TCP-3001 TCP-8100 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-MOM-WU {
+                description "[ TV - 20140303 ] Store IP MOM to WU: Sales uploads and software / profile updates";
+                match {
+                    source-address 10.X.Y.12_MOM1;
+                    destination-address WU-MOM-Servers;
+                    application [ TCP-8075 TCP-2068 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-LMS {
+                description "Business Owner: Kathy Naumann [ IJCF 042115] Access to the LMS Prod VIP";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 172.27.36.57_LMS-PROD;
+                    application [ junos-http junos-https ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-PNM {
+                description "[BO: Brian Brooks]  Permit the ISP to send transactions to PNM/Kwedit";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 172.16.0.0/24_PNM;
+                    application [ TCP-8000 TCP-8020 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-PRN-FTP {
+                description "[BO: Greg Haertling]  Send scanned images from store printer to server";
+                match {
+                    source-address 10.X.Y.50_PRINTER;
+                    destination-address 10.132.26.249_USTXALAEFTP;
+                    application junos-ftp;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-ISP-DC {
+                description "[BO: Jane Bellew]  AD Traffic to DCs";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address STORES-DC;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-RADIA {
+                description "[BO: John Aden]  Radia Client sessions from store";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ SEI-RADIA-PRX 172.27.25.11_OD-EV-U-HP-11 ];
+                    application [ TCP-3466 TCP-3496 TCP-3494 junos-ping ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-FOHP {
+                description "[BO: Scott Albert]  FOHP Terminal Server Access";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address FOHP-TS;
+                    application RDP;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CBT {
+                description "[BO: Lars Grogen]  WebNets CBT";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 172.27.36.16;
+                    application TCP-1534;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-SWITCH {
+                description "[IF 090215] Switch access to Space for mgt functions";
+                match {
+                    source-address 10.X.Y.2_SWITCH;
+                    destination-address MGT-NET-5;
+                    application [ SPACE junos-icmp-all ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CYLANCE {
+                description "[IF 070117] PCI Remediation";
+                match {
+                    source-address POS-TERMS;
+                    destination-address 172.20.130.19_CYLANCE-VIP;
+                    application TCP-3128;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-POS-AD {
+                description "[IF 070117] PCI Remediation";
+                match {
+                    source-address POS-TERMS;
+                    destination-address STORES-DC;
+                    application [ MS-AD junos-ms-rpc-epm junos-ms-rpc junos-ms-rpc-any ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-HPS {
+                description "[BO: Greg Haertling]  Permit ISP access to HPS for credit/debit transactions";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 205.144.48.0/24_HPS-DAL 205.144.58.0/24_HPS-SVL ];
+                    application TCP-10360;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CERT-A {
+                description "[BO: Greg Haertling]  Permit ISP access to FIS for OTC Check transactions";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 216.189.239.0/24_FIS-ORD 216.189.226.0/24_FIS-STP ];
+                    application TCP-5118;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-CERT-B {
+                description "[BO: Greg Haertling]   Permit ISP access to FIS for OTC Check transactions";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 216.189.226.0/24_FIS-STP 216.189.239.0/24_FIS-ORD 216.189.224.0/24_FIS-STP ];
+                    application TCP-6327;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-INCOMM {
+                description "[BO: Greg Haertling]  Permit ISP access to FIS for phone cards/gift cards transactions";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 10.5.1.0/24_IMCOMM 10.6.3.0/24_INCOMM ];
+                    application [ TCP-6711 TCP-7711 TCP-6211 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-SENTINEL {
+                description "[BO: Todd Cohen]  [TV - 20150212] INC000000921147";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address SENTINEL-CLUSTER;
+                    application [ TCP-8443 TCP-8094 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-EPO {
+                description "[BO: Todd Cohen]  Permit ISP access to the EPO server";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.132.22.22_USTXALAMAC2;
+                    application PORT-8088;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-PARITY {
+                description "[BO: Todd Cohen] Permit ISP access to Parity Servers";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 10.132.24.11_USTXALAPTY2 10.132.22.165_USTXALAPTY3 ];
+                    application [ TCP-41000 TCP-41002 junos-http junos-https ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-NETIQ {
+                description "[BO: Todd Cohen]  ISP to NetIQ";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.132.22.0/24_NETIQ;
+                    application [ TCP-1270 TCP-8270 TCP-8094 TCP-8443 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-HQ-SPLUNK {
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 172.22.138.251_SplunkWin_VIP 172.22.138.244_SplunkWin_1 172.22.138.245_SplunkWin_2 172.22.138.246_SplunkWin_3 ];
+                    application [ TCP-9997 TCP-8089 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone HQ to-zone LEGACY {
+            policy HQ-LEG-7T {
+                description "[BO:Kevin Thompson] Inbound file and management traffic";
+                match {
+                    source-address 7-Transfer-Servers;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ TCP-11711 TCP-11713 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-DVR {
+                description "[BO: Mark Stinde ]  Client access to DVR content 172.16.15.0/24  Added by IJCF 4/24/15";
+                match {
+                    source-address [ 10.132.10.50_USTXALAAP02 10.132.10.150_USTXALAAP1 172.16.15.0_DVR-SRC 172.16.32.0/24_AP 172.16.64.0/24_AP 172.22.142.116_MSPW-CLKT-W01 172.22.174.180_MSTW-CLKT-W01 ];
+                    destination-address 10.X.Y.67_DVR;
+                    application [ RDP DigiOp-Service ClickIt-Service junos-ping ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-BCM-MASTER {
+                match {
+                    source-address BCM-MASTERS;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ junos-cifs junos-smb junos-ms-rpc-epm ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-BCM-RELAY {
+                match {
+                    source-address BCM-RELAYS;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ junos-cifs junos-smb TCP-1610 junos-ms-rpc-epm TCP-1611 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-TS-MGT {
+                description "[BO: Peter Jessiman]  CT Remote Management";
+                match {
+                    source-address [ 10.252.127.42_CT-TS 10.252.127.70_CT-TS ];
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 ];
+                    application [ junos-ping junos-ssh ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-POST-PING {
+                description "[BO: Peter Jessiman]  CT ATM Mgt Used to verify Postillion connectivity";
+                match {
+                    source-address [ 10.252.127.50_CT-POST 10.252.127.48_CT-POST 10.252.127.20_CT-POST ];
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application junos-ping;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-ATM-MGT {
+                description "Business Owner: Peter Jessiman  CT ATM Mgt";
+                match {
+                    source-address 10.252.127.104_CT;
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application TCP-59701;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-AD-DC {
+                description "[BO: Peter Jessiman] MS AD traffic";
+                match {
+                    source-address [ 10.252.127.56_CT-DC1 10.252.127.58_CT-DC2 ];
+                    destination-address 10.X.Y.15_VCOM;
+                    application [ MS-DC-Traffic TCP-1025-1030 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-CT-TS {
+                description "[BO: Peter Jessiman] Term Server access for prod support";
+                match {
+                    source-address 10.252.127.70_CT-TS;
+                    destination-address 10.X.Y.15_VCOM;
+                    application [ junos-ping junos-cifs ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-AIM {
+                description "[BO: Peter Jessiman] VCOM moniting service at NCR";
+                match {
+                    source-address [ 10.252.127.88 192.127.224.0_NCR 10.252.127.89 ];
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application [ junos-ping SNMP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-IDESIGN {
+                description "[BO: Peter Jessiman] IDesign advertising stream";
+                match {
+                    source-address 10.252.127.86_Design;
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application PORT-9990-9991;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-CT-RSA {
+                description "[BO: Peter Jessiman] RSA access for image encryption";
+                match {
+                    source-address [ 10.252.127.78_CT-RSA 10.252.127.80_CT-RSA ];
+                    destination-address 10.X.Y.15_VCOM;
+                    application TCP-7443;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-CT-RADIA {
+                description "[BO: Peter Jessiman] Radia access for software distribution to the ATMs";
+                match {
+                    source-address [ 10.252.127.66_CT-Radia-T1 10.252.127.90_CT-HPCA-CORE ];
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application TCP-3465;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-CT-EPO {
+                description "[BO: Peter Jessiman] ATM access to the CT EPO";
+                match {
+                    source-address 10.252.127.193_EPO;
+                    destination-address [ 10.X.Y.13_ATM1 10.X.Y.14_ATM2 10.X.Y.15_VCOM ];
+                    application TCP-8081;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-EMS {
+                description "[BO: Mark Morgan]  Allow central server access the EMS equipment";
+                match {
+                    source-address [ 10.132.11.233_USTXALAEMS1 EMS-App-Servers ];
+                    destination-address 10.X.Y.61_EMS;
+                    application [ UDP-47808 junos-ping junos-telnet ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-FQUEST {
+                description "[BO: Ron Fulenchek]  Allow ATGs to be polled by FuelQuest-GVR";
+                match {
+                    source-address [ 10.90.3.0/24_FUELQST 64.90.123.251_GVR 12.43.217.161_GVR ];
+                    destination-address 10.X.Y.7_ATG;
+                    application [ TCP-8100 TCP-9100 TCP-10001 TCP-9999 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-SEEDS {
+                description "[BO: Ron Fulenchek]  Allow ATGs to be polled by FuelQuest-GVR";
+                match {
+                    source-address [ 10.10.30.20_Titan 65.17.235.71_Titan 192.168.232.0_24_Titan-AWS ];
+                    destination-address 10.X.Y.7_ATG;
+                    application TCP-10001;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-PRN-MGT {
+                description "[BO: Greg Haertling]  Remote printer management";
+                match {
+                    source-address 10.132.26.20_USTXALASPFM1;
+                    destination-address 10.X.Y.50_PRINTER;
+                    application [ SNMP junos-http ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-ISP-DC {
+                description "[BO: Jane Bellew]  AD Traffic to DCs";
+                match {
+                    source-address STORES-DC;
+                    destination-address 10.X.Y.10_ISP;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-RADIA {
+                description "[BO: John Aden]  Radia Client sessions to store";
+                match {
+                    source-address [ 172.27.25.11_OD-EV-U-HP-11 172.27.25.12_OD-EV-W-AD-3 ];
+                    destination-address 10.X.Y.10_ISP;
+                    application TCP-3465;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-CITRIX {
+                description "[BO: John Aden]  Citrix Server Access";
+                match {
+                    source-address CITRIX-SERVERS;
+                    destination-address STORE-NETS;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-RPM {
+                description "[BO: John Aden] Password Mgt";
+                match {
+                    source-address 10.132.23.22_USTXALARPM2;
+                    destination-address 10.X.Y.10_ISP;
+                    application TCP-445;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-SHELF-TAG {
+                description "[BO: Kevin Rogers]  Shelf Tag System";
+                match {
+                    source-address [ 172.27.2.17_OD-EV-W-AG-721 MGT-NETS 172.22.138.0-24_AzureProd ];
+                    destination-address 10.X.Y.10_ISP;
+                    application TCP-10443;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-SWITCH {
+                description "[IF 090415] Permit remote mgt access to switch";
+                match {
+                    source-address MGT-NETS;
+                    destination-address 10.X.Y.2_SWITCH;
+                    application [ junos-ssh junos-ping SNMP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-POS-AD {
+                description "[IF 070117] PCI Remediation";
+                match {
+                    source-address STORES-DC;
+                    destination-address POS-TERMS;
+                    application [ MS-AD junos-ms-rpc-epm junos-ms-rpc junos-ms-rpc-any ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-SENTINEL {
+                description "[BO: Todd Cohen]  [TV - 20150212] INC000000921147";
+                match {
+                    source-address SENTINEL-CLUSTER;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ TCP-8443 TCP-8094 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-EPO {
+                description "[BO: Todd Cohen] Permit EPO access to ISP";
+                match {
+                    source-address 10.132.22.22_USTXALAMAC2;
+                    destination-address 10.X.Y.10_ISP;
+                    application PORT-8081;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-LEG-NETIQ {
+                description "[BO: Todd Cohen]  NetIQ to ISP";
+                match {
+                    source-address 10.132.22.0/24_NETIQ;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ TCP-8094 TCP-8443 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone HQ to-zone EDH {
+            policy HQ-EDH-CITRIX {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow Citrix servers access to the EDH subnet";
+                match {
+                    source-address CITRIX-SERVERS;
+                    destination-address 10.X.Y.138_EDH;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone EDH to-zone HQ {
+            policy EDH-HQ-MAGTEK {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to Magtek for user authentication";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address MAGTEK;
+                    application [ junos-http junos-https ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EDH-HQ-HPS {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to HPS for credti/debit traffic";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address [ 205.144.48.0/24_HPS-DAL 205.144.58.0/24_HPS-SVL ];
+                    application [ TCP-10560-10566 TCP-10200 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EDH-HQ-CERT-B {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to FIS for OTC check traffic";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address [ 216.189.226.0/24_FIS-STP 216.189.239.0/24_FIS-ORD 216.189.224.0/24_FIS-STP ];
+                    application TCP-6327;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EDH-HQ-INCOMM {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to InComm for phone/gift card traffic";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address 10.6.3.0/24_INCOMM;
+                    application [ TCP-7711 TCP-6211 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EDH-HQ-PNM {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to ISP for time sync";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address 172.16.0.0/24_PNM;
+                    application TCP-8000;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EDH-HQ-GVR {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Permit EDH access to Gilbarco";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address [ 64.90.123.251_GVR 64.90.126.38_GVR ];
+                    application [ junos-http junos-https ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone EDH to-zone LEGACY {
+            policy EDH-LEG-NTP {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow EDH access to ISP for time sync";
+                match {
+                    source-address 10.X.Y.138_EDH;
+                    destination-address 10.X.Y.10_ISP;
+                    application junos-ntp;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone LEGACY to-zone EDH {
+            policy LEG-EDH-ISP {
+                description "[BO: Doug Rosencrans/Greg Haertling]  Allow ISP access to EDH for management and transaction traffic";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.X.Y.138_EDH;
+                    application [ RDP TCP-8273-8276 TCP-7000 TCP-5807-5810 TCP-5802 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone HQ to-zone HQ {
+            policy HQ-HQ {
+                description "[IJCF 091015] Permit RIP to work in Canada";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone OPS to-zone HQ {
+            policy OPS-HQ-WLA {
+                description "[BO: Greg Haertling]  Provide WLC access to the WLA A/Ps";
+                match {
+                    source-address any;
+                    destination-address WLC-CLUSTERS;
+                    application [ UDP-5000 UDP-5247 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-MERAKI-CLD {
+                description "BO: Rich Hamilton TV - 20170310";
+                match {
+                    source-address any;
+                    destination-address MERAKI-CLOUD;
+                    application [ junos-http junos-https TCP-7734 UDP-7351 TCP-7752 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy OP-HQ-MERAKI {
+                description "[BO: Rich Hamilton] IF 072717: Added rule at request of S. Nguyen";
+                match {
+                    source-address any;
+                    destination-address 10.132.254.60_VPN;
+                    application [ DNS junos-http junos-https junos-dhcp-client junos-ike NATT ESP_711 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy OP-HQ-ANY {
+                description "Setup as ANY-ANY- ANY per S. Nguyen 06/02/17 IF/TV";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone WIFI-RIS to-zone LEGACY {
+            policy WIFI-LEG-GOT {
+                description "[BO: Greg Haertling]  MOT/Scanner Application Access";
+                match {
+                    source-address any;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ DNS junos-http RDP junos-ping NETBIOS TCP-7677 TCP-3002 TCP-15432 TCP-15433 TCP-25001 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone HQ to-zone junos-host {
+            policy HQ-SELF-RIP {
+                description "[IJCF 101515] Allow RIP packets from Allstream";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application [ junos-rip junos-routing-inbound ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-SELF-MGT-IN {
+                description "[IJCF 080515] Mgt only from approved sources";
+                match {
+                    source-address [ MGT-NETS LIVEACTION-SERVER-GROUP 10.132.25.241_USTXALASNSCAN02 10.132.25.240_USTXALASNSCAN01 10.132.25.40_USTXALASN01 ];
+                    destination-address any;
+                    application [ junos-ssh junos-icmp-all SNMP-POLL SNMP-TRAP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-SELF-CITRIX {
+                match {
+                    source-address 10.132.25.0/24_CITRIX;
+                    destination-address any;
+                    application junos-ping;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy HQ-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone LEGACY to-zone junos-host {
+            policy LEG-SELF-PING {
+                description "[IJCF 080615] Required for CT ATM in Canada because of IPSLA";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application junos-icmp-all;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy LEG-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone EDH to-zone junos-host {
+            policy EDH-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone OPS to-zone junos-host {
+            policy OPS-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone WIFI-RIS to-zone junos-host {
+            policy WIFI-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone inet-wan to-zone junos-host {
+            policy INET-SELF-MGT-IN {
+                description "[IJCF 080515] Mgt only from approved sources";
+                match {
+                    source-address MGT-NETS;
+                    destination-address any;
+                    application [ junos-ssh junos-icmp-all ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy INET-WAN-SELF-DENY {
+                description "[IJCF 080615] Deny to this zone";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone LEGACY to-zone PASSPORT {
+            policy LEG-PASS-FILE {
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.5.48.2_PASSPORT;
+                    application [ TCP-445 NETBIOS ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone WIFI-RIS to-zone HQ {
+            policy WIFI-RIS-HQ-PROXY {
+                match {
+                    source-address any;
+                    destination-address [ 172.20.130.19_CYLANCE-VIP 172.21.2.195_TELEX_F5 ];
+                    application TCP-3128;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy WIFI-RIS-HQ-APPLE {
+                match {
+                    source-address any;
+                    destination-address 17.0.0.0/8_APPLE;
+                    application [ TCP-5223 TCP-2195 TCP-2196 junos-https ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone WIFI-RIS to-zone EXTRANET {
+            policy WIFI-RIS-EXTRA-PRN {
+                match {
+                    source-address any;
+                    destination-address any;
+                    application TCP-631;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone EXTRANET to-zone WIFI-RIS {
+            policy EXTRA-WIFI-RIS-MDNS {
+                match {
+                    source-address any;
+                    destination-address 224.0.0.0_MCAST;
+                    application junos-udp-any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone EXTRANET to-zone HQ {
+            policy EXT-HQ-ATT-CMS {
+                description "[BO: Angela Carreles]";
+                match {
+                    source-address any;
+                    destination-address [ 72.142.128.184_ATTCMS 209.90.158.128_ATTCMS 72.142.129.96_ATTCMS 207.112.46.160_ATTCMS ];
+                    application [ TCP-1195 TCP-1194 TCP-50534 TCP-443-NO-ALG ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EXTRANET-HQ-PROXY {
+                match {
+                    source-address any;
+                    destination-address [ 172.21.2.195_TELEX_F5 172.20.130.19_CYLANCE-VIP ];
+                    application TCP-3128;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        from-zone inet-wan to-zone inet-wan {
+            policy DEFAULT {
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    permit;
+                }
+            }
+        }
+        global {
+            policy GL-PCI-SCAN {
+                description "[BO: Todd Cohen] PCI scanning policy";
+                match {
+                    source-address [ 10.52.0.30_GDG-Scanner 172.20.33.25_QVSA-SCANNER ];
+                    destination-address STORE-NETS;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-SERVICENOW {
+                match {
+                    source-address [ 10.132.25.240_USTXALASNSCAN01 10.132.25.241_USTXALASNSCAN02 10.132.25.40_USTXALACTX13 ];
+                    destination-address STORE-NETS;
+                    application [ SLP UDP-137 TCP-3306 junos-https TCP-5060 TCP-8080 junos-ssh DNS junos-smb junos-smtp junos-ms-rpc-any junos-nfsd-tcp TCP-548 SNMP TCP-50000 junos-sqlnet-v2 junos-nfsd-udp junos-smb-session TCP-9100 junos-ms-rpc junos-printer junos-nbname junos-ms-sql ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-SSH-MGT {
+                description "[BO: Network Mgr]   SSH access to the store firewall and switch";
+                match {
+                    source-address MGT-NETS;
+                    destination-address [ 10.X.Y.198_SWITCH 10.X.Y.193_LOOPBACK ];
+                    application junos-ssh;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-NETMGT-IN {
+                description "[BO: Network Mgr]   Ping-SNMP access to the store subnets";
+                match {
+                    source-address [ CITRIX-SERVERS MGT-NETS ];
+                    destination-address STORE-NETS;
+                    application [ TRACEROUTE junos-ping SNMP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-NTP {
+                description "[BO: Network Mgr]  Allow store subnets to internal NTP servers";
+                match {
+                    source-address STORE-NETS;
+                    destination-address NTP-SERVERS;
+                    application junos-ntp;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-LOG-SNMP-OUT {
+                description "[BO: Network Mgr]   Permit store subnets to send SNMP Traps";
+                match {
+                    source-address STORE-NETS;
+                    destination-address MGT-NETS;
+                    application [ TRACEROUTE junos-syslog SNMP-TRAP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-RADIUS {
+                description "[BO: Network Mgr]  Permit store subnets to RADIUS servers";
+                match {
+                    source-address STORE-NETS;
+                    destination-address RADIUS-AUTH-SERVERS;
+                    application junos-radius;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-DNS {
+                description "[BO: Network Mgr] Allow store devices to send DNS requests to the DCs";
+                match {
+                    source-address STORE-NETS;
+                    destination-address [ STORES-DC 172.29.150.12_USTXIRDDC02 10.132.34.21_USTXALDDC02 ];
+                    application [ junos-dns-tcp junos-dns-udp ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-TO-SWITCH {
+                description "[IF 070117] PCI Remediation Migration: Switch";
+                match {
+                    source-address MGT-NETS;
+                    destination-address [ 10.X.Y.198_SWITCH 10.X.Y.2_SWITCH ];
+                    application [ junos-ssh junos-ping SNMP ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-FROM-SWITCH {
+                description "[IF 070117] PCI Remediation Migration: Switch";
+                match {
+                    source-address [ 10.X.Y.198_SWITCH 10.X.Y.2_SWITCH ];
+                    destination-address MGT-NET-5;
+                    application [ junos-ping SPACE junos-icmp-all ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-FROM-GOT {
+                description "[IF 070117] PCI Remediation: GOT/HHT";
+                match {
+                    source-address [ 10.X.Y.184_GOT 10.X.Y.186_GOT 10.X.Y.187_GOT 10.X.Y.185_HHT ];
+                    destination-address 10.X.Y.10_ISP;
+                    application [ DNS RDP NETBIOS TCP-7677 TCP-3002 junos-ping junos-http ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-TO-GOT {
+                description "[IF 070117] PCI Remediation: GOT/HHT";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address [ 10.X.Y.185_HHT 10.X.Y.184_GOT 10.X.Y.186_GOT 10.X.Y.187_GOT ];
+                    application [ junos-ping RDP NETBIOS TCP-445 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-TO-SAFE {
+                description "[IF 070117] PCI Remediation: Safe";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.X.Y.178_SAFE;
+                    application [ junos-ping TCP-4243 TCP-4244 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-MGT-PRN-1 {
+                description "[GJ 081417] Lexmark Printer Rollout";
+                match {
+                    source-address 10.132.24.10_USTXALASPFM01;
+                    destination-address 10.X.Y.50_PRINTER;
+                    application [ junos-http TCP-161 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-MGT-PRN-2 {
+                description "[GJ 081417] Lexmark Printer Rollout";
+                match {
+                    source-address 10.132.24.10_USTXALASPFM01;
+                    destination-address 10.X.Y.179_PRINTER;
+                    application [ junos-https TCP-9100 UDP-9300 UDP-5353 UDP-6100 TCP-6110 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-MGT-PRN-3 {
+                description "[GJ 081417] Lexmark Printer Rollout";
+                match {
+                    source-address 10.132.26.20_USTXALASPFM1;
+                    destination-address [ 10.X.Y.50_PRINTER 10.X.Y.179_PRINTER ];
+                    application [ junos-ping TCP-6100 junos-https UDP-6100 TCP-9100 UDP-5353 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-PRN-MGT {
+                description "[GJ 081417] Lexmark Printer Rollout";
+                match {
+                    source-address 10.X.Y.179_PRINTER;
+                    destination-address 10.132.24.10_USTXALASPFM01;
+                    application UDP-9187;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-PRN-HQ {
+                description "[IF 070117] PCI Remediation: Printer";
+                match {
+                    source-address 10.X.Y.179_PRINTER;
+                    destination-address 10.132.26.249_USTXALAEFTP;
+                    application junos-ftp;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-PRN-ISP {
+                match {
+                    source-address 10.X.Y.179_PRINTER;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ junos-ping DNS ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-ISP-PRN {
+                description "[IF 070117] PCI Remediation: Printer";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.X.Y.179_PRINTER;
+                    application [ junos-ping TCP-9100 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-MOM-ISP {
+                description "[IF 070117] PCI Remediation: IP MOM";
+                match {
+                    source-address 10.X.Y.180_IP-MOM;
+                    destination-address 10.X.Y.10_ISP;
+                    application [ junos-ping TCP-26000 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-MOM-WU {
+                description "[IF 070117] PCI Remediation: IP MOM";
+                match {
+                    source-address 10.X.Y.180_IP-MOM;
+                    destination-address WU-MOM-Servers;
+                    application [ TCP-2068 TCP-8075 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-ISP-MOM {
+                description "[IF 070117] PCI Remediation: IP-MOM";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.X.Y.180_IP-MOM;
+                    application [ junos-ping UDP-1400 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-TO-PASSPORT {
+                description "[IF 101217] PCI Remediation Rule";
+                match {
+                    source-address 10.X.Y.10_ISP;
+                    destination-address 10.5.48.2_PASSPORT;
+                    application [ TCP-445 NETBIOS ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-HONEYDEW {
+                description "BO: Kristina Moreno Honeydew Menu Boards";
+                match {
+                    source-address 10.X.Y.224/27_EXT;
+                    destination-address any;
+                    application [ junos-http TCP-336 ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-CITRIX-IN {
+                match {
+                    source-address CITRIX-SERVERS;
+                    destination-address STORE-NETS;
+                    application any;
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy GL-FROM-FCIO-1 {
+                description "FCIO - Restrictions to VPN Headend";
+                match {
+                    source-address 10.X.Y.224/27_EXT;
+                    destination-address [ 172.21.130.68_VPN_2 172.20.130.68_VPN_1 172.22.34.140_USTXDLDDC1 10.132.34.20_USTXALDDC01 ];
+                    application [ junos-http junos-ike ESP_711 junos-https DNS junos-dhcp-client NATT ];
+                }
+                then {
+                    permit;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+            policy EXPLICIT-DENY {
+                description "GJ-032819: Added per Rich Hamilton for Splunk";
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                    log {
+                        session-init;
+                        session-close;
+                    }
+                }
+            }
+        }
+        policy-rematch;
+    }
+    zones {
+        security-zone MNGMNT {
+            interfaces {
+                ge-0/0/0.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            all;
+                        }
+                        protocols {
+                            all;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone HQ {
+            screen untrust-screen;
+            interfaces {
+                ge-0/0/4.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                            ssh;
+                            traceroute;
+                        }
+                        protocols {
+                            rip;
+                        }
+                    }
+                }
+                t1-1/0/0.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                            traceroute;
+                            ssh;
+                        }
+                        protocols {
+                            bgp;
+                        }
+                    }
+                }
+                lo0.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                            traceroute;
+                            ssh;
+                            snmp;
+                            snmp-trap;
+                            all;
+                        }
+                    }
+                }
+                st0.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            all;
+                        }
+                        protocols {
+                            all;
+                        }
+                    }
+                }
+                st0.1 {
+                    host-inbound-traffic {
+                        system-services {
+                            all;
+                        }
+                        protocols {
+                            all;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone dynamic-wan {
+            interfaces {
+                vlan.100 {
+                    host-inbound-traffic {
+                        system-services {
+                            dhcp;
+                            ike;
+                            ping;
+                            ssh;
+                            traceroute;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone inet-wan {
+            interfaces {
+                ge-0/0/5.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            all;
+                        }
+                        protocols {
+                            all;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone LEGACY {
+            tcp-rst;
+            host-inbound-traffic {
+                system-services {
+                    ping;
+                }
+            }
+            interfaces {
+                vlan.12;
+                vlan.70 {
+                    host-inbound-traffic {
+                        system-services {
+                            bootp;
+                            ping;
+                            dhcp;
+                        }
+                    }
+                }
+                vlan.80 {
+                    host-inbound-traffic {
+                        system-services {
+                            bootp;
+                            ping;
+                            dhcp;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone EDH {
+            host-inbound-traffic {
+                system-services {
+                    ping;
+                }
+            }
+            interfaces {
+                ge-0/0/6.0;
+            }
+        }
+        security-zone OPS {
+            interfaces {
+                vlan.10 {
+                    host-inbound-traffic {
+                        system-services {
+                            bootp;
+                            dhcp;
+                            ping;
+                            all;
+                        }
+                        protocols {
+                            all;
+                        }
+                    }
+                }
+                ge-0/0/3.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            all;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone EX-MGT {
+            interfaces {
+                ge-0/0/2.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            dhcp;
+                            bootp;
+                            ping;
+                            ssh;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone WIFI-RIS {
+            interfaces {
+                vlan.16 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                            bootp;
+                            dhcp;
+                        }
+                        protocols {
+                            pim;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone DMB {
+            interfaces {
+                vlan.13 {
+                    host-inbound-traffic {
+                        system-services {
+                            bootp;
+                            ping;
+                            dhcp;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone PASSPORT {
+            interfaces {
+                vlan.30 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone RIS-INFRA {
+            interfaces {
+                vlan.60 {
+                    host-inbound-traffic {
+                        system-services {
+                            ping;
+                            bootp;
+                        }
+                    }
+                }
+            }
+        }
+        security-zone EXTRANET {
+            interfaces {
+                vlan.40 {
+                    host-inbound-traffic {
+                        system-services {
+                            dhcp;
+                            ping;
+                            bootp;
+                        }
+                        protocols {
+                            pim;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+firewall {
+    filter LAN-INGRESS {
+        term 7TRANSFER {
+            from {
+                destination-prefix-list {
+                    7TRANSFER;
+                }
+                protocol tcp;
+                destination-port 11712-11713;
+            }
+            then {
+                count BL-7TRANSFER;
+                forwarding-class AF2;
+                accept;
+            }
+        }
+        term DGE {
+            from {
+                destination-prefix-list {
+                    DGE;
+                }
+            }
+            then {
+                count BL-DGE;
+                forwarding-class AF2;
+                accept;
+            }
+        }
+        term HEARTLAND {
+            from {
+                destination-prefix-list {
+                    HEARTLAND;
+                }
+            }
+            then {
+                count BH-HEARTLAND;
+                forwarding-class AF3;
+                accept;
+            }
+        }
+        term CERTEGY {
+            from {
+                destination-prefix-list {
+                    CERTEGY;
+                }
+            }
+            then {
+                count BH-CERTEGY;
+                forwarding-class AF3;
+                accept;
+            }
+        }
+        term INCOMM {
+            from {
+                destination-prefix-list {
+                    INCOMM;
+                }
+            }
+            then {
+                count BH-INCOMM;
+                forwarding-class AF3;
+                accept;
+            }
+        }
+        term PAYNEARME {
+            from {
+                destination-prefix-list {
+                    PAYNEARME;
+                }
+            }
+            then {
+                count BH-PAYNEARME;
+                forwarding-class AF3;
+                accept;
+            }
+        }
+        term CARDTRONICS {
+            from {
+                destination-prefix-list {
+                    CARDTRONICS;
+                }
+            }
+            then {
+                count BH-CARDTRONICS;
+                forwarding-class AF3;
+                accept;
+            }
+        }
+        term COMPUCOM {
+            from {
+                destination-prefix-list {
+                    COMPUCOM;
+                }
+            }
+            then {
+                count BL-COMPUCOM;
+                forwarding-class AF2;
+                accept;
+            }
+        }
+        term DEFAULT {
+            then {
+                count BE-DEFAULT;
+                forwarding-class BE;
+                accept;
+            }
+        }
+    }
+    filter MNGT-FILTER {
+        term SSH_ALLOW {
+            from {
+                source-prefix-list {
+                    MNGT-SRC-PREFIX;
+                }
+                protocol tcp;
+                destination-port ssh;
+            }
+            then accept;
+        }
+        term SSH_DENY {
+            from {
+                protocol tcp;
+                destination-port ssh;
+            }
+            then {
+                discard;
+            }
+        }
+        term ALLOW_ALL {
+            then accept;
+        }
+    }
+}
+access {
+    address-assignment {
+        pool OPS-Pool {
+            family inet {
+                network 10.0.106.152/29;
+                range OPS-Range {
+                    low 10.0.106.154;
+                    high 10.0.106.158;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 43200;
+                    domain-name 7-11.com;
+                    name-server {
+                        10.132.34.20;
+                        172.22.34.140;
+                    }
+                    router {
+                        10.0.106.153;
+                    }
+                    option 43 string ip:10.129.20.9,10.129.20.137;
+                }
+            }
+        }
+        pool RISMBL-Clients {
+            family inet {
+                network 10.0.106.160/28;
+                range WAP-Range {
+                    low 10.0.106.162;
+                    high 10.0.106.174;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 43200;
+                    domain-name store.ris.7-11.com;
+                    name-server {
+                        10.0.106.10;
+                    }
+                    wins-server {
+                        10.0.106.10;
+                    }
+                    router {
+                        10.0.106.161;
+                    }
+                }
+            }
+        }
+        pool DMB {
+            family inet {
+                network 10.0.106.144/29;
+                range DMB-Range {
+                    low 10.0.106.146;
+                    high 10.0.106.150;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 600;
+                    router {
+                        10.0.106.145;
+                    }
+                }
+            }
+        }
+        pool EX-MGT {
+            family inet {
+                network 10.0.106.196/30;
+                range EX-Range {
+                    low 10.0.106.198;
+                    high 10.0.106.198;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 3600;
+                    router {
+                        10.0.106.197;
+                    }
+                }
+            }
+        }
+        pool EXTRA {
+            family inet {
+                network 10.0.106.224/27;
+                range EXTRA-Range {
+                    low 10.0.106.245;
+                    high 10.0.106.254;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 3600;
+                    domain-name extra.7-11.com;
+                    name-server {
+                        10.132.34.21;
+                        172.29.150.12;
+                    }
+                    router {
+                        10.0.106.225;
+                    }
+                }
+            }
+        }
+        pool DEX {
+            family inet {
+                network 10.0.106.200/29;
+                range DEX-Range {
+                    low 10.0.106.203;
+                    high 10.0.106.206;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 600;
+                    name-server {
+                        10.0.106.10;
+                    }
+                    router {
+                        10.0.106.201;
+                    }
+                }
+            }
+        }
+        pool DISPENSER {
+            family inet {
+                network 192.168.100.0/24;
+                range DISPENSER-Range {
+                    low 192.168.100.50;
+                    high 192.168.100.100;
+                }
+                dhcp-attributes {
+                    maximum-lease-time 600;
+                    router {
+                        192.168.100.254;
+                    }
+                }
+            }
+        }
+    }
+}
+routing-instances {
+    inet-vr {
+        instance-type virtual-router;
+        interface ge-0/0/5.0;
+    }
+    wwan-vr {
+        instance-type virtual-router;
+        interface vlan.100;
+    }
+}
+services {
+    flow-monitoring {
+        version9 {
+            template ipv4-LA {
+                ipv4-template;
+            }
+        }
+    }
+    rpm {
+        probe PING-PROBE {
+            test PING-TEST {
+                probe-type icmp-ping;
+                target address 10.132.254.21;
+                probe-count 5;
+                probe-interval 5;
+                test-interval 60;
+                thresholds {
+                    successive-loss 5;
+                    total-loss 5;
+                }
+            }
+        }
+    }
+    ip-monitoring {
+        policy WWAN-TRACKING {
+            match {
+                rpm-probe PING-PROBE;
+            }
+            then {
+                interface vlan.100 {
+                    enable;
+                }
+            }
+        }
+    }
+}
+applications {
+    application SNMP-TRAP {
+        protocol udp;
+        destination-port 162;
+    }
+    application SNMP-POLL {
+        protocol udp;
+        destination-port 161;
+    }
+    application ClickIt-Service {
+        protocol tcp;
+        destination-port 6320-6331;
+    }
+    application DigiOp-Service {
+        term TCP-7000 protocol tcp destination-port 7000;
+        term TCP-8000-8003 protocol tcp destination-port 8000-8003;
+        term TCP-3000 protocol tcp destination-port 3000;
+        term TCP-9000-9001 protocol tcp destination-port 9000-9001;
+        term TCP-7021 protocol tcp destination-port 7021;
+        term UDP-8875 protocol udp destination-port 8875;
+    }
+    application ESP_711 {
+        protocol esp;
+        inactivity-timeout 15;
+    }
+    application GlobalCatalog {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3268-3269;
+        description "Custom - MS Global Catalog";
+    }
+    application Kerberos {
+        description "Custom - Kerberos";
+        term term0 protocol udp source-port 0-65535 destination-port 88-88;
+        term term1 protocol tcp source-port 0-65535 destination-port 88-88;
+        term Kerberos-TCP protocol tcp destination-port 88;
+        term Kerberos-UDP protocol udp destination-port 88;
+    }
+    application LDAPS {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 636;
+        description "Custom - LDAPS";
+    }
+    application MS-DFS-R {
+        protocol tcp;
+        uuid 897e2e5f-93f3-4376-9c9c-fd2277495c27;
+    }
+    application MS-FRS {
+        term term0 protocol tcp uuid f5cc59b4-4264-101a-8c59-08002b2f8426;
+        term term1 protocol tcp uuid d049b186-814f-11d1-9a3c-00c04fc9b232;
+        term term2 protocol tcp uuid a00c021c-2be2-11d2-b678-0000f87a8f8e;
+    }
+    application MS-LSA-RPC {
+        protocol tcp;
+        uuid 12345778-1234-abcd-ef00-0123456789ab;
+        description "Custom - MS LSA Interface";
+    }
+    application MS-NETLOGON {
+        protocol tcp;
+        uuid 12345678-1234-abcd-ef00-01234567cffb;
+    }
+    application MS-SAM-RPC {
+        protocol tcp;
+        uuid 12345778-1234-abcd-ef00-0123456789ac;
+        description "Custom - MS SAM Interface";
+    }
+    application NETBIOS {
+        term 1 protocol tcp source-port 0-65535 destination-port 135-139;
+        term 2 protocol udp source-port 0-65535 destination-port 135-139;
+    }
+    application PORT-8081 {
+        term TCP-8081 protocol tcp destination-port 8081;
+        term UDP-8081 protocol udp destination-port 8081;
+    }
+    application PORT-8088 {
+        term TCP-8088 protocol tcp destination-port 8088;
+        term UDP-8088 protocol udp destination-port 8088;
+    }
+    application PORT-9990-9991 {
+        term TCP-9990-9991 protocol tcp destination-port 9990-9991;
+        term UDP-9990-9991 protocol udp destination-port 9990-9991;
+    }
+    application RDP {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3389-3389;
+    }
+    application SNMP {
+        term SNMP-TCP protocol tcp destination-port 161;
+        term SNMP-UDP protocol udp destination-port 161;
+    }
+    application TCP-10001 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 10001;
+    }
+    application TCP-10200 {
+        protocol tcp;
+        destination-port 10200;
+    }
+    application TCP-1025-1030 {
+        protocol tcp;
+        destination-port 1025-1030;
+    }
+    application TCP-10360 {
+        protocol tcp;
+        destination-port 10360;
+    }
+    application TCP-10443 {
+        protocol tcp;
+        destination-port 10443;
+    }
+    application TCP-10560-10566 {
+        protocol tcp;
+        destination-port 10560-10566;
+    }
+    application TCP-11711 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 11711;
+        inactivity-timeout 900;
+    }
+    application TCP-11712 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 11712;
+        inactivity-timeout 900;
+    }
+    application TCP-11713 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 11713;
+        inactivity-timeout 900;
+    }
+    application TCP-1270 {
+        protocol tcp;
+        source-port 1025-65535;
+        destination-port 1270-1270;
+    }
+    application TCP-1414 {
+        protocol tcp;
+        destination-port 1414;
+    }
+    application TCP-1534 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 1534;
+    }
+    application TCP-2068 {
+        protocol tcp;
+        destination-port 2068;
+    }
+    application TCP-3000 {
+        protocol tcp;
+        destination-port 3000;
+    }
+    application TCP-3001 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3001-3001;
+    }
+    application TCP-3002 {
+        protocol tcp;
+        destination-port 3002;
+    }
+    application TCP-3448 {
+        protocol tcp;
+        destination-port 3448;
+    }
+    application TCP-3465 {
+        protocol tcp;
+        destination-port 3465;
+    }
+    application TCP-3466 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3466;
+    }
+    application TCP-3494 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3494;
+    }
+    application TCP-3496 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 3496;
+    }
+    application TCP-41000 {
+        protocol tcp;
+        destination-port 41000;
+    }
+    application TCP-41002 {
+        protocol tcp;
+        destination-port 41002;
+    }
+    application TCP-445 {
+        protocol tcp;
+        source-port 1-65535;
+        destination-port 445-445;
+    }
+    application TCP-5118 {
+        protocol tcp;
+        destination-port 5118;
+    }
+    application TCP-55020 {
+        protocol tcp;
+        destination-port 55020;
+        inactivity-timeout 1440;
+    }
+    application TCP-55123 {
+        protocol tcp;
+        destination-port 55123;
+        inactivity-timeout 1440;
+    }
+    application TCP-5807-5810 {
+        protocol tcp;
+        destination-port 5807-5810;
+    }
+    application TCP-59700 {
+        protocol tcp;
+        destination-port 59700;
+    }
+    application TCP-59701 {
+        protocol tcp;
+        destination-port 59701;
+    }
+    application TCP-60030 {
+        protocol tcp;
+        destination-port 60030;
+    }
+    application TCP-60050 {
+        protocol tcp;
+        destination-port 60050;
+    }
+    application TCP-6327 {
+        protocol tcp;
+        destination-port 6327;
+    }
+    application TCP-6711 {
+        protocol tcp;
+        destination-port 6711;
+    }
+    application TCP-7000 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 7000;
+    }
+    application TCP-7443 {
+        protocol tcp;
+        destination-port 7443;
+    }
+    application TCP-7677 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 7677;
+    }
+    application TCP-7711 {
+        protocol tcp;
+        destination-port 7711;
+    }
+    application TCP-8000 {
+        protocol tcp;
+        destination-port 8000;
+    }
+    application TCP-8001 {
+        protocol tcp;
+        destination-port 8001;
+    }
+    application TCP-8040 {
+        protocol tcp;
+        destination-port 8040;
+    }
+    application TCP-8075 {
+        protocol tcp;
+        destination-port 8075;
+    }
+    application TCP-8080 {
+        protocol tcp;
+        source-port 1-65535;
+        destination-port 8080-8080;
+    }
+    application TCP-8080-8086 {
+        protocol tcp;
+        destination-port 8080-8086;
+    }
+    application TCP-8081 {
+        protocol tcp;
+        destination-port 8081;
+    }
+    application TCP-8082 {
+        protocol tcp;
+        destination-port 8082;
+    }
+    application TCP-8090 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 8090;
+    }
+    application TCP-8094 {
+        protocol tcp;
+        destination-port 8094;
+    }
+    application TCP-8100 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 8100;
+    }
+    application TCP-8270 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 8270;
+    }
+    application TCP-8273-8276 {
+        protocol tcp;
+        destination-port 8273-8276;
+    }
+    application TCP-8443 {
+        protocol tcp;
+        source-port 1-65535;
+        destination-port 8443-8443;
+    }
+    application TCP-8444 {
+        protocol tcp;
+        destination-port 8444;
+    }
+    application TCP-9050 {
+        protocol tcp;
+        destination-port 9050;
+    }
+    application TCP-9100 {
+        protocol tcp;
+        source-port 0-65535;
+        destination-port 9100;
+    }
+    application TCP-9999 {
+        protocol tcp;
+        destination-port 9999;
+    }
+    application TCP3444 {
+        protocol tcp;
+        destination-port 3444;
+    }
+    application TCP3446 {
+        protocol tcp;
+        destination-port 3446;
+    }
+    application TRACEROUTE-ICMP {
+        protocol icmp;
+        icmp-type 8;
+        icmp-code 0;
+        inactivity-timeout 60;
+    }
+    application TRACEROUTE-UDP {
+        protocol udp;
+        source-port 1-65535;
+        destination-port 33400;
+        inactivity-timeout 60;
+    }
+    application UDP-47808 {
+        protocol udp;
+        destination-port 47808;
+    }
+    application UDP-5000 {
+        protocol udp;
+        source-port 0-65535;
+        destination-port 5000;
+        inactivity-timeout 1800;
+    }
+    application UDP-5247 {
+        protocol udp;
+        source-port 0-65535;
+        destination-port 5247;
+        inactivity-timeout 1800;
+    }
+    application ldap-tcp {
+        protocol tcp;
+        source-port 1-65535;
+        destination-port 389;
+    }
+    application ldap-udp {
+        protocol udp;
+        source-port 1-65535;
+        destination-port 389;
+    }
+    application SPACE {
+        protocol tcp;
+        destination-port 7804;
+    }
+    application TCP-1610 {
+        protocol tcp;
+        destination-port 1610;
+    }
+    application TCP-1609 {
+        protocol tcp;
+        destination-port 1609;
+    }
+    application TCP-1611 {
+        protocol tcp;
+        destination-port 1611;
+    }
+    application TCP-443-NO-ALG {
+        application-protocol ignore;
+        protocol tcp;
+        destination-port 443;
+    }
+    application TCP-1194 {
+        protocol tcp;
+        destination-port 1194;
+    }
+    application TCP-1195 {
+        protocol tcp;
+        destination-port 1195;
+    }
+    application TCP-50534 {
+        protocol tcp;
+        destination-port 50534;
+    }
+    application TCP-5802 {
+        protocol tcp;
+        destination-port 5802;
+    }
+    application TCP-3128 {
+        protocol tcp;
+        destination-port 3128;
+    }
+    application TCP-7734 {
+        protocol tcp;
+        destination-port 7734;
+    }
+    application TCP-7752 {
+        protocol tcp;
+        destination-port 7752;
+    }
+    application UDP-7351 {
+        protocol udp;
+        destination-port 7351;
+    }
+    application LDAP {
+        description "Custom - LDAP";
+        term LDAP-UDP protocol udp destination-port 389;
+        term LDAP-TCP protocol tcp destination-port 389;
+    }
+    application MS-NETBIOS {
+        description "Custom - MS NetBios";
+        term MS-NETBIOS-T1 protocol tcp destination-port 135-139;
+        term MS-NETBIOS-T2 protocol udp destination-port 135-139;
+    }
+    application MS-NETLOGIN {
+        protocol tcp;
+        uuid 12345678-1234-abcd-ef00-01234567cffb;
+        description "Custom - MS NetLogin Interface";
+    }
+    application NATT {
+        description "IPSec NAT Traversal";
+        term TCP-4500 protocol tcp destination-port 4500;
+        term UDP-4500 protocol udp destination-port 4500;
+    }
+    application TCP-26000 {
+        protocol tcp;
+        destination-port 26000;
+    }
+    application TCP-4243 {
+        protocol tcp;
+        destination-port 4243;
+    }
+    application TCP-4244 {
+        protocol tcp;
+        destination-port 4244;
+    }
+    application TCP-8020 {
+        protocol tcp;
+        destination-port 8020;
+        description "PNM new service";
+    }
+    application UDP-1400 {
+        protocol udp;
+        destination-port 1400;
+    }
+    application TCP-161 {
+        protocol tcp;
+        destination-port 161;
+    }
+    application TCP-6110 {
+        protocol tcp;
+        destination-port 6110;
+    }
+    application UDP-5353 {
+        protocol udp;
+        destination-port 5353;
+    }
+    application UDP-6100 {
+        protocol udp;
+        destination-port 6100;
+    }
+    application UDP-9187 {
+        protocol udp;
+        destination-port 9187;
+    }
+    application UDP-9300 {
+        protocol udp;
+        destination-port 9300;
+    }
+    application TCP-6211 {
+        protocol tcp;
+        destination-port 6211;
+    }
+    application TCP-336 {
+        protocol tcp;
+        destination-port 336;
+    }
+    application TCP-2195 {
+        protocol tcp;
+        destination-port 2195;
+    }
+    application TCP-2196 {
+        protocol tcp;
+        destination-port 2196;
+    }
+    application TCP-5223 {
+        protocol tcp;
+        destination-port 5223;
+    }
+    application TCP-631 {
+        protocol tcp;
+        destination-port 631;
+    }
+    application TCP-15432 {
+        protocol tcp;
+        destination-port 15432;
+    }
+    application TCP-15433 {
+        protocol tcp;
+        destination-port 15433;
+    }
+    application TCP-25001 {
+        protocol tcp;
+        destination-port 25001;
+    }
+    application TCP-6100 {
+        protocol tcp;
+        destination-port 6100;
+    }
+    application TCP-1080 {
+        protocol tcp;
+        destination-port 1080;
+    }
+    application TCP-8089 {
+        protocol tcp;
+        destination-port 8089;
+    }
+    application TCP-9997 {
+        protocol tcp;
+        destination-port 9997;
+    }
+    application SLP {
+        term TCP-427 protocol tcp destination-port 427;
+        term UDP-427 protocol udp destination-port 427;
+    }
+    application TCP-3306 {
+        protocol tcp;
+        destination-port 3306;
+    }
+    application TCP-50000 {
+        protocol tcp;
+        destination-port 50000;
+    }
+    application TCP-5060 {
+        protocol tcp;
+        destination-port 5060;
+    }
+    application TCP-548 {
+        protocol tcp;
+        destination-port 548;
+    }
+    application UDP-137 {
+        protocol udp;
+        destination-port 137;
+    }
+    application-set DNS {
+        application junos-dns-tcp;
+        application junos-dns-udp;
+    }
+    application-set MS-DC-Traffic {
+        application GlobalCatalog;
+        application Kerberos;
+        application ldap-tcp;
+        application ldap-udp;
+        application LDAPS;
+        application MS-DFS-R;
+        application MS-FRS;
+        application MS-LSA-RPC;
+        application MS-NETLOGON;
+        application junos-ms-rpc-epm;
+        application MS-SAM-RPC;
+        application junos-ntp;
+        application junos-ping;
+        application TCP-445;
+        application NETBIOS;
+        application-set DNS;
+        application-set junos-ms-rpc-any;
+    }
+    application-set OAG-FS-PROD {
+        application TCP-8080-8086;
+        application TCP-8090;
+        application TCP-8040;
+        application junos-http;
+        application junos-https;
+    }
+    application-set TRACEROUTE {
+        application TRACEROUTE-ICMP;
+        application TRACEROUTE-UDP;
+    }
+    application-set MS-AD {
+        application MS-LSA-RPC;
+        application MS-NETLOGIN;
+        application MS-NETBIOS;
+        application GlobalCatalog;
+        application Kerberos;
+        application LDAP;
+        application LDAPS;
+        application MS-SAM-RPC;
+        application junos-dns-udp;
+        application junos-dns-tcp;
+        application junos-smb;
+    }
+}
+vlans {
+    CXDATA {
+        vlan-id 100;
+        l3-interface vlan.100;
+    }
+    DEX {
+        description "DEX Servers";
+        vlan-id 70;
+        l3-interface vlan.70;
+    }
+    DISPENSER {
+        description "Fuels Dispensers";
+        vlan-id 80;
+        l3-interface vlan.80;
+    }
+    DMB {
+        description "DMB Devices";
+        vlan-id 13;
+        l3-interface vlan.13;
+    }
+    EXTRA-1 {
+        vlan-id 40;
+        l3-interface vlan.40;
+    }
+    LEGACY {
+        vlan-id 12;
+        l3-interface vlan.12;
+    }
+    OPS {
+        description "Store Operations";
+        vlan-id 10;
+        l3-interface vlan.10;
+    }
+    PASSPORT {
+        vlan-id 30;
+        l3-interface vlan.30;
+    }
+    RIS-INFRA {
+        vlan-id 60;
+        l3-interface vlan.60;
+    }
+    WIFI-CORP {
+        vlan-id 17;
+        l3-interface vlan.17;
+    }
+    WIFI-GUEST {
+        vlan-id 18;
+        l3-interface vlan.18;
+    }
+    WIFI-RIS {
+        vlan-id 16;
+        l3-interface vlan.16;
+    }
+}
+

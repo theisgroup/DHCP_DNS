@@ -1,0 +1,152 @@
+﻿root@TEST1> show configuration | no-more 
+## Last commit: 2019-06-06 20:10:07 CDT by root
+version 20190319.203446_builder.r1013243;
+system {
+    root-authentication {
+        encrypted-password "$6$jYqr6/.2$CKAtyNQYbFI6c6S.ihjfWSQdfY2pREMd8kj72uIbmiZEVNLkhVx5hclQGdU.emMiVOUboIQ6suQAbrHAT9jXh."; ## SECRET-DATA
+    }
+    services {
+        ssh {
+            root-login allow;
+        }
+        dns {
+            dns-proxy {
+                interface {
+                    ge-0/0/0.0;
+                }
+                cache {
+                    test10.domain.local inet 10.1.1.1;
+                }
+            }
+        }
+        dhcp-local-server {
+            group TEST {
+                interface ge-0/0/0.0;
+            }
+        }
+    }
+    host-name TEST1;
+    time-zone America/Chicago;
+    scripts {
+        op {
+            file config-change-host.py;
+            file config-change.py;
+        }
+        language python;
+    }
+    syslog {
+        inactive: user * {
+            any info;
+        }
+        file messages {
+            any any;
+        }
+    }
+    processes {
+        dhcp-service {
+            traceoptions {
+                inactive: file jdhcp size 20m files 5 world-readable;
+                level all;
+                flag all;
+            }
+        }
+    }
+}
+security {
+    zones {
+        security-zone trust {
+            host-inbound-traffic {
+                system-services {
+                    all;
+                }
+                protocols {
+                    all;
+                }
+            }
+            interfaces {
+                ge-0/0/0.0;
+            }
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 192.168.1.1/24;
+            }
+        }
+    }
+    fxp0 {
+        unit 0 {
+            family inet {
+                address 192.168.122.2/24;
+            }
+        }
+    }
+}
+event-options {
+    generate-event {
+        EVENT_EVER_10MIN time-of-day "17:15:00 -0500";
+    }
+    policy EVENT_EVER_10MIN {
+        events EVENT_EVER_10MIN;
+        then {
+            event-script config-change-host.py;
+        }
+    }
+    policy DHCP_DISCOVERY {
+        events PFE;
+        attributes-match {
+            PFE.message matches DHCP-DISCOVER;
+        }
+        then {
+            change-configuration {
+                commands {
+                    "set system host-name yang123";
+                }
+                commit-options {
+                    log "***************THIS IS A DHCP-DISCOVER***************";
+                }
+            }
+        }
+    }
+    policy DHCP_REQUEST {
+        events PFE;
+        attributes-match {
+            PFE.message matches DHCP-REQUEST;
+        }
+        then {
+            change-configuration {
+                commands {
+                    "set system host-name yang123";
+                }
+                commit-options {
+                    log "***************THIS IS A DHCP-REQUEST***************";
+                }
+            }
+        }
+    }
+}
+access {
+    address-assignment {
+        pool TEST {
+            family inet {
+                network 192.168.1.0/24;
+                range TEST_RANGE {
+                    low 192.168.1.10;
+                    high 192.168.1.100;
+                }
+                dhcp-attributes {
+                    domain-name test;
+                    name-server {
+                        192.168.1.1;
+                    }
+                    router {
+                        192.168.1.1;
+                    }
+                }
+            }
+        }
+    }
+}

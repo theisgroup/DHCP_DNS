@@ -1,0 +1,112 @@
+*** jdhcp ***
+Jun  5 16:41:48.532391 [MSTR][DEBUG] jdhcpd_io_reader: Entered
+Jun  5 16:41:48.532431 [MSTR][DEBUG] jdhcpd_packet_new: PACKET - Allocated new v4 packet 0xa0661f8
+Jun  5 16:41:48.532455 [MSTR][NOTE]  jdhcpd_io_reader: Recv DHCP packet on logical-system default, routing-instance default, if ge-0/0/0.0 size 289
+Jun  5 16:41:48.532477 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   from == 192.168.1.11, port == 68 ]--
+Jun  5 16:41:48.532490 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   size == 289, op == 1 ]--
+Jun  5 16:41:48.532501 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  5 16:41:48.532513 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  5 16:41:48.532524 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   hops == 0, xid == 16946a95 ]--
+Jun  5 16:41:48.532535 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  5 16:41:48.532548 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP ciaddr == 192.168.1.11 ]--
+Jun  5 16:41:48.532560 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP yiaddr == 0.0.0.0 ]--
+Jun  5 16:41:48.532572 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  5 16:41:48.532585 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  5 16:41:48.532605 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP chaddr == 00 0c 29 fe 49 a8 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  5 16:41:48.532617 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  5 16:41:48.532628 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  5 16:41:48.532645 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  55, len   9, data 03 33 01 0f 06 42 43 78 2c ]--
+Jun  5 16:41:48.532657 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  53, len   1, data DHCP-REQUEST ]--
+Jun  5 16:41:48.532694 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  61, len  18, data 3d 10 3a 67 65 2d 30 2f 30 2f 30 2e 30 3a 79 61 6e 67 ]--
+Jun  5 16:41:48.532712 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  51, len   4, data 00 01 51 80 ]--
+Jun  5 16:41:48.532726 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  12, len   5, data 54 45 53 54 31 ]--
+Jun  5 16:41:48.532738 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code 255, len   0 ]--
+Jun  5 16:41:48.532767 [MSTR][DEBUG] client_key_compose: Composing key (0xa7ba2c0) for cid_l 18, cid 00 0c 29 fe 49 a8, mac 00 0c 29 fe 49 a8, htype 1, subnet 192.168.1.1, ifindx 0, opt82_l 0, opt82 NULL
+Jun  5 16:41:48.532780 [MSTR][DEBUG] client_key_compose: Successfully composed CK_TYPE_CLIENT_ID_ON_SUBNET (1) client key object.
+Jun  5 16:41:48.532799 [MSTR][DEBUG] client_key_print: key_type CK_TYPE_CLIENT_ID_ON_SUBNET (1): subnet 192.168.1.1, Clientid_len 18, 3d 10 3a 67 65 2d 30 2f 30 2f 30 2e 30 3a 79 61 6e 67 
+Jun  5 16:41:48.532811 [MSTR][DEBUG] client_key_print: key_type CK_TYPE_CLIENT_ID_ON_SUBNET (1) other fields: subnet 192.168.1.1, ifindex 0, opt82_len 0, - 
+Jun  5 16:41:48.532826 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_configuration_match: sus_ifl:0xa084f00 (ge-0/0/0.0)
+Jun  5 16:41:48.532840 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_packet_handle: RECEIVE REQUEST: stats_safd 0xa209a80 ge-0/0/0.0, incoming_safd 0xa209a80 ge-0/0/0.0, demux 0x0 , safd 0xa209a80 ge-0/0/0.0
+Jun  5 16:41:48.532858 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] JDHCPD_CLIENT_EVENT: Client(0xa0a9000) got event CLIENT_EVENT_REQUEST_PDU in state LOCAL_SERVER_STATE_BOUND flags 1: 0x10410050 2: 0x80 3: 0x0 nm: 0x0
+Jun  5 16:41:48.532874 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_state_bound: Found subunit stack (0xa084f00), index (70) in state LOCAL_SERVER_STATE_BOUND
+Jun  5 16:41:48.532889 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_reauthenticate_lease_renewal: reauthentication required FALSE
+Jun  5 16:41:48.532900 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.532910 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.532923 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes 
+Jun  5 16:41:48.532938 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_check_lease_validation_violation: No configuration for lease time violation validation
+Jun  5 16:41:48.532971 [MSTR][ERROR][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_add_client_in_blq_tree_cilentid: BLQ-AVL - Client is already on the blq AVL tree's list by clientId.
+Jun  5 16:41:48.532991 [MSTR][DEBUG] blq_entry_timestamp_q_find: BLQ-AVL: packet time(1559752908) ts_q_entry(a029f70) ts_q_entry->start_time(1559752728), ts_q_entry->end_time(1559752728)
+Jun  5 16:41:48.533003 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_add_client_in_blq_tree_cilentid: BLQ-AVL - Client is added in clien-id blq AVL tree's list, number of clients with this client-id is 1
+Jun  5 16:41:48.533013 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_add_client_in_blq_tree_all_entries: BLQ-AVL - Client is already on the blq AVL tree's list ALL.
+Jun  5 16:41:48.533021 [MSTR][DEBUG] blq_entry_timestamp_q_find: BLQ-AVL: packet time(1559752908) ts_q_entry(a029f28) ts_q_entry->start_time(1559752728), ts_q_entry->end_time(1559729253)
+Jun  5 16:41:48.533032 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_add_client_in_blq_tree_all_entries: BLQ-AVL - Client is added in general blq AVL tree's list, number of clients in this list 2
+Jun  5 16:41:48.533042 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_persistent_is_entry_in_file_allowed: client_type=1, client->state=12
+Jun  5 16:41:48.533055 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_fill_client_sdb_private_data: Mirroring disabled (ha_graceful_switchover false) c0a8:10b:ffff:ff00::c0a8:101
+Jun  5 16:41:48.533078 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.533087 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.533097 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes 
+Jun  5 16:41:48.533110 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_fill_client_sdb_private_data: Allocated memory to store in SDB, total mirrored length 264, client length 264, dual stack peer client length 0, session-id 2
+Jun  5 16:41:48.533122 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: Saved NON-DEMUX interface name ge-0/0/0.0 into mirroring ha_info
+Jun  5 16:41:48.533132 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.533140 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.533150 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes 
+Jun  5 16:41:48.533161 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: Added TLV for DHCPv4 CLIENT ID from client key, length 18
+Jun  5 16:41:48.533201 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: ++++Added TLV for WHOLESALE LR name default length 7
+Jun  5 16:41:48.533324 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: ++++Added TLV for WHOLESALE RI name default length 7
+Jun  5 16:41:48.533341 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: Added TLV for last_packet_time length 4, last_packet_time: 1559752908
+Jun  5 16:41:48.533353 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: Added TLV for active_lq_last_update_time length 4, active_lq_last_update_time: 1559752908
+Jun  5 16:41:48.533364 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_write_private_data: ++++Added TLV for Incoming dhcp options length 36
+Jun  5 16:41:48.533382 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_mirrorsdb_add_client: Successfully saved private data for 192.168.1.11 in SDB, length 264
+Jun  5 16:41:48.533393 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_client_correlation_id_update: setting the client correlation_id 4 in state 12.
+Jun  5 16:41:48.533404 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_sdb_ack_request_correlate: Setting client correlation id as 4, correlation_state as 12
+Jun  5 16:41:48.533430 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_client_lease_timer_start: CLIENT starting lease timer for index 65538, lease_end 1559839308
+Jun  5 16:41:48.545483 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_state_bound: SDB ACK will notify us for client session Id 2
+Jun  5 16:41:48.545513 [MSTR][INFO]  jdhcpd_client_set_pkt: *********** Setting v4 packet 0xa0661f8
+Jun  5 16:41:48.570461 [MSTR][DEBUG] jdhcpd_sessiondb_mirrored_ack_cb: Successful SDB Mirrored Ack: returned code SDB_SUCCESS for session id 2 family INET, Ack WAITING
+Jun  5 16:41:48.570480 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] JDHCPD_CLIENT_EVENT: Client(0xa0a9000) got event CLIENT_EVENT_CLIENT_SDB_MIRROR_ACK in state LOCAL_SERVER_STATE_BOUND flags 1: 0x10410050 2: 0x80 3: 0x0 nm: 0x0
+Jun  5 16:41:48.570494 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_state_bound: Found subunit stack (0xa084f00), index (70) in state LOCAL_SERVER_STATE_BOUND
+Jun  5 16:41:48.570503 [MSTR][INFO]  jdhcpd_client_unset_pkt: ***********  Unsetting v4 packet 0xa0661f8
+Jun  5 16:41:48.570510 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.570518 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.570529 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_pdu_send: TRYING to send packet
+Jun  5 16:41:48.570539 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_fill_in_server_identifier: Adding server identifier option 
+Jun  5 16:41:48.570546 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.570553 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.570561 [MSTR][DEBUG] jdhcpd_pool_find: cfg a07d000, pool_name a022c78, TEST
+Jun  5 16:41:48.570568 [MSTR][DEBUG] jdhcpd_pool_find: Pool TEST  found 0xa0a8100 w/ cfg container 0xa07d000
+Jun  5 16:41:48.570577 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes 
+Jun  5 16:41:48.570586 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_t1t2_settings_get: t1 is 0  and T2 is 0
+Jun  5 16:41:48.570595 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_options_encode: return from t1t2_settings_get is: t1 0 t2 0
+Jun  5 16:41:48.570604 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_options_encode: using T1 0 and T2 0.
+Jun  5 16:41:48.570613 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_get_v4_v6_protocol_attributes: get configured protocol-attributes 
+Jun  5 16:41:48.570622 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_options_encode: requested option from pool, option code 3, len 6
+Jun  5 16:41:48.570632 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_options_encode: requested option from pool, option code 15, len 6
+Jun  5 16:41:48.570640 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_options_encode: requested option from pool, option code 6, len 6
+Jun  5 16:41:48.570650 [MSTR][NOTE] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_pdu_send: SEND (5) ACK: stats_safd 0xa209a80 ge-0/0/0.0, incoming_safd 0xa209a80 ge-0/0/0.0, demux 0x0 , safd 0xa209a80 ge-0/0/0.0
+Jun  5 16:41:48.570661 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_local_server_pdu_send: 
+Dump of PDU to be sent
+
+Jun  5 16:41:48.570674 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   from == 192.168.1.11, port == 68 ]--
+Jun  5 16:41:48.570683 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   size == 281, op == 2 ]--
+Jun  5 16:41:48.570691 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  flags == 0 ]--
+Jun  5 16:41:48.570699 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  htype == 1, hlen == 6 ]--
+Jun  5 16:41:48.570707 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   hops == 0, xid == 16946a95 ]--
+Jun  5 16:41:48.570715 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   secs == 0, flags == 0000 ]--
+Jun  5 16:41:48.570724 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP ciaddr == 192.168.1.11 ]--
+Jun  5 16:41:48.570732 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP yiaddr == 192.168.1.11 ]--
+Jun  5 16:41:48.570741 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP siaddr == 0.0.0.0 ]--
+Jun  5 16:41:48.570749 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP giaddr == 0.0.0.0 ]--
+Jun  5 16:41:48.570765 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP chaddr == 00 0c 29 fe 49 a8 00 00 00 00 00 00 00 00 00 00 ]--
+Jun  5 16:41:48.570804 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP  sname ==  ]--
+Jun  5 16:41:48.570816 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ DHCP/BOOTP   file ==  ]--
+Jun  5 16:41:48.570831 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  53, len   1, data DHCP-ACK ]--
+Jun  5 16:41:48.570847 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  51, len   4, data 00 01 51 80 ]--
+Jun  5 16:41:48.570868 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   1, len   4, data ff ff ff 00 ]--
+Jun  5 16:41:48.570878 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  54, len   4, data c0 a8 01 01 ]--
+Jun  5 16:41:48.570888 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   3, len   4, data c0 a8 01 01 ]--
+Jun  5 16:41:48.570897 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code  15, len   4, data 74 65 73 74 ]--
+Jun  5 16:41:48.570907 [MSTR][DEBUG][default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code   6, len   4, data c0 a8 01 01 ]--
+Jun  5 16:41:48.570915 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0] --[ OPTION code 255, len   0 ]--
+Jun  5 16:41:48.570926 [MSTR][INFO]  jdhcpd_io_send_packet_legacy: Packet will be sent from routing context 0
+Jun  5 16:41:48.570935 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_io_send_packet_legacy: Set the outgoing if to 70
+Jun  5 16:41:48.571096 [MSTR][INFO] [default:default][SVR][INET][ge-0/0/0.0][SID=2] jdhcpd_io_send_packet_legacy: DHCP PDU from 192.168.1.1 to 192.168.1.11 port 68 out interface 70 len 281

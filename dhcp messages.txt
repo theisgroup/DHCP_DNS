@@ -1,0 +1,11 @@
+Jun 11 14:27:43 event_filter_tree_find: Event id ALL_EVENTS not found
+Jun 11 14:27:46 Processing event <DH_SVC_V4_SERVER_GET_BOUND>
+Jun 11 14:27:43 No policies for event <DH_SVC_V4_SERVER_RCV_DISCOVER>
+Jun 11 14:27:46 executing event script 'config-change-host.py' for policy 'DHCP_DISCOVERY' triggered on receipt of event 'DH_SVC_V4_SERVER_GET_BOUND', with '/tmp/evt_cmd_GFhUgN' as the temporary command file, and '/tmp/evt_op_m4SxMO' as the temporary output file
+
+
+Jun 11 18:37:02  yang123 jdhcpd: DH_SVC_V4_SERVER_RCV_RELEASE: DHCPv4 server stopped a binding after receiving a RELEASE or DECLINE packet:default/default, interface ge-0/0/0.0, MAC 00:0c:29:fe:49:a8, IP 192.168.1.10.
+Jun 11 17:24:09  yang123 jdhcpd: DH_SVC_V4_SERVER_RCV_RENEW: DHCPv4 server began a renewal process after receiving a REQUEST packet in state BOUND:default/default, interface ge-0/0/0.0, MAC 00:0c:29:fe:49:a8, IP 192.168.1.10, lease-time 86400.
+Jun 11 18:56:28  yang123 jdhcpd: DH_SVC_V4_SERVER_RCV_DISCOVER: DHCPv4 server began a new binding process after receiving a DISCOVER packet:default/default, interface ge-0/0/0.0, MAC 00:0c:29:fe:49:a8, IP 192.168.1.10, lease-time 86400.
+Jun 13 18:37:21  yang123 jdhcpd: DH_SVC_V4_SERVER_LEASE_TIMEOUT: DHCPv4 server stopped a binding after the lease timeout:default/default, interface ge-0/0/0.0, MAC 00:0c:29:fe:49:a8, IP 192.168.1.16.
+
